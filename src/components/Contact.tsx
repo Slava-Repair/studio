@@ -1,3 +1,4 @@
+
 "use client";
 
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
@@ -72,12 +73,12 @@ export default function Contact() {
             </div>
           </div>
 
-          {/* Image on the left (Order 3 in RTL) - Updated to technician photo */}
+          {/* Image on the left (Order 3 in RTL) - Updated to technician photo with blue border and shadow */}
           <div className="lg:order-3 flex justify-center">
-            <div className="relative w-full max-w-[300px] aspect-[2/3] rounded-2xl overflow-hidden border border-primary shadow-lg">
+            <div className="relative w-full max-w-[300px] aspect-[2/3] rounded-2xl overflow-hidden border border-primary shadow-lg transition-transform hover:scale-[1.02]">
               <Image
                 src={heroImage?.imageUrl || "https://picsum.photos/seed/tech1/600/900"}
-                alt="Professional technician"
+                alt="Professional technician repairing a washing machine"
                 fill
                 className="object-cover"
                 data-ai-hint="technician repair"

@@ -53,7 +53,10 @@ export default function Contact() {
             <h3 className="text-xl font-bold text-primary mb-2 text-right">פרטי התקשרות</h3>
             <div className="space-y-4">
               {contactDetails.map((item, idx) => (
-                <div key={idx} className="flex items-center gap-4 group justify-end">
+                <div key={idx} className="flex items-center gap-4 group justify-start">
+                  <div className="p-2.5 bg-primary/5 rounded-xl border border-primary/20 text-primary group-hover:bg-primary group-hover:text-white transition-all">
+                    <item.icon className="h-5 w-5" />
+                  </div>
                   <div className="text-right">
                     <h4 className="font-bold text-primary text-base">{item.title}</h4>
                     {item.link ? (
@@ -64,15 +67,12 @@ export default function Contact() {
                       <p className="text-muted-foreground text-sm font-medium">{item.value}</p>
                     )}
                   </div>
-                  <div className="p-2.5 bg-primary/5 rounded-xl border border-primary/20 text-primary group-hover:bg-primary group-hover:text-white transition-all">
-                    <item.icon className="h-5 w-5" />
-                  </div>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Image on the left (Order 3 in RTL) */}
+          {/* Image on the left (Order 3 in RTL) - Updated to technician photo */}
           <div className="lg:order-3 flex justify-center">
             <div className="relative w-full max-w-[300px] aspect-[2/3] rounded-2xl overflow-hidden border border-primary shadow-lg">
               <Image

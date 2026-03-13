@@ -1,9 +1,13 @@
 "use client";
 
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
+import Image from "next/image";
 import InquiryForm from "./InquiryForm";
+import { PlaceHolderImages } from "@/lib/placeholder-images";
 
 export default function Contact() {
+  const heroImage = PlaceHolderImages.find((img) => img.id === "hero-technician");
+
   const contactDetails = [
     {
       title: "טלפון",
@@ -30,32 +34,26 @@ export default function Contact() {
   ];
 
   return (
-    <section id="contact" className="py-6 bg-white flex flex-col items-center">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+    <section id="contact" className="py-2 bg-white flex flex-col items-center">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         
-        <div className="text-center mb-6 space-y-1" dir="rtl">
-          <h2 className="font-headline text-3xl md:text-4xl font-bold text-primary">צור קשר</h2>
+        <div className="text-center mb-4 space-y-1" dir="rtl">
+          <h2 className="font-headline text-3xl font-bold text-primary">צור קשר</h2>
           <div className="w-12 h-1 bg-primary mx-auto rounded-full"></div>
-          <p className="text-base text-muted-foreground max-w-xl mx-auto pt-2">
-            אנחנו כאן לכל שאלה, ייעוץ או קריאת שירות. השאירו פרטים ונחזור אליכם בהקדם.
-          </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start" dir="rtl">
-          {/* Form on the right (First in RTL grid order) */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-center" dir="rtl">
+          {/* Form on the right (Order 1 in RTL) */}
           <div className="w-full lg:order-1">
             <InquiryForm />
           </div>
 
-          {/* Info on the left (Second in RTL grid order) */}
-          <div className="space-y-4 lg:pr-12 lg:order-2 self-center">
-            <h3 className="text-xl font-bold text-primary mb-2">פרטי התקשרות</h3>
-            <div className="space-y-3">
+          {/* Info in the middle (Order 2 in RTL) */}
+          <div className="space-y-4 lg:order-2 self-center px-4">
+            <h3 className="text-xl font-bold text-primary mb-2 text-right">פרטי התקשרות</h3>
+            <div className="space-y-4">
               {contactDetails.map((item, idx) => (
-                <div key={idx} className="flex items-center gap-4 group">
-                  <div className="p-3 bg-primary/5 rounded-xl border border-primary/10 group-hover:bg-primary group-hover:text-white transition-all">
-                    <item.icon className="h-5 w-5" />
-                  </div>
+                <div key={idx} className="flex items-center gap-4 group justify-end">
                   <div className="text-right">
                     <h4 className="font-bold text-primary text-base">{item.title}</h4>
                     {item.link ? (
@@ -66,8 +64,24 @@ export default function Contact() {
                       <p className="text-muted-foreground text-sm font-medium">{item.value}</p>
                     )}
                   </div>
+                  <div className="p-2.5 bg-primary/5 rounded-xl border border-primary/20 text-primary group-hover:bg-primary group-hover:text-white transition-all">
+                    <item.icon className="h-5 w-5" />
+                  </div>
                 </div>
               ))}
+            </div>
+          </div>
+
+          {/* Image on the left (Order 3 in RTL) */}
+          <div className="lg:order-3 flex justify-center">
+            <div className="relative w-full max-w-[300px] aspect-[2/3] rounded-2xl overflow-hidden border border-primary shadow-lg">
+              <Image
+                src={heroImage?.imageUrl || "https://picsum.photos/seed/tech1/600/900"}
+                alt="Professional technician"
+                fill
+                className="object-cover"
+                data-ai-hint="technician repair"
+              />
             </div>
           </div>
         </div>

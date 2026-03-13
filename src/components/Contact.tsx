@@ -30,7 +30,7 @@ export default function Contact() {
   ];
 
   return (
-    <section id="contact" className="py-24 bg-background min-h-[calc(100vh-120px)] flex flex-col items-center justify-center">
+    <section id="contact" className="py-24 bg-white min-h-[calc(100vh-120px)] flex flex-col items-center justify-center">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         
         <div className="text-center mb-16 space-y-4" dir="rtl">
@@ -41,14 +41,14 @@ export default function Contact() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start" dir="rtl">
-          {/* Form on the right (first child in RTL) */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center" dir="rtl">
+          {/* Form on the right (First child in RTL grid) */}
           <div className="w-full">
             <InquiryForm />
           </div>
 
-          {/* Info on the left (second child in RTL) */}
-          <div className="space-y-8 lg:pl-12">
+          {/* Info on the left (Second child in RTL grid) */}
+          <div className="space-y-8 lg:pr-12">
             <h3 className="text-2xl font-bold text-primary mb-6">פרטי התקשרות</h3>
             <div className="space-y-6">
               {contactDetails.map((item, idx) => (

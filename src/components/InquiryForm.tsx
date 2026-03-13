@@ -50,7 +50,7 @@ export default function InquiryForm() {
   }
 
   return (
-    <div className="bg-white p-8 md:p-10 rounded-3xl shadow-xl border border-muted" dir="rtl">
+    <div className="bg-white p-8 md:p-10 rounded-3xl shadow-xl border border-primary/10" dir="rtl">
       <div className="mb-8 text-right">
         <h3 className="text-2xl font-bold text-primary mb-2">שלחו לנו הודעה</h3>
         <p className="text-muted-foreground">מלאו את הפרטים ונחזור אליכם</p>
@@ -58,29 +58,16 @@ export default function InquiryForm() {
 
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5 text-right">
-          <FormField
-            control={form.control}
-            name="fullName"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className="text-primary font-bold">שם</FormLabel>
-                <FormControl>
-                  <Input placeholder="ישראל ישראלי" className="bg-muted/30 border-none h-12 rounded-xl" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
+          
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
             <FormField
               control={form.control}
-              name="phone"
+              name="fullName"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-primary font-bold">טלפון</FormLabel>
+                  <FormLabel className="text-primary font-bold">שם</FormLabel>
                   <FormControl>
-                    <Input placeholder="050-0000000" className="bg-muted/30 border-none h-12 rounded-xl" {...field} />
+                    <Input placeholder="ישראל ישראלי" className="bg-muted/30 border-none h-12 rounded-xl focus-visible:ring-primary" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -89,13 +76,29 @@ export default function InquiryForm() {
 
             <FormField
               control={form.control}
+              name="phone"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-primary font-bold">טלפון</FormLabel>
+                  <FormControl>
+                    <Input placeholder="050-0000000" className="bg-muted/30 border-none h-12 rounded-xl focus-visible:ring-primary" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <FormField
+              control={form.control}
               name="applianceType"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="text-primary font-bold">בחר מכשיר</FormLabel>
                   <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <FormControl>
-                      <SelectTrigger className="bg-muted/30 border-none h-12 rounded-xl">
+                      <SelectTrigger className="bg-muted/30 border-none h-12 rounded-xl focus:ring-primary">
                         <SelectValue placeholder="סוג המכשיר" />
                       </SelectTrigger>
                     </FormControl>
@@ -112,21 +115,21 @@ export default function InquiryForm() {
                 </FormItem>
               )}
             />
-          </div>
 
-          <FormField
-            control={form.control}
-            name="model"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className="text-primary font-bold">דגם (אופציונלי)</FormLabel>
-                <FormControl>
-                  <Input placeholder="למשל: Samsung RT45" className="bg-muted/30 border-none h-12 rounded-xl" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+            <FormField
+              control={form.control}
+              name="model"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-primary font-bold">דגם (אופציונלי)</FormLabel>
+                  <FormControl>
+                    <Input placeholder="למשל: Samsung RT45" className="bg-muted/30 border-none h-12 rounded-xl focus-visible:ring-primary" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
 
           <FormField
             control={form.control}
@@ -137,7 +140,7 @@ export default function InquiryForm() {
                 <FormControl>
                   <Textarea 
                     placeholder="תאר את הבעיה במילים פשוטות" 
-                    className="bg-muted/30 border-none min-h-[100px] rounded-xl" 
+                    className="bg-muted/30 border-none min-h-[100px] rounded-xl focus-visible:ring-primary" 
                     {...field} 
                   />
                 </FormControl>

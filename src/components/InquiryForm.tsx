@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useForm } from "react-hook-form";
@@ -51,30 +50,30 @@ export default function InquiryForm() {
   }
 
   return (
-    <div className="bg-white p-8 md:p-10 rounded-3xl shadow-xl border border-primary/20" dir="rtl">
-      <div className="mb-8 text-right">
-        <h3 className="text-2xl font-bold text-primary mb-2">שלחו לנו הודעה</h3>
-        <p className="text-muted-foreground">מלאו את הפרטים ונחזור אליכם</p>
+    <div className="bg-white p-5 md:p-6 rounded-2xl shadow-lg border border-primary/20" dir="rtl">
+      <div className="mb-4 text-right">
+        <h3 className="text-xl font-bold text-primary mb-1 text-center">שלחו לנו הודעה</h3>
+        <p className="text-sm text-muted-foreground text-center">מלאו את הפרטים ונחזור אליכם</p>
       </div>
 
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5 text-right">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3 text-right">
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <FormField
               control={form.control}
               name="fullName"
               render={({ field }) => (
                 <FormItem className="text-right">
-                  <FormLabel className="text-primary font-bold">שם</FormLabel>
+                  <FormLabel className="text-primary font-bold text-xs">שם</FormLabel>
                   <FormControl>
                     <Input 
                       placeholder="מה שמך" 
-                      className="bg-muted/30 border border-primary h-12 rounded-xl focus-visible:ring-primary focus-visible:border-primary text-right" 
+                      className="bg-muted/30 border border-primary h-9 rounded-lg focus-visible:ring-primary focus-visible:border-primary text-right" 
                       {...field} 
                     />
                   </FormControl>
-                  <FormMessage />
+                  <FormMessage className="text-[10px]" />
                 </FormItem>
               )}
             />
@@ -84,30 +83,30 @@ export default function InquiryForm() {
               name="phone"
               render={({ field }) => (
                 <FormItem className="text-right">
-                  <FormLabel className="text-primary font-bold">טלפון</FormLabel>
+                  <FormLabel className="text-primary font-bold text-xs">טלפון</FormLabel>
                   <FormControl>
                     <Input 
                       placeholder="050-0000000" 
-                      className="bg-muted/30 border border-primary h-12 rounded-xl focus-visible:ring-primary focus-visible:border-primary text-right" 
+                      className="bg-muted/30 border border-primary h-9 rounded-lg focus-visible:ring-primary focus-visible:border-primary text-right" 
                       {...field} 
                     />
                   </FormControl>
-                  <FormMessage />
+                  <FormMessage className="text-[10px]" />
                 </FormItem>
               )}
             />
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <FormField
               control={form.control}
               name="applianceType"
               render={({ field }) => (
                 <FormItem className="text-right">
-                  <FormLabel className="text-primary font-bold">בחר מכשיר</FormLabel>
+                  <FormLabel className="text-primary font-bold text-xs">בחר מכשיר</FormLabel>
                   <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <FormControl>
-                      <SelectTrigger className="bg-muted/30 border border-primary h-12 rounded-xl focus:ring-primary text-right flex-row-reverse">
+                      <SelectTrigger className="bg-muted/30 border border-primary h-9 rounded-lg focus:ring-primary text-right flex-row-reverse">
                         <SelectValue placeholder="סוג המכשיר" />
                       </SelectTrigger>
                     </FormControl>
@@ -120,7 +119,7 @@ export default function InquiryForm() {
                       <SelectItem value="אחר">אחר</SelectItem>
                     </SelectContent>
                   </Select>
-                  <FormMessage />
+                  <FormMessage className="text-[10px]" />
                 </FormItem>
               )}
             />
@@ -130,15 +129,15 @@ export default function InquiryForm() {
               name="model"
               render={({ field }) => (
                 <FormItem className="text-right">
-                  <FormLabel className="text-primary font-bold">דגם (אופציונלי)</FormLabel>
+                  <FormLabel className="text-primary font-bold text-xs">דגם (אופציונלי)</FormLabel>
                   <FormControl>
                     <Input 
-                      placeholder="למשל: Samsung RT45" 
-                      className="bg-muted/30 border border-primary h-12 rounded-xl focus-visible:ring-primary focus-visible:border-primary text-right" 
+                      placeholder="Samsung RT45" 
+                      className="bg-muted/30 border border-primary h-9 rounded-lg focus-visible:ring-primary focus-visible:border-primary text-right" 
                       {...field} 
                     />
                   </FormControl>
-                  <FormMessage />
+                  <FormMessage className="text-[10px]" />
                 </FormItem>
               )}
             />
@@ -149,20 +148,20 @@ export default function InquiryForm() {
             name="symptoms"
             render={({ field }) => (
               <FormItem className="text-right">
-                <FormLabel className="text-primary font-bold">תיאור התקלה</FormLabel>
+                <FormLabel className="text-primary font-bold text-xs">תיאור התקלה</FormLabel>
                 <FormControl>
                   <Textarea 
                     placeholder="תאר את הבעיה במילים פשוטות" 
-                    className="bg-muted/30 border border-primary min-h-[100px] rounded-xl focus-visible:ring-primary focus-visible:border-primary text-right" 
+                    className="bg-muted/30 border border-primary min-h-[60px] rounded-lg focus-visible:ring-primary focus-visible:border-primary text-right text-sm" 
                     {...field} 
                   />
                 </FormControl>
-                <FormMessage />
+                <FormMessage className="text-[10px]" />
               </FormItem>
             )}
           />
 
-          <Button type="submit" className="w-full bg-primary text-white hover:bg-primary/90 font-bold h-14 text-xl rounded-xl transition-all shadow-md mt-4">
+          <Button type="submit" className="w-full bg-primary text-white hover:bg-primary/90 font-bold h-11 text-lg rounded-lg transition-all shadow-md mt-2">
             שלח בקשה
           </Button>
         </form>

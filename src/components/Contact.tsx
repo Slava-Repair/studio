@@ -42,8 +42,13 @@ export default function Contact() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start" dir="rtl">
-          {/* Info on the right (first in RTL) */}
-          <div className="space-y-8 lg:pr-8">
+          {/* Form on the right (first child in RTL) */}
+          <div className="w-full">
+            <InquiryForm />
+          </div>
+
+          {/* Info on the left (second child in RTL) */}
+          <div className="space-y-8 lg:pl-12">
             <h3 className="text-2xl font-bold text-primary mb-6">פרטי התקשרות</h3>
             <div className="space-y-6">
               {contactDetails.map((item, idx) => (
@@ -64,11 +69,6 @@ export default function Contact() {
                 </div>
               ))}
             </div>
-          </div>
-
-          {/* Form on the left (second in RTL) */}
-          <div className="w-full">
-            <InquiryForm />
           </div>
         </div>
       </div>

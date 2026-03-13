@@ -1,0 +1,53 @@
+
+{
+  "placeholderImages": [
+    {
+      "id": "hero-technician",
+      "description": "Professional technician repairing a washing machine",
+      "imageUrl": "https://picsum.photos/seed/tech1/1200/800",
+      "imageHint": "washing machine repair"
+    },
+    {
+      "id": "refrigerator-repair",
+      "description": "Close up of refrigerator components being serviced",
+      "imageUrl": "https://picsum.photos/seed/fridge/600/400",
+      "imageHint": "refrigerator repair"
+    },
+    {
+      "id": "oven-repair",
+      "description": "Technician checking oven heating element",
+      "imageUrl": "https://picsum.photos/seed/oven/600/400",
+      "imageHint": "oven repair"
+    },
+    {
+      "id": "dishwasher-repair",
+      "description": "Modern dishwasher being inspected",
+      "imageUrl": "https://picsum.photos/seed/dish/600/400",
+      "imageHint": "dishwasher repair"
+    },
+    {
+      "id": "dryer-repair",
+      "description": "Technician working on a laundry dryer",
+      "imageUrl": "https://picsum.photos/seed/dryer/600/400",
+      "imageHint": "dryer repair"
+    },
+    {
+      "id": "portfolio-1",
+      "description": "Successfully repaired high-end washing machine",
+      "imageUrl": "https://picsum.photos/seed/port1/800/600",
+      "imageHint": "appliance repair"
+    },
+    {
+      "id": "portfolio-2",
+      "description": "Fixed built-in luxury oven",
+      "imageUrl": "https://picsum.photos/seed/port2/800/600",
+      "imageHint": "luxury appliance"
+    },
+    {
+      "id": "team-member-1",
+      "description": "Lead Technician",
+      "imageUrl": "https://picsum.photos/seed/team1/400/400",
+      "imageHint": "technician portrait"
+    }
+  ]
+}

@@ -1,4 +1,3 @@
-
 "use client";
 
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
@@ -8,56 +7,69 @@ export default function Contact() {
   const contactDetails = [
     {
       title: "טלפון",
-      value: "054-123-4567",
+      value: "052-2395151",
+      link: "tel:0522395151",
       icon: Phone,
     },
     {
       title: "דוא\"ל",
-      value: "service@techfix.co.il",
+      value: "demslava@gmail.com",
+      link: "mailto:demslava@gmail.com",
       icon: Mail,
     },
     {
       title: "כתובת",
-      value: "רחוב המלאכה 12, תל אביב",
+      value: "נתניה",
       icon: MapPin,
     },
     {
       title: "שעות פעילות",
-      value: "א' - ה': 08:00 - 20:00\nו' וערבי חג: 08:00 - 14:00",
+      value: "א' - ה': 08:00 - 17:00",
       icon: Clock,
     },
   ];
 
   return (
-    <section id="contact" className="py-24 bg-background min-h-screen">
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center">
+    <section id="contact" className="py-24 bg-background min-h-[calc(100vh-120px)] flex flex-col items-center justify-center">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         
-        <div className="text-center mb-12 space-y-4 w-full" dir="rtl">
+        <div className="text-center mb-16 space-y-4" dir="rtl">
           <h2 className="font-headline text-4xl md:text-5xl font-bold text-primary">צור קשר</h2>
-          <div className="w-16 h-1 bg-accent mx-auto rounded-full"></div>
+          <div className="w-16 h-1 bg-primary mx-auto rounded-full"></div>
           <p className="text-lg text-muted-foreground max-w-xl mx-auto">
             אנחנו כאן לכל שאלה, ייעוץ או קריאת שירות. השאירו פרטים ונחזור אליכם בהקדם.
           </p>
         </div>
 
-        <div className="w-full space-y-8 mb-16" dir="rtl">
-          <div className="flex flex-col items-center gap-6">
-            {contactDetails.map((item, idx) => (
-              <div key={idx} className="flex items-center justify-end gap-6 w-full max-w-sm">
-                <div className="text-right">
-                  <h4 className="font-bold text-primary text-lg">{item.title}</h4>
-                  <p className="text-muted-foreground whitespace-pre-wrap">{item.value}</p>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start" dir="rtl">
+          {/* Info on the right (first in RTL) */}
+          <div className="space-y-8 lg:pr-8">
+            <h3 className="text-2xl font-bold text-primary mb-6">פרטי התקשרות</h3>
+            <div className="space-y-6">
+              {contactDetails.map((item, idx) => (
+                <div key={idx} className="flex items-center gap-6 group">
+                  <div className="p-4 bg-primary/5 rounded-2xl border border-primary/10 group-hover:bg-primary group-hover:text-white transition-all">
+                    <item.icon className="h-6 w-6" />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-primary text-lg">{item.title}</h4>
+                    {item.link ? (
+                      <a href={item.link} className="text-muted-foreground hover:text-primary transition-colors text-lg">
+                        {item.value}
+                      </a>
+                    ) : (
+                      <p className="text-muted-foreground text-lg">{item.value}</p>
+                    )}
+                  </div>
                 </div>
-                <div className="p-3 bg-muted/50 rounded-full border border-border shrink-0">
-                  <item.icon className="h-6 w-6 text-primary" />
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
 
-        <div className="w-full max-w-2xl">
-          <InquiryForm />
+          {/* Form on the left (second in RTL) */}
+          <div className="w-full">
+            <InquiryForm />
+          </div>
         </div>
       </div>
     </section>

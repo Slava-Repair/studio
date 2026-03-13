@@ -1,3 +1,4 @@
+
 "use client";
 
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
@@ -24,7 +25,7 @@ export default function Contact() {
     },
     {
       title: "שעות פעילות",
-      value: "א' - ה': 08:00 - 17:00",
+      value: "08:00 - 17:00",
       icon: Clock,
     },
   ];
@@ -42,13 +43,13 @@ export default function Contact() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center" dir="rtl">
-          {/* Form on the right (First child in RTL grid) */}
-          <div className="w-full order-1 lg:order-2">
+          {/* Form on the right (First in RTL grid order) */}
+          <div className="w-full lg:order-1">
             <InquiryForm />
           </div>
 
-          {/* Info on the left (Second child in RTL grid) */}
-          <div className="space-y-8 lg:pr-12 order-2 lg:order-1">
+          {/* Info on the left (Second in RTL grid order) */}
+          <div className="space-y-8 lg:pr-12 lg:order-2">
             <h3 className="text-2xl font-bold text-primary mb-6">פרטי התקשרות</h3>
             <div className="space-y-6">
               {contactDetails.map((item, idx) => (

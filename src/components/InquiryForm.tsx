@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useForm } from "react-hook-form";
@@ -68,8 +69,8 @@ export default function InquiryForm() {
                   <FormLabel className="text-primary font-bold">שם</FormLabel>
                   <FormControl>
                     <Input 
-                      placeholder="ישראל ישראלי" 
-                      className="bg-muted/30 border border-primary/40 h-12 rounded-xl focus-visible:ring-primary focus-visible:border-primary" 
+                      placeholder="מה שמך" 
+                      className="bg-muted/30 border border-primary/40 h-12 rounded-xl focus-visible:ring-primary focus-visible:border-primary text-right" 
                       {...field} 
                     />
                   </FormControl>
@@ -87,7 +88,7 @@ export default function InquiryForm() {
                   <FormControl>
                     <Input 
                       placeholder="050-0000000" 
-                      className="bg-muted/30 border border-primary/40 h-12 rounded-xl focus-visible:ring-primary focus-visible:border-primary" 
+                      className="bg-muted/30 border border-primary/40 h-12 rounded-xl focus-visible:ring-primary focus-visible:border-primary text-right" 
                       {...field} 
                     />
                   </FormControl>
@@ -106,11 +107,11 @@ export default function InquiryForm() {
                   <FormLabel className="text-primary font-bold">בחר מכשיר</FormLabel>
                   <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <FormControl>
-                      <SelectTrigger className="bg-muted/30 border border-primary/40 h-12 rounded-xl focus:ring-primary">
+                      <SelectTrigger className="bg-muted/30 border border-primary/40 h-12 rounded-xl focus:ring-primary text-right">
                         <SelectValue placeholder="סוג המכשיר" />
                       </SelectTrigger>
                     </FormControl>
-                    <SelectContent>
+                    <SelectContent dir="rtl">
                       <SelectItem value="מקרר">מקרר</SelectItem>
                       <SelectItem value="מכונת כביסה">מכונת כביסה</SelectItem>
                       <SelectItem value="מכונת ייבוש">מכונת ייבוש</SelectItem>
@@ -133,7 +134,7 @@ export default function InquiryForm() {
                   <FormControl>
                     <Input 
                       placeholder="למשל: Samsung RT45" 
-                      className="bg-muted/30 border border-primary/40 h-12 rounded-xl focus-visible:ring-primary focus-visible:border-primary" 
+                      className="bg-muted/30 border border-primary/40 h-12 rounded-xl focus-visible:ring-primary focus-visible:border-primary text-right" 
                       {...field} 
                     />
                   </FormControl>
@@ -152,7 +153,7 @@ export default function InquiryForm() {
                 <FormControl>
                   <Textarea 
                     placeholder="תאר את הבעיה במילים פשוטות" 
-                    className="bg-muted/30 border border-primary/40 min-h-[100px] rounded-xl focus-visible:ring-primary focus-visible:border-primary" 
+                    className="bg-muted/30 border border-primary/40 min-h-[100px] rounded-xl focus-visible:ring-primary focus-visible:border-primary text-right" 
                     {...field} 
                   />
                 </FormControl>

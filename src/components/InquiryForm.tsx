@@ -67,7 +67,11 @@ export default function InquiryForm() {
                 <FormItem>
                   <FormLabel className="text-primary font-bold">שם</FormLabel>
                   <FormControl>
-                    <Input placeholder="ישראל ישראלי" className="bg-muted/30 border-none h-12 rounded-xl focus-visible:ring-primary" {...field} />
+                    <Input 
+                      placeholder="ישראל ישראלי" 
+                      className="bg-muted/30 border border-primary/40 h-12 rounded-xl focus-visible:ring-primary focus-visible:border-primary" 
+                      {...field} 
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -81,7 +85,11 @@ export default function InquiryForm() {
                 <FormItem>
                   <FormLabel className="text-primary font-bold">טלפון</FormLabel>
                   <FormControl>
-                    <Input placeholder="050-0000000" className="bg-muted/30 border-none h-12 rounded-xl focus-visible:ring-primary" {...field} />
+                    <Input 
+                      placeholder="050-0000000" 
+                      className="bg-muted/30 border border-primary/40 h-12 rounded-xl focus-visible:ring-primary focus-visible:border-primary" 
+                      {...field} 
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -98,7 +106,7 @@ export default function InquiryForm() {
                   <FormLabel className="text-primary font-bold">בחר מכשיר</FormLabel>
                   <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <FormControl>
-                      <SelectTrigger className="bg-muted/30 border-none h-12 rounded-xl focus:ring-primary">
+                      <SelectTrigger className="bg-muted/30 border border-primary/40 h-12 rounded-xl focus:ring-primary">
                         <SelectValue placeholder="סוג המכשיר" />
                       </SelectTrigger>
                     </FormControl>
@@ -123,7 +131,11 @@ export default function InquiryForm() {
                 <FormItem>
                   <FormLabel className="text-primary font-bold">דגם (אופציונלי)</FormLabel>
                   <FormControl>
-                    <Input placeholder="למשל: Samsung RT45" className="bg-muted/30 border-none h-12 rounded-xl focus-visible:ring-primary" {...field} />
+                    <Input 
+                      placeholder="למשל: Samsung RT45" 
+                      className="bg-muted/30 border border-primary/40 h-12 rounded-xl focus-visible:ring-primary focus-visible:border-primary" 
+                      {...field} 
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -140,7 +152,7 @@ export default function InquiryForm() {
                 <FormControl>
                   <Textarea 
                     placeholder="תאר את הבעיה במילים פשוטות" 
-                    className="bg-muted/30 border-none min-h-[100px] rounded-xl focus-visible:ring-primary" 
+                    className="bg-muted/30 border border-primary/40 min-h-[100px] rounded-xl focus-visible:ring-primary focus-visible:border-primary" 
                     {...field} 
                   />
                 </FormControl>

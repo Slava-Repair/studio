@@ -43,12 +43,12 @@ export default function Contact() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center" dir="rtl">
           {/* Form on the right (First child in RTL grid) */}
-          <div className="w-full">
+          <div className="w-full order-1 lg:order-2">
             <InquiryForm />
           </div>
 
           {/* Info on the left (Second child in RTL grid) */}
-          <div className="space-y-8 lg:pr-12">
+          <div className="space-y-8 lg:pr-12 order-2 lg:order-1">
             <h3 className="text-2xl font-bold text-primary mb-6">פרטי התקשרות</h3>
             <div className="space-y-6">
               {contactDetails.map((item, idx) => (
@@ -59,11 +59,11 @@ export default function Contact() {
                   <div className="text-right">
                     <h4 className="font-bold text-primary text-lg">{item.title}</h4>
                     {item.link ? (
-                      <a href={item.link} className="text-muted-foreground hover:text-primary transition-colors text-lg">
+                      <a href={item.link} className="text-muted-foreground hover:text-primary transition-colors text-lg font-medium">
                         {item.value}
                       </a>
                     ) : (
-                      <p className="text-muted-foreground text-lg">{item.value}</p>
+                      <p className="text-muted-foreground text-lg font-medium">{item.value}</p>
                     )}
                   </div>
                 </div>

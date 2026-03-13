@@ -56,7 +56,7 @@ export default function Contact() {
                   <div className="p-4 bg-primary/5 rounded-2xl border border-primary/10 group-hover:bg-primary group-hover:text-white transition-all">
                     <item.icon className="h-6 w-6" />
                   </div>
-                  <div>
+                  <div className="text-right">
                     <h4 className="font-bold text-primary text-lg">{item.title}</h4>
                     {item.link ? (
                       <a href={item.link} className="text-muted-foreground hover:text-primary transition-colors text-lg">

@@ -41,37 +41,37 @@ export default function InquiryForm() {
   }
 
   return (
-    <div className="bg-white p-8 rounded-2xl shadow-xl border border-muted" dir="rtl">
-      <div className="mb-6 text-right">
+    <div className="bg-white p-10 rounded-3xl shadow-2xl border border-muted/50" dir="rtl">
+      <div className="mb-10 text-center">
         <h3 className="text-2xl font-bold text-primary mb-2">פרטי הקריאה</h3>
         <p className="text-muted-foreground">מלאו את הפרטים ונחזור אליכם עם הצעת מחיר</p>
       </div>
 
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 text-right">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 text-right">
           <FormField
             control={form.control}
             name="fullName"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>שם מלא</FormLabel>
+                <FormLabel className="text-primary font-bold">שם מלא</FormLabel>
                 <FormControl>
-                  <Input placeholder="ישראל ישראלי" {...field} />
+                  <Input placeholder="ישראל ישראלי" className="bg-muted/30 border-none h-12 rounded-xl" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <FormField
               control={form.control}
               name="phone"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>טלפון ליצירת קשר</FormLabel>
+                  <FormLabel className="text-primary font-bold">טלפון ליצירת קשר</FormLabel>
                   <FormControl>
-                    <Input placeholder="050-0000000" {...field} />
+                    <Input placeholder="050-0000000" className="bg-muted/30 border-none h-12 rounded-xl" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -83,10 +83,10 @@ export default function InquiryForm() {
               name="applianceType"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>סוג המכשיר</FormLabel>
+                  <FormLabel className="text-primary font-bold">סוג המכשיר</FormLabel>
                   <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <FormControl>
-                      <SelectTrigger>
+                      <SelectTrigger className="bg-muted/30 border-none h-12 rounded-xl">
                         <SelectValue placeholder="בחר מכשיר" />
                       </SelectTrigger>
                     </FormControl>
@@ -109,9 +109,9 @@ export default function InquiryForm() {
             name="model"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>דגם (אם ידוע)</FormLabel>
+                <FormLabel className="text-primary font-bold">דגם (אם ידוע)</FormLabel>
                 <FormControl>
-                  <Input placeholder="למשל: Samsung RT45" {...field} />
+                  <Input placeholder="למשל: Samsung RT45" className="bg-muted/30 border-none h-12 rounded-xl" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -123,11 +123,11 @@ export default function InquiryForm() {
             name="symptoms"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>תיאור התקלה</FormLabel>
+                <FormLabel className="text-primary font-bold">תיאור התקלה</FormLabel>
                 <FormControl>
                   <Textarea 
                     placeholder="תאר את הבעיה (למשל: לא מקרר, עושה רעש, לא נדלק...)" 
-                    className="min-h-[100px]" 
+                    className="bg-muted/30 border-none min-h-[120px] rounded-xl" 
                     {...field} 
                   />
                 </FormControl>
@@ -136,7 +136,7 @@ export default function InquiryForm() {
             )}
           />
 
-          <Button type="submit" className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90 font-bold h-12 text-lg">
+          <Button type="submit" className="w-full bg-accent text-accent-foreground hover:bg-accent/90 font-bold h-14 text-xl rounded-xl transition-all shadow-lg hover:shadow-xl mt-4">
             שלח בקשה לתיקון
           </Button>
         </form>

@@ -20,7 +20,8 @@ export default function Navigation() {
   return (
     <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md border-b">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16 items-center">
+        <div className="flex justify-between h-16 items-center flex-row-reverse">
+          {/* Logo on the right */}
           <div className="flex items-center gap-2">
             <Wrench className="h-6 w-6 text-primary" />
             <span className="font-headline font-bold text-xl text-primary tracking-tight">
@@ -28,17 +29,20 @@ export default function Navigation() {
             </span>
           </div>
 
-          <div className="hidden md:flex items-center space-x-8 space-x-reverse" dir="rtl">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                className="text-sm font-medium text-foreground hover:text-primary transition-colors"
-              >
-                {link.name}
-              </Link>
-            ))}
-            <Button className="bg-primary text-primary-foreground font-semibold">
+          {/* Nav links in the middle and Button on the left */}
+          <div className="hidden md:flex items-center gap-8 flex-row-reverse">
+            <div className="flex items-center space-x-8 space-x-reverse" dir="rtl">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  className="text-sm font-medium text-foreground hover:text-primary transition-colors"
+                >
+                  {link.name}
+                </Link>
+              ))}
+            </div>
+            <Button className="bg-primary text-primary-foreground font-semibold px-6">
               הזמן שירות עכשיו
             </Button>
           </div>
@@ -64,6 +68,11 @@ export default function Navigation() {
                 {link.name}
               </Link>
             ))}
+            <div className="pt-2 px-3">
+              <Button className="w-full bg-primary text-primary-foreground font-semibold">
+                הזמן שירות עכשיו
+              </Button>
+            </div>
           </div>
         </div>
       )}

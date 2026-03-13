@@ -5,66 +5,59 @@ import { Phone, Mail, MapPin, Clock } from "lucide-react";
 import InquiryForm from "./InquiryForm";
 
 export default function Contact() {
+  const contactDetails = [
+    {
+      title: "טלפון",
+      value: "054-123-4567",
+      icon: Phone,
+    },
+    {
+      title: "דוא\"ל",
+      value: "service@techfix.co.il",
+      icon: Mail,
+    },
+    {
+      title: "כתובת",
+      value: "רחוב המלאכה 12, תל אביב",
+      icon: MapPin,
+    },
+    {
+      title: "שעות פעילות",
+      value: "א' - ה': 08:00 - 20:00\nו' וערבי חג: 08:00 - 14:00",
+      icon: Clock,
+    },
+  ];
+
   return (
-    <section id="contact" className="py-24 bg-background">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-          <div className="order-2 lg:order-1">
-            <InquiryForm />
+    <section id="contact" className="py-24 bg-background min-h-screen">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center">
+        
+        <div className="text-center mb-12 space-y-4 w-full" dir="rtl">
+          <h2 className="font-headline text-4xl md:text-5xl font-bold text-primary">צור קשר</h2>
+          <div className="w-16 h-1 bg-accent mx-auto rounded-full"></div>
+          <p className="text-lg text-muted-foreground max-w-xl mx-auto">
+            אנחנו כאן לכל שאלה, ייעוץ או קריאת שירות. השאירו פרטים ונחזור אליכם בהקדם.
+          </p>
+        </div>
+
+        <div className="w-full space-y-8 mb-16" dir="rtl">
+          <div className="flex flex-col items-center gap-6">
+            {contactDetails.map((item, idx) => (
+              <div key={idx} className="flex items-center justify-end gap-6 w-full max-w-sm">
+                <div className="text-right">
+                  <h4 className="font-bold text-primary text-lg">{item.title}</h4>
+                  <p className="text-muted-foreground whitespace-pre-wrap">{item.value}</p>
+                </div>
+                <div className="p-3 bg-muted/50 rounded-full border border-border shrink-0">
+                  <item.icon className="h-6 w-6 text-primary" />
+                </div>
+              </div>
+            ))}
           </div>
+        </div>
 
-          <div className="space-y-8 order-1 lg:order-2 text-right" dir="rtl">
-            <div className="space-y-4">
-              <h2 className="font-headline text-3xl md:text-4xl font-bold text-primary">צור קשר</h2>
-              <div className="w-20 h-1.5 bg-secondary rounded-full"></div>
-              <p className="text-lg text-muted-foreground">
-                אנחנו כאן לכל שאלה, ייעוץ או קריאת שירות. השאירו פרטים ונחזור אליכם בהקדם.
-              </p>
-            </div>
-
-            <div className="space-y-6">
-              <div className="flex items-start gap-4">
-                <div className="p-3 bg-muted rounded-xl">
-                  <Phone className="h-6 w-6 text-primary" />
-                </div>
-                <div>
-                  <h4 className="font-bold text-primary">טלפון</h4>
-                  <p className="text-muted-foreground">054-123-4567</p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <div className="p-3 bg-muted rounded-xl">
-                  <Mail className="h-6 w-6 text-primary" />
-                </div>
-                <div>
-                  <h4 className="font-bold text-primary">דוא&quot;ל</h4>
-                  <p className="text-muted-foreground">service@techfix.co.il</p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <div className="p-3 bg-muted rounded-xl">
-                  <MapPin className="h-6 w-6 text-primary" />
-                </div>
-                <div>
-                  <h4 className="font-bold text-primary">כתובת</h4>
-                  <p className="text-muted-foreground">רחוב המלאכה 12, תל אביב</p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <div className="p-3 bg-muted rounded-xl">
-                  <Clock className="h-6 w-6 text-primary" />
-                </div>
-                <div>
-                  <h4 className="font-bold text-primary">שעות פעילות</h4>
-                  <p className="text-muted-foreground">א&apos; - ה&apos;: 08:00 - 20:00</p>
-                  <p className="text-muted-foreground">ו&apos; וערבי חג: 08:00 - 14:00</p>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div className="w-full max-w-2xl">
+          <InquiryForm />
         </div>
       </div>
     </section>

@@ -10,7 +10,7 @@ export default function Home() {
       <div className="pt-16">
         <Contact />
       </div>
-      <footer className="bg-primary py-12 text-white/60 text-center border-t border-white/10">
+      <footer className="bg-primary/90 py-12 text-white/60 text-center border-t border-white/10">
         <div className="max-w-7xl mx-auto px-4">
           <p className="mb-2">© {new Date().getFullYear()} TechFix Express. כל הזכויות שמורות.</p>
           <p className="text-sm">מעבדת תיקונים מוסמכת למוצרי חשמל ביתיים</p>

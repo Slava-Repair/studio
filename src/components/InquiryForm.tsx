@@ -51,7 +51,7 @@ export default function InquiryForm() {
   }
 
   return (
-    <div className="bg-white p-8 md:p-10 rounded-3xl shadow-xl border border-primary/10" dir="rtl">
+    <div className="bg-white p-8 md:p-10 rounded-3xl shadow-xl border border-primary/20" dir="rtl">
       <div className="mb-8 text-right">
         <h3 className="text-2xl font-bold text-primary mb-2">שלחו לנו הודעה</h3>
         <p className="text-muted-foreground">מלאו את הפרטים ונחזור אליכם</p>
@@ -65,12 +65,12 @@ export default function InquiryForm() {
               control={form.control}
               name="fullName"
               render={({ field }) => (
-                <FormItem>
+                <FormItem className="text-right">
                   <FormLabel className="text-primary font-bold">שם</FormLabel>
                   <FormControl>
                     <Input 
                       placeholder="מה שמך" 
-                      className="bg-muted/30 border border-primary/40 h-12 rounded-xl focus-visible:ring-primary focus-visible:border-primary text-right" 
+                      className="bg-muted/30 border border-primary h-12 rounded-xl focus-visible:ring-primary focus-visible:border-primary text-right" 
                       {...field} 
                     />
                   </FormControl>
@@ -83,12 +83,12 @@ export default function InquiryForm() {
               control={form.control}
               name="phone"
               render={({ field }) => (
-                <FormItem>
+                <FormItem className="text-right">
                   <FormLabel className="text-primary font-bold">טלפון</FormLabel>
                   <FormControl>
                     <Input 
                       placeholder="050-0000000" 
-                      className="bg-muted/30 border border-primary/40 h-12 rounded-xl focus-visible:ring-primary focus-visible:border-primary text-right" 
+                      className="bg-muted/30 border border-primary h-12 rounded-xl focus-visible:ring-primary focus-visible:border-primary text-right" 
                       {...field} 
                     />
                   </FormControl>
@@ -103,11 +103,11 @@ export default function InquiryForm() {
               control={form.control}
               name="applianceType"
               render={({ field }) => (
-                <FormItem>
+                <FormItem className="text-right">
                   <FormLabel className="text-primary font-bold">בחר מכשיר</FormLabel>
                   <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <FormControl>
-                      <SelectTrigger className="bg-muted/30 border border-primary/40 h-12 rounded-xl focus:ring-primary text-right">
+                      <SelectTrigger className="bg-muted/30 border border-primary h-12 rounded-xl focus:ring-primary text-right flex-row-reverse">
                         <SelectValue placeholder="סוג המכשיר" />
                       </SelectTrigger>
                     </FormControl>
@@ -129,12 +129,12 @@ export default function InquiryForm() {
               control={form.control}
               name="model"
               render={({ field }) => (
-                <FormItem>
+                <FormItem className="text-right">
                   <FormLabel className="text-primary font-bold">דגם (אופציונלי)</FormLabel>
                   <FormControl>
                     <Input 
                       placeholder="למשל: Samsung RT45" 
-                      className="bg-muted/30 border border-primary/40 h-12 rounded-xl focus-visible:ring-primary focus-visible:border-primary text-right" 
+                      className="bg-muted/30 border border-primary h-12 rounded-xl focus-visible:ring-primary focus-visible:border-primary text-right" 
                       {...field} 
                     />
                   </FormControl>
@@ -148,12 +148,12 @@ export default function InquiryForm() {
             control={form.control}
             name="symptoms"
             render={({ field }) => (
-              <FormItem>
+              <FormItem className="text-right">
                 <FormLabel className="text-primary font-bold">תיאור התקלה</FormLabel>
                 <FormControl>
                   <Textarea 
                     placeholder="תאר את הבעיה במילים פשוטות" 
-                    className="bg-muted/30 border border-primary/40 min-h-[100px] rounded-xl focus-visible:ring-primary focus-visible:border-primary text-right" 
+                    className="bg-muted/30 border border-primary min-h-[100px] rounded-xl focus-visible:ring-primary focus-visible:border-primary text-right" 
                     {...field} 
                   />
                 </FormControl>

@@ -51,14 +51,14 @@ export default function InquiryForm() {
   }
 
   return (
-    <div className="bg-white p-4 lg:p-6 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-primary/5 h-full flex flex-col justify-center min-h-0" dir="rtl">
-      <div className="mb-3 text-center">
-        <h3 className="text-lg font-black text-primary border-b border-primary/10 pb-2 inline-block px-4">פרטי הקריאה</h3>
+    <div className="p-8 lg:p-10 h-full flex flex-col justify-center" dir="rtl">
+      <div className="mb-6 text-center">
+        <h3 className="text-xl font-black text-primary border-b border-primary/10 pb-3 inline-block px-8">פרטי הקריאה</h3>
       </div>
 
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2 text-right overflow-y-auto pr-1">
-          <div className="grid grid-cols-2 gap-2">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 text-right">
+          <div className="grid grid-cols-2 gap-4">
             <FormField
               control={form.control}
               name="fullName"
@@ -67,11 +67,11 @@ export default function InquiryForm() {
                   <FormControl>
                     <Input 
                       placeholder="מה שמך" 
-                      className="bg-primary/[0.02] border-primary/20 h-10 rounded-lg focus-visible:ring-primary text-right text-xs placeholder:text-muted-foreground/60" 
+                      className="bg-primary/[0.01] border-primary/10 h-12 rounded-xl focus-visible:ring-primary text-right text-sm placeholder:text-muted-foreground/50 shadow-sm" 
                       {...field} 
                     />
                   </FormControl>
-                  <FormMessage className="text-[9px]" />
+                  <FormMessage className="text-[10px]" />
                 </FormItem>
               )}
             />
@@ -84,17 +84,17 @@ export default function InquiryForm() {
                     <Input 
                       placeholder="מספר טלפון" 
                       type="tel"
-                      className="bg-primary/[0.02] border-primary/20 h-10 rounded-lg focus-visible:ring-primary text-right text-xs placeholder:text-muted-foreground/60" 
+                      className="bg-primary/[0.01] border-primary/10 h-12 rounded-xl focus-visible:ring-primary text-right text-sm placeholder:text-muted-foreground/50 shadow-sm" 
                       {...field} 
                     />
                   </FormControl>
-                  <FormMessage className="text-[9px]" />
+                  <FormMessage className="text-[10px]" />
                 </FormItem>
               )}
             />
           </div>
 
-          <div className="grid grid-cols-2 gap-2">
+          <div className="grid grid-cols-2 gap-4">
             <FormField
               control={form.control}
               name="applianceType"
@@ -102,7 +102,7 @@ export default function InquiryForm() {
                 <FormItem className="space-y-1">
                   <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <FormControl>
-                      <SelectTrigger className="bg-primary/[0.02] border-primary/20 h-10 rounded-lg focus:ring-primary text-right flex-row-reverse text-xs">
+                      <SelectTrigger className="bg-primary/[0.01] border-primary/10 h-12 rounded-xl focus:ring-primary text-right flex-row-reverse text-sm shadow-sm">
                         <SelectValue placeholder="סוג המכשיר" />
                       </SelectTrigger>
                     </FormControl>
@@ -115,7 +115,7 @@ export default function InquiryForm() {
                       <SelectItem value="אחר">אחר</SelectItem>
                     </SelectContent>
                   </Select>
-                  <FormMessage className="text-[9px]" />
+                  <FormMessage className="text-[10px]" />
                 </FormItem>
               )}
             />
@@ -127,11 +127,11 @@ export default function InquiryForm() {
                   <FormControl>
                     <Input 
                       placeholder="דגם (אם ידוע)" 
-                      className="bg-primary/[0.02] border-primary/20 h-10 rounded-lg focus-visible:ring-primary text-right text-xs placeholder:text-muted-foreground/60" 
+                      className="bg-primary/[0.01] border-primary/10 h-12 rounded-xl focus-visible:ring-primary text-right text-sm placeholder:text-muted-foreground/50 shadow-sm" 
                       {...field} 
                     />
                   </FormControl>
-                  <FormMessage className="text-[9px]" />
+                  <FormMessage className="text-[10px]" />
                 </FormItem>
               )}
             />
@@ -145,17 +145,17 @@ export default function InquiryForm() {
                 <FormControl>
                   <Textarea 
                     placeholder="תאור קצר של התקלה..." 
-                    className="bg-primary/[0.02] border-primary/20 min-h-[60px] lg:min-h-[80px] rounded-lg focus-visible:ring-primary text-right text-xs resize-none placeholder:text-muted-foreground/60" 
+                    className="bg-primary/[0.01] border-primary/10 min-h-[80px] rounded-xl focus-visible:ring-primary text-right text-sm resize-none placeholder:text-muted-foreground/50 shadow-sm" 
                     {...field} 
                   />
                 </FormControl>
-                <FormMessage className="text-[9px]" />
+                <FormMessage className="text-[10px]" />
               </FormItem>
             )}
           />
 
-          <Button type="submit" className="w-full bg-[#25D366] text-white hover:bg-[#128C7E] font-bold h-12 text-sm rounded-lg shadow-lg mt-2 transition-all active:scale-95 flex items-center justify-center gap-2 border-none">
-             <MessageCircle className="h-4 w-4" />
+          <Button type="submit" className="w-full bg-[#25D366] text-white hover:bg-[#128C7E] font-black h-14 text-base rounded-xl shadow-[0_10px_25px_rgba(37,211,102,0.3)] mt-2 transition-all active:scale-95 flex items-center justify-center gap-3 border-none">
+             <MessageCircle className="h-5 w-5" />
             <span>שלח ב-WhatsApp</span>
           </Button>
         </form>

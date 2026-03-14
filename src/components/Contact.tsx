@@ -29,7 +29,7 @@ export default function Contact() {
     },
   ];
 
-  const commonClasses = "bg-white rounded-[2rem] shadow-[0_20px_50px_rgba(0,0,0,0.15)] border border-primary/20 flex flex-col h-full transition-all hover:shadow-[0_25px_60px_rgba(0,0,0,0.2)]";
+  const commonClasses = "bg-white rounded-[2rem] shadow-[0_20px_50px_rgba(0,0,0,0.2)] border border-primary/20 flex flex-col h-full transition-all hover:shadow-[0_25px_60px_rgba(0,0,0,0.25)]";
 
   return (
     <section id="contact" className="w-full max-w-7xl mx-auto px-4 py-4 h-full flex items-center">
@@ -44,7 +44,7 @@ export default function Contact() {
         <div className={`${commonClasses} p-6 lg:p-8 flex flex-col justify-center`}>
           <div className="space-y-6">
             <div className="text-center mb-6">
-              <h3 className="text-2xl font-black text-primary border-b-2 border-primary/20 pb-2 inline-block px-8">פרטי התקשרות</h3>
+              <h3 className="text-xl font-black text-primary border-b-2 border-primary/10 pb-2 inline-block px-8">פרטי התקשרות</h3>
             </div>
             <div className="space-y-6">
               {contactDetails.map((item, idx) => (

@@ -54,7 +54,7 @@ export default function InquiryForm() {
   return (
     <div className="p-6 lg:p-8 h-full flex flex-col justify-center" dir="rtl">
       <div className="mb-4 text-center">
-        <h3 className="text-xl font-black text-primary border-b-2 border-primary/10 pb-2 inline-block px-6">פרטי הקריאה</h3>
+        <h3 className="text-xl font-black text-primary border-b-2 border-primary/10 pb-2 inline-block px-8">פרטי הקריאה</h3>
       </div>
 
       <Form {...form}>

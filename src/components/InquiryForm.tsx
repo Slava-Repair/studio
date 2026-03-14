@@ -66,7 +66,7 @@ export default function InquiryForm() {
                 <FormItem className="space-y-1">
                   <FormControl>
                     <Input 
-                      placeholder="מה שמך" 
+                      placeholder="שם מלא" 
                       className="bg-primary/[0.01] border-primary/10 h-12 rounded-xl focus-visible:ring-primary text-right text-sm placeholder:text-muted-foreground/50 shadow-sm" 
                       {...field} 
                     />

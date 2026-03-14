@@ -50,16 +50,16 @@ export default function InquiryForm() {
   }
 
   return (
-    <div className="bg-white p-5 md:p-6 rounded-2xl shadow-lg border border-primary/20" dir="rtl">
-      <div className="mb-4 text-right">
-        <h3 className="text-xl font-bold text-primary mb-1 text-center">שלחו לנו הודעה</h3>
-        <p className="text-sm text-muted-foreground text-center">מלאו את הפרטים ונחזור אליכם</p>
+    <div className="bg-white p-5 rounded-2xl shadow-xl border border-primary/20" dir="rtl">
+      <div className="mb-4 text-center">
+        <h3 className="text-xl font-bold text-primary mb-1">שלחו לנו הודעה</h3>
+        <p className="text-xs text-muted-foreground">מלאו את הפרטים ונחזור אליכם</p>
       </div>
 
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3 text-right">
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div className="grid grid-cols-2 gap-3">
             <FormField
               control={form.control}
               name="fullName"
@@ -69,7 +69,7 @@ export default function InquiryForm() {
                   <FormControl>
                     <Input 
                       placeholder="מה שמך" 
-                      className="bg-muted/30 border border-primary h-9 rounded-lg focus-visible:ring-primary focus-visible:border-primary text-right" 
+                      className="bg-muted/30 border-primary h-9 rounded-lg focus-visible:ring-primary text-right" 
                       {...field} 
                     />
                   </FormControl>
@@ -87,7 +87,7 @@ export default function InquiryForm() {
                   <FormControl>
                     <Input 
                       placeholder="050-0000000" 
-                      className="bg-muted/30 border border-primary h-9 rounded-lg focus-visible:ring-primary focus-visible:border-primary text-right" 
+                      className="bg-muted/30 border-primary h-9 rounded-lg focus-visible:ring-primary text-right" 
                       {...field} 
                     />
                   </FormControl>
@@ -97,7 +97,7 @@ export default function InquiryForm() {
             />
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div className="grid grid-cols-2 gap-3">
             <FormField
               control={form.control}
               name="applianceType"
@@ -106,7 +106,7 @@ export default function InquiryForm() {
                   <FormLabel className="text-primary font-bold text-xs">בחר מכשיר</FormLabel>
                   <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <FormControl>
-                      <SelectTrigger className="bg-muted/30 border border-primary h-9 rounded-lg focus:ring-primary text-right flex-row-reverse">
+                      <SelectTrigger className="bg-muted/30 border-primary h-9 rounded-lg focus:ring-primary text-right flex-row-reverse">
                         <SelectValue placeholder="סוג המכשיר" />
                       </SelectTrigger>
                     </FormControl>
@@ -132,8 +132,8 @@ export default function InquiryForm() {
                   <FormLabel className="text-primary font-bold text-xs">דגם (אופציונלי)</FormLabel>
                   <FormControl>
                     <Input 
-                      placeholder="Samsung RT45" 
-                      className="bg-muted/30 border border-primary h-9 rounded-lg focus-visible:ring-primary focus-visible:border-primary text-right" 
+                      placeholder="דגם המכשיר" 
+                      className="bg-muted/30 border-primary h-9 rounded-lg focus-visible:ring-primary text-right" 
                       {...field} 
                     />
                   </FormControl>
@@ -152,7 +152,7 @@ export default function InquiryForm() {
                 <FormControl>
                   <Textarea 
                     placeholder="תאר את הבעיה במילים פשוטות" 
-                    className="bg-muted/30 border border-primary min-h-[60px] rounded-lg focus-visible:ring-primary focus-visible:border-primary text-right text-sm" 
+                    className="bg-muted/30 border-primary min-h-[60px] rounded-lg focus-visible:ring-primary text-right text-sm" 
                     {...field} 
                   />
                 </FormControl>
@@ -161,7 +161,7 @@ export default function InquiryForm() {
             )}
           />
 
-          <Button type="submit" className="w-full bg-primary text-white hover:bg-primary/90 font-bold h-11 text-lg rounded-lg transition-all shadow-md mt-2">
+          <Button type="submit" className="w-full bg-primary text-white hover:bg-primary/90 font-bold h-10 text-base rounded-lg shadow-md mt-2">
             שלח בקשה
           </Button>
         </form>

@@ -11,7 +11,7 @@ export default function App() {
       <Navigation />
       
       <main className="flex-1 flex flex-col items-center justify-center p-2 md:p-4 min-h-0">
-        <div className="w-full max-w-6xl mx-auto h-full flex flex-col justify-center">
+        <div className="w-full max-w-7xl mx-auto h-full flex flex-col justify-center">
           <Contact />
         </div>
       </main>

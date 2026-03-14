@@ -34,7 +34,6 @@ export default function InquiryForm() {
   function onSubmit(values: z.infer<typeof formSchema>) {
     const whatsappNumber = "972522395151";
     const message = `הודעה חדשה מ-TechFix Express:
----------------------------
 👤 שם: ${values.fullName}
 📞 טלפון: ${values.phone}
 🛠️ מכשיר: ${values.applianceType}
@@ -52,61 +51,59 @@ export default function InquiryForm() {
   }
 
   return (
-    <div className="bg-white p-10 rounded-2xl shadow-[0_8px_30px_rgba(0,71,186,0.05)] border border-primary/10 h-full flex flex-col justify-center" dir="rtl">
-      <div className="mb-10 text-center">
-        <h3 className="text-2xl font-black text-primary tracking-tight">פרטי הקריאה</h3>
+    <div className="bg-white p-4 lg:p-6 rounded-2xl shadow-[0_8px_30px_rgba(0,71,186,0.05)] border border-primary/10 h-full flex flex-col justify-center min-h-0" dir="rtl">
+      <div className="mb-3 text-center">
+        <h3 className="text-lg font-black text-primary border-b border-primary/10 pb-2 inline-block px-4">פרטי הקריאה</h3>
       </div>
 
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 text-right">
-          
-          <div className="grid grid-cols-2 gap-4">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2 text-right overflow-y-auto pr-1">
+          <div className="grid grid-cols-2 gap-2">
             <FormField
               control={form.control}
               name="fullName"
               render={({ field }) => (
-                <FormItem>
+                <FormItem className="space-y-1">
                   <FormControl>
                     <Input 
-                      placeholder="שם מלא" 
-                      className="bg-[#f8faff] border-primary/20 h-12 rounded-xl focus-visible:ring-primary text-right text-sm placeholder:text-muted-foreground/60" 
+                      placeholder="מה שמך" 
+                      className="bg-primary/[0.02] border-primary/30 h-10 rounded-lg focus-visible:ring-primary text-right text-xs placeholder:text-muted-foreground/60" 
                       {...field} 
                     />
                   </FormControl>
-                  <FormMessage className="text-[10px]" />
+                  <FormMessage className="text-[9px]" />
                 </FormItem>
               )}
             />
-
             <FormField
               control={form.control}
               name="phone"
               render={({ field }) => (
-                <FormItem>
+                <FormItem className="space-y-1">
                   <FormControl>
                     <Input 
                       placeholder="מספר טלפון" 
                       type="tel"
-                      className="bg-[#f8faff] border-primary/20 h-12 rounded-xl focus-visible:ring-primary text-right text-sm placeholder:text-muted-foreground/60" 
+                      className="bg-primary/[0.02] border-primary/30 h-10 rounded-lg focus-visible:ring-primary text-right text-xs placeholder:text-muted-foreground/60" 
                       {...field} 
                     />
                   </FormControl>
-                  <FormMessage className="text-[10px]" />
+                  <FormMessage className="text-[9px]" />
                 </FormItem>
               )}
             />
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <FormField
               control={form.control}
               name="applianceType"
               render={({ field }) => (
-                <FormItem>
+                <FormItem className="space-y-1">
                   <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <FormControl>
-                      <SelectTrigger className="bg-[#f8faff] border-primary/20 h-12 rounded-xl focus:ring-primary text-right flex-row-reverse text-sm">
-                        <SelectValue placeholder="בחר מכשיר" />
+                      <SelectTrigger className="bg-primary/[0.02] border-primary/30 h-10 rounded-lg focus:ring-primary text-right flex-row-reverse text-xs">
+                        <SelectValue placeholder="סוג המכשיר" />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent dir="rtl">
@@ -118,24 +115,23 @@ export default function InquiryForm() {
                       <SelectItem value="אחר">אחר</SelectItem>
                     </SelectContent>
                   </Select>
-                  <FormMessage className="text-[10px]" />
+                  <FormMessage className="text-[9px]" />
                 </FormItem>
               )}
             />
-
             <FormField
               control={form.control}
               name="model"
               render={({ field }) => (
-                <FormItem>
+                <FormItem className="space-y-1">
                   <FormControl>
                     <Input 
                       placeholder="דגם (אם ידוע)" 
-                      className="bg-[#f8faff] border-primary/20 h-12 rounded-xl focus-visible:ring-primary text-right text-sm placeholder:text-muted-foreground/60" 
+                      className="bg-primary/[0.02] border-primary/30 h-10 rounded-lg focus-visible:ring-primary text-right text-xs placeholder:text-muted-foreground/60" 
                       {...field} 
                     />
                   </FormControl>
-                  <FormMessage className="text-[10px]" />
+                  <FormMessage className="text-[9px]" />
                 </FormItem>
               )}
             />
@@ -145,22 +141,22 @@ export default function InquiryForm() {
             control={form.control}
             name="symptoms"
             render={({ field }) => (
-              <FormItem>
+              <FormItem className="space-y-1">
                 <FormControl>
                   <Textarea 
                     placeholder="תאור קצר של התקלה..." 
-                    className="bg-[#f8faff] border-primary/20 min-h-[140px] rounded-xl focus-visible:ring-primary text-right text-sm resize-none placeholder:text-muted-foreground/60" 
+                    className="bg-primary/[0.02] border-primary/30 min-h-[60px] lg:min-h-[80px] rounded-lg focus-visible:ring-primary text-right text-xs resize-none placeholder:text-muted-foreground/60" 
                     {...field} 
                   />
                 </FormControl>
-                <FormMessage className="text-[10px]" />
+                <FormMessage className="text-[9px]" />
               </FormItem>
             )}
           />
 
-          <Button type="submit" className="w-full bg-primary text-white hover:bg-primary/90 font-bold h-14 text-lg rounded-xl shadow-lg mt-4 transition-all active:scale-95 flex items-center justify-center gap-2">
-             <MessageCircle className="h-5 w-5" />
-            <span>שלח בקשה ב-WhatsApp</span>
+          <Button type="submit" className="w-full bg-primary text-white hover:bg-primary/90 font-bold h-12 text-sm rounded-lg shadow-md mt-2 transition-all active:scale-95 flex items-center justify-center gap-2">
+             <MessageCircle className="h-4 w-4" />
+            <span>שלח ב-WhatsApp</span>
           </Button>
         </form>
       </Form>

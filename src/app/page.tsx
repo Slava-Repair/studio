@@ -16,13 +16,14 @@ export default function App() {
   const handleWhatsAppRedirect = (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Формируем детальное сообщение со всеми полями формы
-    const text = `שלום סלבה, הודעה חדשה מהאתר:
+    // Формируем четкое сообщение для WhatsApp
+    const text = `הודעה חדשה מ-TechFix Express:
+---------------------------
 👤 שם: ${formData.name}
 📞 טלפון: ${formData.phone}
 🛠️ מכשיר: ${formData.device || 'לא נבחר'}
 📋 דגם: ${formData.model || 'לא צוין'}
-💬 תיאור התקלה: ${formData.message || 'אין פירוט'}`;
+💬 תיאור: ${formData.message || 'אין פירוט'}`;
 
     const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`;
     window.location.href = url;
@@ -34,46 +35,50 @@ export default function App() {
   };
 
   return (
-    <div className="h-screen overflow-hidden bg-white font-sans text-right flex flex-col" dir="rtl">
+    <div className="h-screen overflow-hidden bg-[#fcfdfe] font-sans text-right flex flex-col" dir="rtl">
       {/* Навигация */}
-      <nav className="flex justify-between items-center px-8 py-3 border-b border-blue-100 flex-none bg-white z-10">
-        <div className="flex items-center gap-2 text-[#0047ba] font-bold text-lg">
+      <nav className="flex justify-between items-center px-10 py-3 border-b border-blue-100 flex-none bg-white shadow-sm z-10">
+        <div className="flex items-center gap-2 text-[#0047ba] font-extrabold text-xl">
           <span>TechFix Express</span>
           <span role="img" aria-label="wrench">🔧</span>
         </div>
-        <div className="text-[#0047ba] font-bold text-sm">
+        <div className="text-[#0047ba] font-bold text-sm bg-blue-50 px-3 py-1 rounded-full border border-blue-100">
           נתניה והסביבה | 052-2395151
         </div>
       </nav>
 
-      <main className="flex-1 max-w-6xl mx-auto w-full px-6 flex flex-col justify-center gap-6">
-        <h1 className="text-3xl font-bold text-[#0047ba] text-center underline decoration-blue-200 underline-offset-4 mb-2">
-          צור קשר
-        </h1>
+      <main className="flex-1 max-w-6xl mx-auto w-full px-6 flex flex-col justify-center gap-4">
+        {/* Блок приветствия */}
+        <div className="flex flex-col items-center gap-3 mb-2">
+           <div className="bg-white px-8 py-2 rounded-xl shadow-[0_2px_15px_rgba(0,71,186,0.08)] border border-blue-100 animate-fade-in">
+              <span className="text-[#0047ba] font-bold text-lg">אנחנו תמיד לשירותכם</span>
+           </div>
+           <h1 className="text-3xl font-black text-[#0047ba] tracking-tight">צור קשר</h1>
+        </div>
 
-        <div className="grid md:grid-cols-2 gap-8 items-start">
-          {/* Правая часть: Форма */}
-          <div className="bg-white p-6 rounded-xl shadow-[0_4px_25px_rgba(0,71,186,0.12)] border border-blue-200 order-1 md:order-2">
-            <h2 className="text-xl font-bold text-[#0047ba] mb-4 text-center">שלחו לנו הודעה</h2>
+        <div className="grid md:grid-cols-2 gap-6 items-stretch">
+          {/* Форма обращения */}
+          <div className="bg-white p-6 rounded-2xl shadow-[0_8px_30px_rgba(0,71,186,0.1)] border border-blue-200 flex flex-col justify-center">
+            <h2 className="text-xl font-bold text-[#0047ba] mb-5 text-center">פרטי הקריאה</h2>
             
             <form onSubmit={handleWhatsAppRedirect} className="space-y-4">
               <div className="grid grid-cols-2 gap-4">
                 <input 
                   type="text" 
                   name="name"
-                  placeholder="שם" 
+                  placeholder="שם מלא" 
                   value={formData.name}
                   onChange={handleChange}
-                  className="w-full bg-[#f8faff] border border-blue-100 p-3 rounded-lg text-sm outline-none focus:border-blue-400 focus:bg-white transition-all" 
+                  className="w-full bg-[#f8faff] border border-blue-100 p-3 rounded-xl text-sm outline-none focus:ring-2 focus:ring-blue-400 focus:bg-white transition-all" 
                   required 
                 />
                 <input 
                   type="tel" 
                   name="phone"
-                  placeholder="טלפון" 
+                  placeholder="מספר טלפון" 
                   value={formData.phone}
                   onChange={handleChange}
-                  className="w-full bg-[#f8faff] border border-blue-100 p-3 rounded-lg text-sm outline-none focus:border-blue-400 focus:bg-white transition-all" 
+                  className="w-full bg-[#f8faff] border border-blue-100 p-3 rounded-xl text-sm outline-none focus:ring-2 focus:ring-blue-400 focus:bg-white transition-all" 
                   required 
                 />
               </div>
@@ -84,7 +89,7 @@ export default function App() {
                     name="device"
                     value={formData.device}
                     onChange={handleChange}
-                    className="w-full bg-[#f8faff] border border-blue-100 p-3 rounded-lg text-sm outline-none focus:border-blue-400 focus:bg-white transition-all appearance-none cursor-pointer"
+                    className="w-full bg-[#f8faff] border border-blue-100 p-3 rounded-xl text-sm outline-none focus:ring-2 focus:ring-blue-400 focus:bg-white transition-all appearance-none cursor-pointer"
                     required
                   >
                     <option value="" disabled>בחר מכשיר</option>
@@ -94,69 +99,77 @@ export default function App() {
                     <option value="תנור">תנור אפייה</option>
                     <option value="אחר">אחר</option>
                   </select>
-                  <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none text-[#0047ba]">
+                  <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none text-[#0047ba] text-[10px]">
                     ▼
                   </div>
                 </div>
                 <input 
                   type="text" 
                   name="model"
-                  placeholder="דגם המכשיר" 
+                  placeholder="דגם (אם ידוע)" 
                   value={formData.model}
                   onChange={handleChange}
-                  className="w-full bg-[#f8faff] border border-blue-100 p-3 rounded-lg text-sm outline-none focus:border-blue-400 focus:bg-white transition-all" 
+                  className="w-full bg-[#f8faff] border border-blue-100 p-3 rounded-xl text-sm outline-none focus:ring-2 focus:ring-blue-400 focus:bg-white transition-all" 
                 />
               </div>
 
               <textarea 
                 name="message"
-                placeholder="תארו את הבעיה..." 
+                placeholder="תאור קצר של התקלה..." 
                 value={formData.message}
                 onChange={handleChange}
-                className="w-full bg-[#f8faff] border border-blue-100 p-3 rounded-lg h-24 text-sm resize-none outline-none focus:border-blue-400 focus:bg-white transition-all"
+                className="w-full bg-[#f8faff] border border-blue-100 p-3 rounded-xl h-24 text-sm resize-none outline-none focus:ring-2 focus:ring-blue-400 focus:bg-white transition-all"
               ></textarea>
 
-              <button type="submit" className="w-full bg-[#0047ba] text-white font-bold py-4 rounded-xl shadow-lg hover:bg-blue-700 transition-all active:scale-95 text-base">
-                שלח בקשה ב-WhatsApp 💬
+              <button type="submit" className="w-full bg-[#0047ba] text-white font-bold py-4 rounded-xl shadow-lg hover:bg-blue-700 transition-all active:scale-95 text-base flex items-center justify-center gap-2">
+                <span>שלח בקשה ב-WhatsApp</span>
+                <span className="text-xl">💬</span>
               </button>
             </form>
           </div>
 
-          {/* Левая часть: Фото и широкие Контакты */}
-          <div className="flex flex-col gap-6 order-2 md:order-1 items-center">
-            {/* Фото в центре блока, без лишних полей */}
-            <div className="w-full max-w-[400px] rounded-xl overflow-hidden shadow-[0_4px_25px_rgba(0,71,186,0.12)] border border-blue-200 bg-white">
+          {/* Левая колонка: Фото и Данные */}
+          <div className="flex flex-row gap-4 items-stretch h-full">
+            {/* Фото по высоте как форма */}
+            <div className="flex-1 rounded-2xl overflow-hidden shadow-[0_8px_30px_rgba(0,71,186,0.1)] border border-blue-200 bg-white">
               <img 
                 src="/images/photo1.png" 
                 alt="סלבה" 
-                className="w-full h-auto block object-cover"
+                className="w-full h-full object-cover"
                 onError={(e) => {
-                  (e.target as HTMLImageElement).src = 'https://via.placeholder.com/400x500?text=Slava';
+                  (e.target as HTMLImageElement).src = 'https://via.placeholder.com/400x500?text=TechFix';
                 }}
               />
             </div>
 
-            {/* Широкий блок контактов */}
-            <div className="w-full bg-white p-5 rounded-xl shadow-[0_4px_25px_rgba(0,71,186,0.12)] border border-blue-200 flex flex-col space-y-3">
-              <div className="flex justify-between items-center border-b border-blue-50 pb-2 gap-4">
-                <span className="text-[#0047ba] font-bold whitespace-nowrap">📞 טלפון:</span>
-                <span className="font-bold text-gray-800 whitespace-nowrap">052-2395151</span>
+            {/* Блок данных справа от фото */}
+            <div className="w-[220px] bg-white p-5 rounded-2xl shadow-[0_8px_30px_rgba(0,71,186,0.1)] border border-blue-200 flex flex-col justify-around gap-2 text-[13px]">
+              <div className="flex flex-col border-b border-blue-50 pb-2">
+                <span className="text-[#0047ba] font-black mb-0.5 underline decoration-blue-100 underline-offset-2">טלפון:</span>
+                <span className="font-bold text-gray-800 tracking-wide">052-2395151</span>
               </div>
-              <div className="flex justify-between items-center border-b border-blue-50 pb-2 gap-4">
-                <span className="text-[#0047ba] font-bold whitespace-nowrap">✉️ אימייל:</span>
-                <span className="font-bold text-gray-800 whitespace-nowrap">demslava@gmail.com</span>
+              
+              <div className="flex flex-col border-b border-blue-50 pb-2">
+                <span className="text-[#0047ba] font-black mb-0.5 underline decoration-blue-100 underline-offset-2">אימייל:</span>
+                <span className="font-bold text-gray-800 text-[11px] leading-tight">demslava@gmail.com</span>
               </div>
-              <div className="flex justify-between items-center gap-4">
-                <span className="text-[#0047ba] font-bold whitespace-nowrap">📍 מיקום:</span>
-                <span className="font-bold text-gray-800 whitespace-nowrap">נתניה והסביבה</span>
+              
+              <div className="flex flex-col border-b border-blue-50 pb-2">
+                <span className="text-[#0047ba] font-black mb-0.5 underline decoration-blue-100 underline-offset-2">שעות פעילות:</span>
+                <span className="font-bold text-gray-800">א' - ה': 08:00 - 17:00</span>
+              </div>
+
+              <div className="flex flex-col">
+                <span className="text-[#0047ba] font-black mb-0.5 underline decoration-blue-100 underline-offset-2">מיקום:</span>
+                <span className="font-bold text-gray-800">נתניה והסביבה</span>
               </div>
             </div>
           </div>
         </div>
       </main>
 
-      <footer className="bg-[#0047ba] text-white text-center py-4 flex-none text-sm">
-        כל הזכויות שמורות. TechFix Express 2026 ©
+      <footer className="bg-[#0047ba] text-white text-center py-3 flex-none text-xs font-medium tracking-wide">
+        כל הזכויות שמורות. TechFix Express 2026 © | שירות מקצועי לבית
       </footer>
     </div>
   );

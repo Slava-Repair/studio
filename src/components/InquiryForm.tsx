@@ -51,30 +51,30 @@ export default function InquiryForm() {
   }
 
   return (
-    <div className="bg-white p-8 rounded-3xl shadow-[0_8px_30px_rgba(0,71,186,0.1)] border border-primary/20 h-full flex flex-col justify-center" dir="rtl">
-      <div className="mb-8 text-center">
-        <h3 className="text-2xl font-bold text-primary mb-2 tracking-tight">פרטי הקריאה</h3>
-        <p className="text-[10px] text-muted-foreground uppercase tracking-[0.3em] font-bold">מילוי בקשה מהיר</p>
+    <div className="bg-white p-6 rounded-3xl shadow-[0_8px_30px_rgba(0,71,186,0.1)] border border-primary/20 h-full flex flex-col justify-center" dir="rtl">
+      <div className="mb-4 text-center">
+        <h3 className="text-xl font-bold text-primary mb-1 tracking-tight">פרטי הקריאה</h3>
+        <p className="text-[9px] text-muted-foreground uppercase tracking-[0.2em] font-bold">מילוי בקשה מהיר</p>
       </div>
 
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 text-right">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3 text-right">
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-3">
             <FormField
               control={form.control}
               name="fullName"
               render={({ field }) => (
                 <FormItem className="text-right">
-                  <FormLabel className="text-primary font-bold text-xs uppercase tracking-wider">מה שמך</FormLabel>
+                  <FormLabel className="text-primary font-bold text-[10px] uppercase tracking-wider">מה שמך</FormLabel>
                   <FormControl>
                     <Input 
-                      placeholder="ישראל ישראלי" 
-                      className="bg-muted/10 border-primary/40 h-12 rounded-xl focus-visible:ring-primary text-right" 
+                      placeholder="מה שמך" 
+                      className="bg-muted/5 border-primary/40 h-10 rounded-xl focus-visible:ring-primary text-right text-sm" 
                       {...field} 
                     />
                   </FormControl>
-                  <FormMessage className="text-[10px]" />
+                  <FormMessage className="text-[9px]" />
                 </FormItem>
               )}
             />
@@ -84,31 +84,31 @@ export default function InquiryForm() {
               name="phone"
               render={({ field }) => (
                 <FormItem className="text-right">
-                  <FormLabel className="text-primary font-bold text-xs uppercase tracking-wider">טלפון</FormLabel>
+                  <FormLabel className="text-primary font-bold text-[10px] uppercase tracking-wider">טלפון</FormLabel>
                   <FormControl>
                     <Input 
                       placeholder="052-0000000" 
                       type="tel"
-                      className="bg-muted/10 border-primary/40 h-12 rounded-xl focus-visible:ring-primary text-right" 
+                      className="bg-muted/5 border-primary/40 h-10 rounded-xl focus-visible:ring-primary text-right text-sm" 
                       {...field} 
                     />
                   </FormControl>
-                  <FormMessage className="text-[10px]" />
+                  <FormMessage className="text-[9px]" />
                 </FormItem>
               )}
             />
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-3">
             <FormField
               control={form.control}
               name="applianceType"
               render={({ field }) => (
                 <FormItem className="text-right">
-                  <FormLabel className="text-primary font-bold text-xs uppercase tracking-wider">סוג המכשיר</FormLabel>
+                  <FormLabel className="text-primary font-bold text-[10px] uppercase tracking-wider">סוג המכשיר</FormLabel>
                   <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <FormControl>
-                      <SelectTrigger className="bg-muted/10 border-primary/40 h-12 rounded-xl focus:ring-primary text-right flex-row-reverse">
+                      <SelectTrigger className="bg-muted/5 border-primary/40 h-10 rounded-xl focus:ring-primary text-right flex-row-reverse text-sm">
                         <SelectValue placeholder="בחר מכשיר" />
                       </SelectTrigger>
                     </FormControl>
@@ -121,7 +121,7 @@ export default function InquiryForm() {
                       <SelectItem value="אחר">אחר</SelectItem>
                     </SelectContent>
                   </Select>
-                  <FormMessage className="text-[10px]" />
+                  <FormMessage className="text-[9px]" />
                 </FormItem>
               )}
             />
@@ -131,15 +131,15 @@ export default function InquiryForm() {
               name="model"
               render={({ field }) => (
                 <FormItem className="text-right">
-                  <FormLabel className="text-primary font-bold text-xs uppercase tracking-wider">דגם (אופציונלי)</FormLabel>
+                  <FormLabel className="text-primary font-bold text-[10px] uppercase tracking-wider">דגם (אופציונלי)</FormLabel>
                   <FormControl>
                     <Input 
                       placeholder="למשל: בוש סדרה 6" 
-                      className="bg-muted/10 border-primary/40 h-12 rounded-xl focus-visible:ring-primary text-right" 
+                      className="bg-muted/5 border-primary/40 h-10 rounded-xl focus-visible:ring-primary text-right text-sm" 
                       {...field} 
                     />
                   </FormControl>
-                  <FormMessage className="text-[10px]" />
+                  <FormMessage className="text-[9px]" />
                 </FormItem>
               )}
             />
@@ -150,22 +150,22 @@ export default function InquiryForm() {
             name="symptoms"
             render={({ field }) => (
               <FormItem className="text-right">
-                <FormLabel className="text-primary font-bold text-xs uppercase tracking-wider">תיאור התקלה</FormLabel>
+                <FormLabel className="text-primary font-bold text-[10px] uppercase tracking-wider">תיאור התקלה</FormLabel>
                 <FormControl>
                   <Textarea 
                     placeholder="תאר את הבעיה במילים פשוטות" 
-                    className="bg-muted/10 border-primary/40 min-h-[100px] rounded-xl focus-visible:ring-primary text-right text-base resize-none" 
+                    className="bg-muted/5 border-primary/40 min-h-[70px] rounded-xl focus-visible:ring-primary text-right text-sm resize-none" 
                     {...field} 
                   />
                 </FormControl>
-                <FormMessage className="text-[10px]" />
+                <FormMessage className="text-[9px]" />
               </FormItem>
             )}
           />
 
-          <Button type="submit" className="w-full bg-primary text-white hover:bg-primary/90 font-bold h-14 text-xl rounded-xl shadow-xl mt-4 transition-all active:scale-95 flex items-center justify-center gap-3">
+          <Button type="submit" className="w-full bg-primary text-white hover:bg-primary/90 font-bold h-12 text-lg rounded-xl shadow-lg mt-2 transition-all active:scale-95 flex items-center justify-center gap-2">
             <span>שלח בקשה לתיקון</span>
-            <span className="text-2xl">💬</span>
+            <span className="text-xl">💬</span>
           </Button>
         </form>
       </Form>

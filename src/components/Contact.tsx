@@ -29,37 +29,41 @@ export default function Contact() {
     },
   ];
 
+  const commonClasses = "bg-white rounded-[2rem] shadow-[0_20px_50px_rgba(0,0,0,0.15)] border border-primary/20 flex flex-col h-full transition-all hover:shadow-[0_25px_60px_rgba(0,0,0,0.2)]";
+
   return (
-    <section id="contact" className="w-full h-full flex flex-col justify-center gap-4 py-4">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch max-w-7xl mx-auto w-full" dir="rtl">
+    <section id="contact" className="w-full max-w-7xl mx-auto px-4 py-4 h-full flex items-center">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch w-full" dir="rtl">
         
-        {/* Column 1: Inquiry Form */}
-        <div className="bg-white rounded-3xl shadow-[0_30px_60px_rgba(0,0,0,0.15)] border border-primary/5 flex flex-col overflow-hidden order-1">
+        {/* Block 1 (Visual Right): Inquiry Form */}
+        <div className={commonClasses}>
           <InquiryForm />
         </div>
 
-        {/* Column 2: Contact Info */}
-        <div className="bg-white p-6 lg:p-8 rounded-3xl shadow-[0_30px_60px_rgba(0,0,0,0.15)] border border-primary/5 flex flex-col justify-center order-2">
+        {/* Block 2 (Visual Center): Contact Info */}
+        <div className={`${commonClasses} p-6 lg:p-8 flex flex-col justify-center`}>
           <div className="space-y-6">
-            <div className="text-center mb-4">
-              <h3 className="text-xl font-black text-primary border-b-2 border-primary/10 pb-2 inline-block px-6">פרטי התקשרות</h3>
+            <div className="text-center mb-6">
+              <h3 className="text-2xl font-black text-primary border-b-2 border-primary/20 pb-2 inline-block px-8">פרטי התקשרות</h3>
             </div>
-            {contactDetails.map((item, idx) => (
-              <div key={idx} className="flex items-center justify-start gap-4 text-right">
-                <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shrink-0 border border-primary/10 shadow-sm text-primary">
-                  <item.icon className="h-5 w-5" />
+            <div className="space-y-6">
+              {contactDetails.map((item, idx) => (
+                <div key={idx} className="flex items-center justify-start gap-4 text-right flex-row-reverse">
+                  <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shrink-0 border border-primary/20 shadow-sm text-primary">
+                    <item.icon className="h-5 w-5" />
+                  </div>
+                  <div className="flex flex-col items-end">
+                    <span className="text-[10px] font-bold text-muted-foreground/40 uppercase tracking-widest leading-none mb-1">{item.label}</span>
+                    <span className="text-sm lg:text-base font-bold text-foreground leading-tight">{item.value}</span>
+                  </div>
                 </div>
-                <div className="flex flex-col items-start">
-                  <span className="text-[10px] font-bold text-muted-foreground/60 uppercase tracking-widest leading-none mb-1">{item.label}</span>
-                  <span className="text-sm lg:text-base font-bold text-foreground leading-tight">{item.value}</span>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
 
-        {/* Column 3: Photo */}
-        <div className="relative w-full min-h-[300px] md:h-auto rounded-3xl overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.15)] border border-primary/10 order-3">
+        {/* Block 3 (Visual Left): Photo */}
+        <div className={`${commonClasses} relative min-h-[400px] overflow-hidden`}>
           <Image
             src="/images/photo1.png"
             alt="Professional technician repairing appliance"
@@ -68,7 +72,7 @@ export default function Contact() {
             sizes="(max-width: 1024px) 100vw, 33vw"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent pointer-events-none"></div>
         </div>
 
       </div>

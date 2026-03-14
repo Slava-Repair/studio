@@ -30,7 +30,7 @@ export default function Contact() {
 
   return (
     <section id="contact" className="w-full h-full flex flex-col justify-center gap-2 py-2">
-      {/* Header Section - Scaled for space */}
+      {/* Header Section */}
       <div className="text-center space-y-1">
         <div className="inline-block bg-secondary/30 text-primary px-3 py-0.5 rounded-full text-[10px] font-bold border border-primary/20 uppercase">
           שירות תיקונים מקצועי
@@ -40,34 +40,34 @@ export default function Contact() {
         </h2>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 items-stretch h-full max-h-[70vh] md:max-h-[75vh]" dir="rtl">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 items-stretch h-full max-h-[70vh] md:max-h-[75vh]" dir="rtl">
         
-        {/* 1. Form Column - Rightmost (Order 1) */}
+        {/* 1. Form Column - Right */}
         <div className="order-1 flex flex-col min-h-0">
           <InquiryForm />
         </div>
 
-        {/* 2. Info Column - Center (Order 2) */}
-        <div className="order-2 flex flex-col justify-center p-4 lg:p-6 bg-white rounded-2xl border border-primary/10 shadow-[0_8px_30px_rgba(0,71,186,0.05)] min-h-0">
+        {/* 2. Info Column - Center */}
+        <div className="order-2 flex flex-col justify-center p-4 lg:p-6 bg-white rounded-2xl border border-primary/5 shadow-[0_20px_50px_rgba(0,0,0,0.1)] min-h-0">
           <div className="space-y-4 lg:space-y-6">
-            <h3 className="text-lg font-black text-primary border-b border-primary/10 pb-2 mb-2">פרטי התקשרות</h3>
+            <h3 className="text-lg font-black text-primary border-b border-primary/10 pb-2 mb-2 text-right">פרטי התקשרות</h3>
             {contactDetails.map((item, idx) => (
-              <div key={idx} className="flex items-center gap-3 text-right">
-                <div className="w-8 h-8 rounded-full bg-primary/5 flex items-center justify-center shrink-0 border border-primary/10">
-                  <item.icon className="h-4 w-4 text-primary" />
+              <div key={idx} className="flex items-center gap-3 text-right flex-row-reverse">
+                <div className="w-10 h-10 rounded-full bg-primary/5 flex items-center justify-center shrink-0 border border-primary/10">
+                  <item.icon className="h-5 w-5 text-primary" />
                 </div>
-                <div className="flex flex-col">
+                <div className="flex flex-col flex-1">
                   <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider leading-none mb-1">{item.label}</span>
-                  <span className="text-xs lg:text-sm font-bold text-foreground leading-none">{item.value}</span>
+                  <span className="text-sm lg:text-base font-bold text-foreground leading-none">{item.value}</span>
                 </div>
               </div>
             ))}
           </div>
         </div>
 
-        {/* 3. Photo Column - Leftmost (Order 3) */}
+        {/* 3. Photo Column - Left */}
         <div className="order-3 hidden md:flex justify-center items-center min-h-0">
-          <div className="relative w-full h-full rounded-2xl overflow-hidden border border-primary/20 shadow-[0_15px_40px_rgba(0,71,186,0.1)]">
+          <div className="relative w-full h-full rounded-2xl overflow-hidden border border-primary/20 shadow-[0_20px_50px_rgba(0,0,0,0.15)]">
             <Image
               src="/images/photo1.png"
               alt="Professional technician"

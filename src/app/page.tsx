@@ -3,112 +3,90 @@
 import React from 'react';
 
 export default function App() {
+  const whatsappNumber = "972522395151";
+  const message = "שלום סלבה, אני מעוניין בתיקון מכשיר חשמלי.";
+
+  const handleWhatsAppRedirect = (e: React.FormEvent) => {
+    e.preventDefault();
+    const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+    window.location.href = url;
+  };
+
   return (
-    <div className="min-h-screen bg-white font-sans text-right" dir="rtl">
+    <div className="h-screen overflow-hidden bg-white font-sans text-right flex flex-col" dir="rtl">
       {/* Навигация */}
-      <nav className="flex justify-between items-center px-12 py-6 border-b border-gray-100">
-        <div className="flex items-center gap-2 text-[#0047ba] font-bold text-xl">
+      <nav className="flex justify-between items-center px-8 py-4 border-b border-blue-100 flex-none">
+        <div className="flex items-center gap-2 text-[#0047ba] font-bold text-lg">
           <span>TechFix Express</span>
           <span role="img" aria-label="wrench">🔧</span>
         </div>
-        <div className="text-[#0047ba] font-medium">
+        <div className="text-[#0047ba] font-bold text-sm">
           נתניה והסביבה | 052-2395151
         </div>
       </nav>
 
-      <main className="max-w-6xl mx-auto px-6 py-12">
-        <h1 className="text-4xl font-bold text-[#0047ba] text-center mb-12 underline decoration-blue-200 underline-offset-8">
+      <main className="flex-1 max-w-6xl mx-auto w-full px-6 flex flex-col justify-center gap-6">
+        <h1 className="text-3xl font-bold text-[#0047ba] text-center underline decoration-blue-200 underline-offset-4">
           צור קשר
         </h1>
 
-        <div className="grid md:grid-cols-2 gap-12 items-start">
-          {/* Правая колонка: Форма (как в оригинале) */}
-          <div className="bg-white p-8 rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.08)] border border-gray-50 order-1 md:order-2">
-            <h2 className="text-xl font-bold text-[#0047ba] mb-2 text-center">שלחו לנו הודעה</h2>
-            <p className="text-gray-500 text-center mb-6 text-sm">מלאו את הפרטים ונחזור אליכם</p>
+        <div className="grid md:grid-cols-2 gap-8 items-center">
+          {/* Форма в рамке */}
+          <div className="bg-white p-6 rounded-xl shadow-[0_4px_20px_rgba(0,71,186,0.1)] border border-blue-200 order-1 md:order-2">
+            <h2 className="text-lg font-bold text-[#0047ba] mb-4 text-center">שלחו לנו הודעה</h2>
             
-            <form action="https://formspree.io/f/demslava@gmail.com" method="POST" className="space-y-4">
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-xs font-bold mb-1 text-gray-400">שם</label>
-                  <input type="text" name="name" placeholder="מה שמך?" className="w-full bg-[#f8faff] border border-blue-100 p-3 rounded-lg text-sm" required />
-                </div>
-                <div>
-                  <label className="block text-xs font-bold mb-1 text-gray-400">טלפון</label>
-                  <input type="tel" name="phone" placeholder="050-0000000" className="w-full bg-[#f8faff] border border-blue-100 p-3 rounded-lg text-sm" required />
-                </div>
+            <form onSubmit={handleWhatsAppRedirect} className="space-y-3">
+              <div className="grid grid-cols-2 gap-3">
+                <input type="text" placeholder="שם" className="w-full bg-[#f8faff] border border-blue-100 p-2 rounded-lg text-sm outline-none focus:border-blue-400" required />
+                <input type="tel" placeholder="טלפון" className="w-full bg-[#f8faff] border border-blue-100 p-2 rounded-lg text-sm outline-none focus:border-blue-400" required />
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-xs font-bold mb-1 text-gray-400">בחר מכשיר</label>
-                  <select name="device" className="w-full bg-[#f8faff] border border-blue-100 p-3 rounded-lg text-sm appearance-none">
-                    <option>סוג המכשיר</option>
-                    <option>מכונת כביסה</option>
-                    <option>מדיח כלים</option>
-                    <option>מייבש</option>
-                    <option>תנור</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-xs font-bold mb-1 text-gray-400">דגם (אופציונלי)</label>
-                  <input type="text" name="model" placeholder="Samsung RT45" className="w-full bg-[#f8faff] border border-blue-100 p-3 rounded-lg text-sm" />
-                </div>
+              <div className="grid grid-cols-2 gap-3">
+                <select className="w-full bg-[#f8faff] border border-blue-100 p-2 rounded-lg text-sm outline-none focus:border-blue-400">
+                  <option>מכונת כביסה</option>
+                  <option>מדיח כלים</option>
+                  <option>מייבש</option>
+                  <option>תנור</option>
+                </select>
+                <input type="text" placeholder="דגם" className="w-full bg-[#f8faff] border border-blue-100 p-2 rounded-lg text-sm outline-none focus:border-blue-400" />
               </div>
 
-              <div>
-                <label className="block text-xs font-bold mb-1 text-gray-400">תיאור התקלה</label>
-                <textarea name="message" placeholder="תארו את הבעיה במילים פשוטות" className="w-full bg-[#f8faff] border border-blue-100 p-3 rounded-lg h-24 text-sm resize-none"></textarea>
-              </div>
+              <textarea placeholder="תיאור התקלה" className="w-full bg-[#f8faff] border border-blue-100 p-2 rounded-lg h-20 text-sm resize-none outline-none focus:border-blue-400"></textarea>
 
-              <button type="submit" className="w-full bg-[#0047ba] text-white font-bold py-4 rounded-xl shadow-lg shadow-blue-200 hover:bg-blue-700 transition-colors">
-                שלח בקשה
+              <button type="submit" className="w-full bg-[#0047ba] text-white font-bold py-3 rounded-lg shadow-md hover:bg-blue-700 transition-all active:scale-95">
+                שלח בקשה ב-WhatsApp
               </button>
             </form>
           </div>
 
-          {/* Левая колонка: Твоё фото и контакты */}
-          <div className="space-y-8 order-2 md:order-1">
-            <div className="rounded-2xl overflow-hidden shadow-2xl border-4 border-white inline-block w-full">
+          {/* Фото и контакты в рамке */}
+          <div className="space-y-6 order-2 md:order-1">
+            <div className="rounded-xl overflow-hidden shadow-[0_4px_20px_rgba(0,71,186,0.1)] border border-blue-200 bg-white p-2">
               <img 
                 src="/images/photo1.png" 
                 alt="סלבה" 
-                className="w-full h-auto object-cover"
+                className="w-full h-64 object-cover rounded-lg"
                 onError={(e) => {
-                  (e.target as HTMLImageElement).src = 'https://via.placeholder.com/500x600?text=Photo+Not+Found';
+                  (e.target as HTMLImageElement).src = 'https://via.placeholder.com/400x300?text=Slava';
                 }}
               />
             </div>
 
-            <div className="space-y-4 pr-4">
-              <h3 className="text-xl font-bold text-[#0047ba] mb-4">פרטי התקשרות</h3>
-              <div className="flex items-center gap-4">
-                <div className="w-10 h-10 bg-blue-50 rounded-full flex items-center justify-center text-[#0047ba]">📞</div>
-                <div>
-                  <div className="text-xs text-gray-400 font-bold">טלפון</div>
-                  <div className="font-bold">052-2395151</div>
-                </div>
+            <div className="bg-white p-4 rounded-xl shadow-[0_4px_15px_rgba(0,71,186,0.05)] border border-blue-100 grid grid-cols-2 gap-2 text-sm">
+              <div className="flex items-center gap-2">
+                <span className="text-[#0047ba]">📞</span>
+                <span className="font-bold">052-2395151</span>
               </div>
-              <div className="flex items-center gap-4">
-                <div className="w-10 h-10 bg-blue-50 rounded-full flex items-center justify-center text-[#0047ba]">✉️</div>
-                <div>
-                  <div className="text-xs text-gray-400 font-bold">דוא"ל</div>
-                  <div className="font-bold">demslava@gmail.com</div>
-                </div>
-              </div>
-              <div className="flex items-center gap-4">
-                <div className="w-10 h-10 bg-blue-50 rounded-full flex items-center justify-center text-[#0047ba]">📍</div>
-                <div>
-                  <div className="text-xs text-gray-400 font-bold">כתובת</div>
-                  <div className="font-bold">נתניה</div>
-                </div>
+              <div className="flex items-center gap-2">
+                <span className="text-[#0047ba]">📍</span>
+                <span className="font-bold">נתניה</span>
               </div>
             </div>
           </div>
         </div>
       </main>
 
-      <footer className="bg-[#0047ba] text-white text-center py-6 mt-12 text-sm">
+      <footer className="bg-[#0047ba] text-white text-center py-3 flex-none text-xs">
         כל הזכויות שמורות. TechFix Express 2026 ©
       </footer>
     </div>

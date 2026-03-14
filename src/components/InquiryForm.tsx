@@ -4,11 +4,12 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { Button } from "@/components/ui/button";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
+import { MessageCircle } from "lucide-react";
 
 const formSchema = z.object({
   fullName: z.string().min(2, { message: "נא להזין שם" }),
@@ -51,30 +52,28 @@ export default function InquiryForm() {
   }
 
   return (
-    <div className="bg-white p-6 rounded-3xl shadow-[0_8px_30px_rgba(0,71,186,0.1)] border border-primary/20 h-full flex flex-col justify-center" dir="rtl">
-      <div className="mb-4 text-center">
-        <h3 className="text-xl font-bold text-primary mb-1 tracking-tight">פרטי הקריאה</h3>
-        <p className="text-[9px] text-muted-foreground uppercase tracking-[0.2em] font-bold">מילוי בקשה מהיר</p>
+    <div className="bg-white p-10 rounded-2xl shadow-[0_8px_30px_rgba(0,71,186,0.05)] border border-primary/10 h-full flex flex-col justify-center" dir="rtl">
+      <div className="mb-10 text-center">
+        <h3 className="text-2xl font-black text-primary tracking-tight">פרטי הקריאה</h3>
       </div>
 
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3 text-right">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 text-right">
           
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-2 gap-4">
             <FormField
               control={form.control}
               name="fullName"
               render={({ field }) => (
-                <FormItem className="text-right">
-                  <FormLabel className="text-primary font-bold text-[10px] uppercase tracking-wider">מה שמך</FormLabel>
+                <FormItem>
                   <FormControl>
                     <Input 
-                      placeholder="מה שמך" 
-                      className="bg-muted/5 border-primary/40 h-10 rounded-xl focus-visible:ring-primary text-right text-sm" 
+                      placeholder="שם מלא" 
+                      className="bg-[#f8faff] border-primary/20 h-12 rounded-xl focus-visible:ring-primary text-right text-sm placeholder:text-muted-foreground/60" 
                       {...field} 
                     />
                   </FormControl>
-                  <FormMessage className="text-[9px]" />
+                  <FormMessage className="text-[10px]" />
                 </FormItem>
               )}
             />
@@ -83,32 +82,30 @@ export default function InquiryForm() {
               control={form.control}
               name="phone"
               render={({ field }) => (
-                <FormItem className="text-right">
-                  <FormLabel className="text-primary font-bold text-[10px] uppercase tracking-wider">טלפון</FormLabel>
+                <FormItem>
                   <FormControl>
                     <Input 
-                      placeholder="052-0000000" 
+                      placeholder="מספר טלפון" 
                       type="tel"
-                      className="bg-muted/5 border-primary/40 h-10 rounded-xl focus-visible:ring-primary text-right text-sm" 
+                      className="bg-[#f8faff] border-primary/20 h-12 rounded-xl focus-visible:ring-primary text-right text-sm placeholder:text-muted-foreground/60" 
                       {...field} 
                     />
                   </FormControl>
-                  <FormMessage className="text-[9px]" />
+                  <FormMessage className="text-[10px]" />
                 </FormItem>
               )}
             />
           </div>
 
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-2 gap-4">
             <FormField
               control={form.control}
               name="applianceType"
               render={({ field }) => (
-                <FormItem className="text-right">
-                  <FormLabel className="text-primary font-bold text-[10px] uppercase tracking-wider">סוג המכשיר</FormLabel>
+                <FormItem>
                   <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <FormControl>
-                      <SelectTrigger className="bg-muted/5 border-primary/40 h-10 rounded-xl focus:ring-primary text-right flex-row-reverse text-sm">
+                      <SelectTrigger className="bg-[#f8faff] border-primary/20 h-12 rounded-xl focus:ring-primary text-right flex-row-reverse text-sm">
                         <SelectValue placeholder="בחר מכשיר" />
                       </SelectTrigger>
                     </FormControl>
@@ -121,7 +118,7 @@ export default function InquiryForm() {
                       <SelectItem value="אחר">אחר</SelectItem>
                     </SelectContent>
                   </Select>
-                  <FormMessage className="text-[9px]" />
+                  <FormMessage className="text-[10px]" />
                 </FormItem>
               )}
             />
@@ -130,16 +127,15 @@ export default function InquiryForm() {
               control={form.control}
               name="model"
               render={({ field }) => (
-                <FormItem className="text-right">
-                  <FormLabel className="text-primary font-bold text-[10px] uppercase tracking-wider">דגם (אופציונלי)</FormLabel>
+                <FormItem>
                   <FormControl>
                     <Input 
-                      placeholder="למשל: בוש סדרה 6" 
-                      className="bg-muted/5 border-primary/40 h-10 rounded-xl focus-visible:ring-primary text-right text-sm" 
+                      placeholder="דגם (אם ידוע)" 
+                      className="bg-[#f8faff] border-primary/20 h-12 rounded-xl focus-visible:ring-primary text-right text-sm placeholder:text-muted-foreground/60" 
                       {...field} 
                     />
                   </FormControl>
-                  <FormMessage className="text-[9px]" />
+                  <FormMessage className="text-[10px]" />
                 </FormItem>
               )}
             />
@@ -149,23 +145,22 @@ export default function InquiryForm() {
             control={form.control}
             name="symptoms"
             render={({ field }) => (
-              <FormItem className="text-right">
-                <FormLabel className="text-primary font-bold text-[10px] uppercase tracking-wider">תיאור התקלה</FormLabel>
+              <FormItem>
                 <FormControl>
                   <Textarea 
-                    placeholder="תאר את הבעיה במילים פשוטות" 
-                    className="bg-muted/5 border-primary/40 min-h-[70px] rounded-xl focus-visible:ring-primary text-right text-sm resize-none" 
+                    placeholder="תאור קצר של התקלה..." 
+                    className="bg-[#f8faff] border-primary/20 min-h-[140px] rounded-xl focus-visible:ring-primary text-right text-sm resize-none placeholder:text-muted-foreground/60" 
                     {...field} 
                   />
                 </FormControl>
-                <FormMessage className="text-[9px]" />
+                <FormMessage className="text-[10px]" />
               </FormItem>
             )}
           />
 
-          <Button type="submit" className="w-full bg-primary text-white hover:bg-primary/90 font-bold h-12 text-lg rounded-xl shadow-lg mt-2 transition-all active:scale-95 flex items-center justify-center gap-2">
-            <span>שלח בקשה לתיקון</span>
-            <span className="text-xl">💬</span>
+          <Button type="submit" className="w-full bg-primary text-white hover:bg-primary/90 font-bold h-14 text-lg rounded-xl shadow-lg mt-4 transition-all active:scale-95 flex items-center justify-center gap-2">
+             <MessageCircle className="h-5 w-5" />
+            <span>שלח בקשה ב-WhatsApp</span>
           </Button>
         </form>
       </Form>

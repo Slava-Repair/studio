@@ -3,122 +3,113 @@
 import React from 'react';
 
 export default function App() {
-  const handleSubmit = (e: React.FormEvent) => {
-    // В Next.js формы обрабатываются программно или через action
-  };
-
   return (
-    <div className="min-h-screen bg-[#f0f4f8] text-[#1d1d1f] font-sans" dir="rtl">
+    <div className="min-h-screen bg-white font-sans text-right" dir="rtl">
       {/* Навигация */}
-      <nav className="bg-white px-[5%] py-4 flex justify-between items-center shadow-sm sticky top-0 z-50">
-        <div className="font-bold text-2xl text-[#0047ba]">TechFix Express 🔧</div>
-        <div className="hidden md:block text-sm">נתניה והסביבה | 052-2395151</div>
+      <nav className="flex justify-between items-center px-12 py-6 border-b border-gray-100">
+        <div className="flex items-center gap-2 text-[#0047ba] font-bold text-xl">
+          <span>TechFix Express</span>
+          <span role="img" aria-label="wrench">🔧</span>
+        </div>
+        <div className="text-[#0047ba] font-medium">
+          נתניה והסביבה | 052-2395151
+        </div>
       </nav>
 
-      {/* Главный блок */}
-      <section className="max-w-7xl mx-auto px-[5%] py-12 grid md:grid-cols-2 gap-10 items-center">
-        <div className="space-y-6">
-          <h1 className="text-5xl font-bold text-[#0047ba] leading-tight">
-            תיקון מוצרי חשמל בנתניה
-          </h1>
-          <p className="text-lg opacity-90">
-            שירות מהיר, אמין ומקצועי עד הבית. מומחה לתיקון כביסה, מדיחים, ותנורים עם אחריות מלאה.
-          </p>
-          <div className="pt-6">
-            <img 
-              src="/images/photo1.png" 
-              alt="סלבה" 
-              className="w-full rounded-3xl shadow-2xl border-4 border-white"
-              onError={(e) => {
-                (e.target as HTMLImageElement).src = 'https://via.placeholder.com/600x400?text=Slava+Photo';
-              }}
-            />
-          </div>
-        </div>
+      <main className="max-w-6xl mx-auto px-6 py-12">
+        <h1 className="text-4xl font-bold text-[#0047ba] text-center mb-12 underline decoration-blue-200 underline-offset-8">
+          צור קשר
+        </h1>
 
-        {/* Форма */}
-        <div className="bg-white p-8 rounded-3xl shadow-xl border border-gray-100">
-          <h2 className="text-2xl font-bold text-center mb-6">שלחו לנו הודעה</h2>
-          <form action="https://formspree.io/f/demslava@gmail.com" method="POST" className="space-y-4">
-            <input 
-              type="text" 
-              name="name" 
-              placeholder="מה שמך?" 
-              className="w-full p-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#0047ba] outline-none"
-              required 
-            />
-            <input 
-              type="tel" 
-              name="phone" 
-              placeholder="טלפון" 
-              className="w-full p-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#0047ba] outline-none"
-              required 
-            />
-            <select name="device" className="w-full p-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#0047ba] outline-none">
-              <option>בחר מכшיר</option>
-              <option>מכונת כביסה</option>
-              <option>מדיח כלים</option>
-              <option>מייבש</option>
-              <option>אחר</option>
-            </select>
-            <textarea 
-              name="message" 
-              placeholder="תארו את הבעיה בקצרה" 
-              className="w-full p-4 border border-gray-200 rounded-xl h-32 focus:ring-2 focus:ring-[#0047ba] outline-none"
-            ></textarea>
-            <button 
-              type="submit" 
-              className="w-full bg-[#0047ba] text-white font-bold py-4 rounded-xl hover:bg-blue-700 transition-all transform hover:scale-[1.02]"
-            >
-              שלח בקשה
-            </button>
-          </form>
-        </div>
-      </section>
-
-      {/* Примеры работ */}
-      <section className="bg-white py-20 px-[5%]">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12">דוגמאות לעבודות</h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            {/* Работа 1 */}
-            <div className="group cursor-pointer">
-              <div className="h-64 bg-gray-100 rounded-2xl overflow-hidden mb-4">
-                <img 
-                  src="/images/work1.jpg" 
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                  onError={(e) => {
-                    (e.target as HTMLImageElement).src = 'https://via.placeholder.com/400x250?text=Repair+Card';
-                  }}
-                  alt="Repair"
-                />
+        <div className="grid md:grid-cols-2 gap-12 items-start">
+          {/* Правая колонка: Форма (как в оригинале) */}
+          <div className="bg-white p-8 rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.08)] border border-gray-50 order-1 md:order-2">
+            <h2 className="text-xl font-bold text-[#0047ba] mb-2 text-center">שלחו לנו הודעה</h2>
+            <p className="text-gray-500 text-center mb-6 text-sm">מלאו את הפרטים ונחזור אליכם</p>
+            
+            <form action="https://formspree.io/f/demslava@gmail.com" method="POST" className="space-y-4">
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-xs font-bold mb-1 text-gray-400">שם</label>
+                  <input type="text" name="name" placeholder="מה שמך?" className="w-full bg-[#f8faff] border border-blue-100 p-3 rounded-lg text-sm" required />
+                </div>
+                <div>
+                  <label className="block text-xs font-bold mb-1 text-gray-400">טלפון</label>
+                  <input type="tel" name="phone" placeholder="050-0000000" className="w-full bg-[#f8faff] border border-blue-100 p-3 rounded-lg text-sm" required />
+                </div>
               </div>
-              <h3 className="text-xl font-bold">תיקון כרטיס אלקטרוני</h3>
-              <p className="opacity-70">שיקום מקצועי של לוח אם למכונת כביסה Bosch.</p>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-xs font-bold mb-1 text-gray-400">בחר מכשיר</label>
+                  <select name="device" className="w-full bg-[#f8faff] border border-blue-100 p-3 rounded-lg text-sm appearance-none">
+                    <option>סוג המכשיר</option>
+                    <option>מכונת כביסה</option>
+                    <option>מדיח כלים</option>
+                    <option>מייבש</option>
+                    <option>תנור</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-xs font-bold mb-1 text-gray-400">דגם (אופציונלי)</label>
+                  <input type="text" name="model" placeholder="Samsung RT45" className="w-full bg-[#f8faff] border border-blue-100 p-3 rounded-lg text-sm" />
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold mb-1 text-gray-400">תיאור התקלה</label>
+                <textarea name="message" placeholder="תארו את הבעיה במילים פשוטות" className="w-full bg-[#f8faff] border border-blue-100 p-3 rounded-lg h-24 text-sm resize-none"></textarea>
+              </div>
+
+              <button type="submit" className="w-full bg-[#0047ba] text-white font-bold py-4 rounded-xl shadow-lg shadow-blue-200 hover:bg-blue-700 transition-colors">
+                שלח בקשה
+              </button>
+            </form>
+          </div>
+
+          {/* Левая колонка: Твоё фото и контакты */}
+          <div className="space-y-8 order-2 md:order-1">
+            <div className="rounded-2xl overflow-hidden shadow-2xl border-4 border-white inline-block w-full">
+              <img 
+                src="/images/photo1.png" 
+                alt="סלבה" 
+                className="w-full h-auto object-cover"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = 'https://via.placeholder.com/500x600?text=Photo+Not+Found';
+                }}
+              />
             </div>
 
-            {/* Работа 2 */}
-            <div className="group cursor-pointer">
-              <div className="h-64 bg-gray-100 rounded-2xl overflow-hidden mb-4">
-                <img 
-                  src="/images/work2.jpg" 
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                  onError={(e) => {
-                    (e.target as HTMLImageElement).src = 'https://via.placeholder.com/400x250?text=Bearing+Replacement';
-                  }}
-                  alt="Repair"
-                />
+            <div className="space-y-4 pr-4">
+              <h3 className="text-xl font-bold text-[#0047ba] mb-4">פרטי התקשרות</h3>
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 bg-blue-50 rounded-full flex items-center justify-center text-[#0047ba]">📞</div>
+                <div>
+                  <div className="text-xs text-gray-400 font-bold">טלפון</div>
+                  <div className="font-bold">052-2395151</div>
+                </div>
               </div>
-              <h3 className="text-xl font-bold">החלפת מיסבים</h3>
-              <p className="opacity-70">תיקון שקט ואיכותי כולל החלפת אטמים מקוריים.</p>
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 bg-blue-50 rounded-full flex items-center justify-center text-[#0047ba]">✉️</div>
+                <div>
+                  <div className="text-xs text-gray-400 font-bold">דוא"ל</div>
+                  <div className="font-bold">demslava@gmail.com</div>
+                </div>
+              </div>
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 bg-blue-50 rounded-full flex items-center justify-center text-[#0047ba]">📍</div>
+                <div>
+                  <div className="text-xs text-gray-400 font-bold">כתובת</div>
+                  <div className="font-bold">נתניה</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </section>
+      </main>
 
-      {/* Футер */}
-      <footer className="bg-[#0047ba] text-white py-10 text-center text-sm">
-        © TechFix Express 2026. כל הזכויות שמורות. נתניה והסביבה.
+      <footer className="bg-[#0047ba] text-white text-center py-6 mt-12 text-sm">
+        כל הזכויות שמורות. TechFix Express 2026 ©
       </footer>
     </div>
   );

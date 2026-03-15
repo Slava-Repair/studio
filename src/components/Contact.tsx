@@ -38,7 +38,7 @@ export default function Contact() {
     <section id="contact" className="w-full max-w-7xl mx-auto px-4 py-2 md:py-4 h-full flex flex-col justify-center gap-6">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch w-full" dir="rtl">
         
-        {/* Block 1: Inquiry Form (Right side) */}
+        {/* Block 1: Inquiry Form (Right side in RTL) */}
         <div className={`${commonClasses} order-1`}>
           <InquiryForm />
         </div>
@@ -65,7 +65,7 @@ export default function Contact() {
           </div>
         </div>
 
-        {/* Block 3: Photo (Left side) */}
+        {/* Block 3: Photo (Left side in RTL) */}
         <div className={`${commonClasses} relative min-h-[300px] md:min-h-0 overflow-hidden order-3`}>
           <Image
             src="https://picsum.photos/seed/tech1/600/800"

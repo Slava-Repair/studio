@@ -29,7 +29,7 @@ export default function Contact() {
   ];
 
   const brands = [
-    "HAIER", "MIELE", "BEKO", "SIEMENS", "ELECTROLUX", "WHIRLPOOL", "LG", "SAMSUNG", "BOSCH", "ZANUSSI", "CONSTRUCTA"
+    "ZANUSSI", "BOSCH", "SAMSUNG", "LG", "WHIRLPOOL", "ELECTROLUX", "SIEMENS", "BEKO", "MIELE", "HAIER", "CONSTRUCTA"
   ];
 
   const commonClasses = "bg-white rounded-[2rem] shadow-[0_40px_80px_rgba(0,0,0,0.25)] border-2 border-primary/20 flex flex-col h-full transition-all hover:shadow-[0_50px_100px_rgba(0,0,0,0.3)]";
@@ -68,12 +68,13 @@ export default function Contact() {
         {/* Block 3: Photo (Left side) */}
         <div className={`${commonClasses} relative min-h-[300px] md:min-h-0 overflow-hidden order-3`}>
           <Image
-            src="https://picsum.photos/seed/tech-pro/600/800"
-            alt="Professional technician repairing appliance"
+            src="https://picsum.photos/seed/tech1/600/800"
+            alt="Professional technician repairing washing machine"
             fill
             className="object-cover"
             sizes="(max-width: 1024px) 100vw, 33vw"
             priority
+            data-ai-hint="washing machine repair"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none"></div>
         </div>
@@ -89,6 +90,7 @@ export default function Contact() {
               {brand}
             </span>
           ))}
+          <span className="text-xs md:text-sm font-black tracking-tighter text-foreground italic">CONSTRUCTA</span>
         </div>
       </div>
     </section>

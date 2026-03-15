@@ -14,7 +14,7 @@ import { useState } from "react";
 
 const formSchema = z.object({
   fullName: z.string().min(2, { message: "נא להזין שם" }),
-  phone: z.string().min(9, { message: "נא להזין מספר טלфон תקין" }),
+  phone: z.string().min(9, { message: "נא להזין מספר טלפון תקין" }),
   applianceType: z.string({ required_error: "נא לבחור סוג מכשיר" }),
   model: z.string().optional(),
   symptoms: z.string().min(5, { message: "נא לתאר את הבעיה" }),
@@ -36,7 +36,7 @@ export default function InquiryForm() {
   const formatMessage = (values: z.infer<typeof formSchema>) => {
     return `הודעה חדשה מ-TechFix Express:
 👤 שם: ${values.fullName}
-📞 טлפון: ${values.phone}
+📞 טלפון: ${values.phone}
 🛠️ מכשיר: ${values.applianceType}
 📋 דגם: ${values.model || 'לא צוין'}
 💬 תיאור: ${values.symptoms}`;
@@ -55,7 +55,6 @@ export default function InquiryForm() {
   }
 
   async function onTelegramDirectSubmit() {
-    // Validate form before sending
     const isValid = await form.trigger();
     if (!isValid) return;
 
@@ -86,14 +85,15 @@ export default function InquiryForm() {
         });
         form.reset();
       } else {
-        // Safe logging to avoid triggering the dev overlay crash
+        console.error("Telegram API Error Response:", result);
         toast({
           variant: "destructive",
           title: "שגיאת שרת",
-          description: result.description || "לא הצלחנו לשלוח את ההודעה.",
+          description: result.description || "לא הצלחנו לשלוח את ההודעה. נסה WhatsApp.",
         });
       }
     } catch (error) {
+      console.error("Telegram Fetch Error:", error);
       toast({
         variant: "destructive",
         title: "שגיאה בשליחה",

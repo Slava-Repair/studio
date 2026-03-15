@@ -84,9 +84,9 @@ export default function Contact() {
       {/* Brands Section */}
       <div className="w-full mt-2 pt-4 border-t border-primary/5">
         <p className="text-center text-[9px] font-black text-muted-foreground/30 uppercase tracking-[0.3em] mb-4">מתמחים בתיקון כל המותגים המובילים</p>
-        <div className="flex flex-wrap justify-center items-center gap-x-8 gap-y-4 opacity-20 grayscale transition-all hover:opacity-40">
+        <div className="flex flex-wrap justify-center items-center gap-x-8 gap-y-4 opacity-40 transition-all hover:opacity-70">
           {brands.map((brand) => (
-            <span key={brand} className="text-xs md:text-sm font-black tracking-tighter text-foreground italic">
+            <span key={brand} className="text-xs md:text-sm font-black tracking-tighter text-primary italic">
               {brand}
             </span>
           ))}

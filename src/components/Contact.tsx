@@ -32,15 +32,15 @@ export default function Contact() {
     "ZANUSSI", "BOSCH", "SAMSUNG", "LG", "WHIRLPOOL", "ELECTROLUX", "SIEMENS", "BEKO", "MIELE", "HAIER", "CONSTRUCTA"
   ];
 
-  // Мягкие тени и скругленные углы. Добавили min-h-fit для мобилок.
-  const commonClasses = "bg-white rounded-[2rem] shadow-xl border-2 border-primary/20 flex flex-col min-h-fit transition-all hover:shadow-2xl";
+  // Убрали h-full, чтобы блоки могли растягиваться вниз на телефоне
+  const commonClasses = "bg-white rounded-[2rem] shadow-xl border-2 border-primary/20 flex flex-col transition-all hover:shadow-2xl w-full";
 
   return (
-    // overflow-auto позволяет скроллить, если контент не влезает
-    <section id="contact" className="w-full max-w-7xl mx-auto px-4 py-8 md:py-12 overflow-auto h-full flex flex-col gap-8">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch w-full" dir="rtl">
+    // Добавили h-auto для мобилок, чтобы секция не сжималась
+    <section id="contact" className="w-full max-w-7xl mx-auto px-4 py-10 h-auto min-h-screen flex flex-col gap-10">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-10 items-stretch w-full" dir="rtl">
         
-        {/* Блок 1: Контакты (Первый в списке) */}
+        {/* Блок 1: Контакты */}
         <div className={`${commonClasses} p-6 lg:p-8 justify-center order-1`}>
           <div className="space-y-6">
             <div className="text-center mb-6">
@@ -62,8 +62,8 @@ export default function Contact() {
           </div>
         </div>
 
-        {/* Блок 2: Фото (Второй в списке) */}
-        <div className={`${commonClasses} relative min-h-[350px] md:min-h-0 overflow-hidden order-2`}>
+        {/* Блок 2: ФОТО В ЦЕНТРЕ (фиксированная высота на мобиле 450px) */}
+        <div className={`${commonClasses} relative h-[450px] md:h-auto overflow-hidden order-2`}>
           <Image
             src="/images/photo1.png"
             alt="Professional technician repairing washing machine"
@@ -75,17 +75,17 @@ export default function Contact() {
           <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none"></div>
         </div>
 
-        {/* Блок 3: Форма (Третий в списке) */}
+        {/* Блок 3: Форма заказа */}
         <div className={`${commonClasses} order-3`}>
           <InquiryForm />
         </div>
 
       </div>
 
-      {/* Бренды */}
-      <div className="w-full mt-4 pt-6 border-t border-primary/5">
+      {/* Бренды в самом низу */}
+      <div className="w-full mt-6 pt-8 border-t border-primary/5">
         <p className="text-center text-[10px] font-black text-primary/40 uppercase tracking-[0.3em] mb-6">מתמחים בתיקון כל המותגים המובילים</p>
-        <div className="flex flex-wrap justify-center items-center gap-x-8 gap-y-6 transition-all">
+        <div className="flex flex-wrap justify-center items-center gap-x-8 gap-y-6 pb-10">
           {brands.map((brand) => (
             <span key={brand} className="text-xs md:text-sm font-black tracking-tighter text-primary italic opacity-70">
               {brand}

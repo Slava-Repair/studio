@@ -9,7 +9,8 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
-import { MessageCircle, Send } from "lucide-react";
+import { MessageCircle, Send, Loader2 } from "lucide-react";
+import { useState } from "react";
 
 const formSchema = z.object({
   fullName: z.string().min(2, { message: "נא להזין שם" }),
@@ -21,6 +22,7 @@ const formSchema = z.object({
 
 export default function InquiryForm() {
   const { toast } = useToast();
+  const [isSending, setIsSending] = useState(false);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -46,44 +48,72 @@ export default function InquiryForm() {
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, "_blank");
     toast({
-      title: "פנייתך נשלחה ל-WhatsApp!",
+      title: "נשלח ל-WhatsApp!",
       description: "נחזור אליך בהקדם.",
     });
     form.reset();
   }
 
-  function onTelegramSubmit() {
-    form.handleSubmit((values) => {
-      const message = formatMessage(values);
-      // Telegram share URL is the best way to pre-fill content
-      const telegramUrl = `https://t.me/share/url?url=https://t.me/TechFix_Express&text=${encodeURIComponent(message)}`;
-      window.open(telegramUrl, "_blank");
-      toast({
-        title: "פנייתך נשלחה ל-Telegram!",
-        description: "נחזור אליך בהקדם.",
+  async function onTelegramDirectSubmit() {
+    const isValid = await form.trigger();
+    if (!isValid) return;
+
+    setIsSending(true);
+    const values = form.getValues();
+    const botToken = "8640195105:AAFYMoIjic3_Z0AZFql6r-Rn7K9m2gGcMpI";
+    const chatId = "8138652285";
+    const message = formatMessage(values);
+
+    try {
+      const response = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          chat_id: chatId,
+          text: message,
+        }),
       });
-      form.reset();
-    })();
+
+      if (response.ok) {
+        toast({
+          title: "תודה!",
+          description: "ההודעה נשלחה בהצלחה.",
+        });
+        form.reset();
+      } else {
+        throw new Error("Failed to send message");
+      }
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "שגיאה בשליחה",
+        description: "לא הצלחנו לשלוח לטלגרם. אנא נסה בווטסאפ.",
+      });
+    } finally {
+      setIsSending(false);
+    }
   }
 
   return (
-    <div className="p-6 lg:p-8 h-full flex flex-col justify-center" dir="rtl">
-      <div className="mb-6 text-center">
-        <h3 className="text-xl md:text-2xl font-black text-primary border-b-4 border-primary/20 pb-2 inline-block px-10">פרטי הקריאה</h3>
+    <div className="p-4 lg:p-6 h-full flex flex-col justify-center" dir="rtl">
+      <div className="mb-4 text-center">
+        <h3 className="text-lg md:text-xl font-black text-primary border-b-2 border-primary/20 pb-1 inline-block px-8">פרטי הקריאה</h3>
       </div>
 
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onWhatsAppSubmit)} className="space-y-3 text-right">
-          <div className="grid grid-cols-2 gap-3">
+        <form onSubmit={form.handleSubmit(onWhatsAppSubmit)} className="space-y-2 text-right">
+          <div className="grid grid-cols-2 gap-2">
             <FormField
               control={form.control}
               name="fullName"
               render={({ field }) => (
-                <FormItem className="space-y-1">
+                <FormItem className="space-y-0.5">
                   <FormControl>
                     <Input 
                       placeholder="שם מלא" 
-                      className="bg-primary/[0.02] border-primary/20 h-11 rounded-xl focus-visible:ring-primary text-right text-xs placeholder:text-muted-foreground/50 shadow-sm" 
+                      className="bg-primary/[0.02] border-primary/20 h-9 rounded-lg focus-visible:ring-primary text-right text-[11px] placeholder:text-muted-foreground/50 shadow-sm" 
                       {...field} 
                     />
                   </FormControl>
@@ -95,12 +125,12 @@ export default function InquiryForm() {
               control={form.control}
               name="phone"
               render={({ field }) => (
-                <FormItem className="space-y-1">
+                <FormItem className="space-y-0.5">
                   <FormControl>
                     <Input 
                       placeholder="מספר טלפון" 
                       type="tel"
-                      className="bg-primary/[0.02] border-primary/20 h-11 rounded-xl focus-visible:ring-primary text-right text-xs placeholder:text-muted-foreground/50 shadow-sm" 
+                      className="bg-primary/[0.02] border-primary/20 h-9 rounded-lg focus-visible:ring-primary text-right text-[11px] placeholder:text-muted-foreground/50 shadow-sm" 
                       {...field} 
                     />
                   </FormControl>
@@ -110,15 +140,15 @@ export default function InquiryForm() {
             />
           </div>
 
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-2 gap-2">
             <FormField
               control={form.control}
               name="applianceType"
               render={({ field }) => (
-                <FormItem className="space-y-1">
+                <FormItem className="space-y-0.5">
                   <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <FormControl>
-                      <SelectTrigger className="bg-primary/[0.02] border-primary/20 h-11 rounded-xl focus:ring-primary text-right flex-row-reverse text-xs shadow-sm">
+                      <SelectTrigger className="bg-primary/[0.02] border-primary/20 h-9 rounded-lg focus:ring-primary text-right flex-row-reverse text-[11px] shadow-sm">
                         <SelectValue placeholder="סוג המכשיר" />
                       </SelectTrigger>
                     </FormControl>
@@ -139,11 +169,11 @@ export default function InquiryForm() {
               control={form.control}
               name="model"
               render={({ field }) => (
-                <FormItem className="space-y-1">
+                <FormItem className="space-y-0.5">
                   <FormControl>
                     <Input 
                       placeholder="דגם (אם ידוע)" 
-                      className="bg-primary/[0.02] border-primary/20 h-11 rounded-xl focus-visible:ring-primary text-right text-xs placeholder:text-muted-foreground/50 shadow-sm" 
+                      className="bg-primary/[0.02] border-primary/20 h-9 rounded-lg focus-visible:ring-primary text-right text-[11px] placeholder:text-muted-foreground/50 shadow-sm" 
                       {...field} 
                     />
                   </FormControl>
@@ -157,11 +187,11 @@ export default function InquiryForm() {
             control={form.control}
             name="symptoms"
             render={({ field }) => (
-              <FormItem className="space-y-1">
+              <FormItem className="space-y-0.5">
                 <FormControl>
                   <Textarea 
                     placeholder="תאור קצר של התקלה..." 
-                    className="bg-primary/[0.02] border-primary/20 min-h-[70px] rounded-xl focus-visible:ring-primary text-right text-xs resize-none placeholder:text-muted-foreground/50 shadow-sm" 
+                    className="bg-primary/[0.02] border-primary/20 min-h-[50px] rounded-lg focus-visible:ring-primary text-right text-[11px] resize-none placeholder:text-muted-foreground/50 shadow-sm" 
                     {...field} 
                   />
                 </FormControl>
@@ -170,21 +200,26 @@ export default function InquiryForm() {
             )}
           />
 
-          <div className="grid grid-cols-1 gap-2 mt-2">
+          <div className="flex flex-col gap-1.5 mt-2">
             <Button 
               type="submit" 
-              className="w-full bg-[#25D366] text-white hover:bg-[#128C7E] font-black h-11 text-xs rounded-xl shadow-[0_10px_20px_rgba(37,211,102,0.2)] transition-all active:scale-95 flex items-center justify-center gap-2 border-none"
+              className="w-full bg-[#25D366] text-white hover:bg-[#128C7E] font-black h-9 text-[11px] rounded-lg shadow-lg transition-all active:scale-95 flex items-center justify-center gap-2 border-none"
             >
-              <MessageCircle className="h-4 w-4" />
+              <MessageCircle className="h-3.5 w-3.5" />
               <span>שלח ב-WhatsApp</span>
             </Button>
 
             <Button 
               type="button"
-              onClick={onTelegramSubmit}
-              className="w-full bg-[#0088cc] text-white hover:bg-[#0077b5] font-black h-11 text-xs rounded-xl shadow-[0_10px_20px_rgba(0,136,204,0.2)] transition-all active:scale-95 flex items-center justify-center gap-2 border-none"
+              onClick={onTelegramDirectSubmit}
+              disabled={isSending}
+              className="w-full bg-[#0088cc] text-white hover:bg-[#0077b5] font-black h-9 text-[11px] rounded-lg shadow-lg transition-all active:scale-95 flex items-center justify-center gap-2 border-none"
             >
-              <Send className="h-4 w-4" />
+              {isSending ? (
+                <Loader2 className="h-3.5 w-3.5 animate-spin" />
+              ) : (
+                <Send className="h-3.5 w-3.5" />
+              )}
               <span>שלח ב-Telegram</span>
             </Button>
           </div>

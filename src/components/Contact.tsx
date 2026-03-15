@@ -17,13 +17,13 @@ export default function Contact() {
   ];
 
   return (
-    <section id="contact" className="w-full max-w-7xl mx-auto px-4 py-10 md:py-20 flex flex-col gap-12">
+    <section id="contact" className="w-full max-w-7xl mx-auto px-4 py-12 flex flex-col gap-8">
       
-      {/* Простой flex. dir="rtl" сам поставит первый блок направо на ПК. */}
-      <div className="flex flex-col md:flex-row gap-8 w-full items-stretch" dir="rtl">
+      {/* На компе в ряд, на телефоне в столбик */}
+      <div className="flex flex-col lg:flex-row gap-8 w-full items-stretch" dir="rtl">
         
-        {/* Блок 1: Контакты. Встанет сверху на телефоне, справа на ПК */}
-        <div className="w-full md:w-1/3 bg-white rounded-[2rem] shadow-xl border-2 border-primary/20 p-6 lg:p-8 flex flex-col justify-center">
+        {/* Блок 1: Контакты */}
+        <div className="w-full lg:w-1/3 bg-white rounded-[2rem] shadow-xl border-2 border-primary/20 p-6 lg:p-8 flex flex-col justify-center">
           <div className="text-center mb-8">
             <h3 className="text-xl md:text-2xl font-black text-primary border-b-4 border-primary/20 pb-2 inline-block px-8">פרטי התקשרות</h3>
           </div>
@@ -42,26 +42,25 @@ export default function Contact() {
           </div>
         </div>
 
-        {/* Блок 2: Фото. Встанет по центру везде. Убрали fill, теперь не режет голову. */}
-        <div className="w-full md:w-1/3 bg-white rounded-[2rem] shadow-xl border-2 border-primary/20 overflow-hidden flex items-center justify-center">
+        {/* Блок 2: Фото */}
+        <div className="w-full lg:w-1/3 bg-white rounded-[2rem] shadow-xl border-2 border-primary/20 relative overflow-hidden min-h-[450px]">
           <Image
             src="/images/photo1.png"
             alt="Professional technician"
-            width={800}
-            height={1000}
-            className="w-full h-auto object-cover"
+            fill
+            className="object-cover object-top"
+            sizes="(max-width: 1024px) 100vw, 33vw"
             priority
           />
         </div>
 
-        {/* Блок 3: Форма. Встанет снизу на телефоне, слева на ПК */}
-        <div className="w-full md:w-1/3 bg-white rounded-[2rem] shadow-xl border-2 border-primary/20 flex flex-col">
+        {/* Блок 3: Форма */}
+        <div className="w-full lg:w-1/3 bg-white rounded-[2rem] shadow-xl border-2 border-primary/20">
           <InquiryForm />
         </div>
 
       </div>
 
-      {/* Бренды */}
       <div className="w-full mt-4 pt-8 border-t border-primary/10">
         <p className="text-center text-[10px] font-bold text-primary/50 uppercase tracking-[0.4em] mb-8">מתמחים בתיקון כל המותגים המובילים</p>
         <div className="flex flex-wrap justify-center items-center gap-x-8 gap-y-6 pb-8">

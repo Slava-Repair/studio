@@ -32,14 +32,15 @@ export default function Contact() {
     "ZANUSSI", "BOSCH", "SAMSUNG", "LG", "WHIRLPOOL", "ELECTROLUX", "SIEMENS", "BEKO", "MIELE", "HAIER", "CONSTRUCTA"
   ];
 
-  // Мягкие тени и плавные переходы
+  // Мягкие тени и скругленные углы
   const commonClasses = "bg-white rounded-[2rem] shadow-xl border-2 border-primary/20 flex flex-col h-full transition-all hover:shadow-2xl";
 
   return (
-    <section id="contact" className="w-full max-w-7xl mx-auto px-4 py-2 md:py-4 h-full flex flex-col justify-center gap-6">
+    // Добавили min-h-screen и overflow-y-auto для идеальной прокрутки на телефоне
+    <section id="contact" className="w-full max-w-7xl mx-auto px-4 py-8 md:py-12 min-h-screen overflow-y-auto flex flex-col justify-center gap-6">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch w-full" dir="rtl">
         
-        {/* Блок 1: Контактная информация (теперь справа при RTL) */}
+        {/* Блок 1: Контакты (Справа на ПК, первый на телефоне) */}
         <div className={`${commonClasses} p-6 lg:p-8 flex flex-col justify-center order-1`}>
           <div className="space-y-6">
             <div className="text-center mb-6">
@@ -61,8 +62,8 @@ export default function Contact() {
           </div>
         </div>
 
-        {/* Блок 2: ФОТО В ЦЕНТРЕ - добавили object-top чтобы не резало голову */}
-        <div className={`${commonClasses} relative min-h-[300px] md:min-h-0 overflow-hidden order-2`}>
+        {/* Блок 2: Фото (В центре на ПК, второй на телефоне) */}
+        <div className={`${commonClasses} relative min-h-[400px] md:min-h-0 overflow-hidden order-2`}>
           <Image
             src="/images/photo1.png"
             alt="Professional technician repairing washing machine"
@@ -74,19 +75,19 @@ export default function Contact() {
           <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none"></div>
         </div>
 
-        {/* Блок 3: Форма заказа (слева при RTL) */}
+        {/* Блок 3: Форма (Слева на ПК, третья на телефоне) */}
         <div className={`${commonClasses} order-3`}>
           <InquiryForm />
         </div>
 
       </div>
 
-      {/* Секция брендов внизу */}
-      <div className="w-full mt-2 pt-4 border-t border-primary/5">
-        <p className="text-center text-[9px] font-black text-primary/40 uppercase tracking-[0.3em] mb-4">מתמחים בתיקון כל המותגים המובילים</p>
-        <div className="flex flex-wrap justify-center items-center gap-x-8 gap-y-4 transition-all">
+      {/* Бренды */}
+      <div className="w-full mt-4 pt-6 border-t border-primary/5">
+        <p className="text-center text-[10px] font-black text-primary/40 uppercase tracking-[0.3em] mb-6">מתמחים בתיקון כל המותגים המובילים</p>
+        <div className="flex flex-wrap justify-center items-center gap-x-8 gap-y-6 transition-all">
           {brands.map((brand) => (
-            <span key={brand} className="text-xs md:text-sm font-black tracking-tighter text-primary italic">
+            <span key={brand} className="text-xs md:text-sm font-black tracking-tighter text-primary italic opacity-70">
               {brand}
             </span>
           ))}

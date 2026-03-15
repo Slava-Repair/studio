@@ -68,7 +68,7 @@ export default function Contact() {
         {/* Block 3: Photo (Left side) */}
         <div className={`${commonClasses} relative min-h-[300px] md:min-h-0 overflow-hidden order-3`}>
           <Image
-            src="/images/photo1.png"
+            src="https://picsum.photos/seed/tech-pro/600/800"
             alt="Professional technician repairing appliance"
             fill
             className="object-cover"

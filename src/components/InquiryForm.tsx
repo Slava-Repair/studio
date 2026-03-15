@@ -86,15 +86,18 @@ export default function InquiryForm() {
         });
         form.reset();
       } else {
-        console.error("Telegram API Error Response:", result);
-        throw new Error(result.description || "Failed to send message");
+        // Safe logging to avoid triggering the dev overlay crash
+        toast({
+          variant: "destructive",
+          title: "שגיאת שרת",
+          description: result.description || "לא הצלחנו לשלוח את ההודעה.",
+        });
       }
     } catch (error) {
-      console.error("Telegram Fetch Error:", error);
       toast({
         variant: "destructive",
         title: "שגיאה בשליחה",
-        description: "לא הצלחנו לשלוח לטלגרם. אנא נסה בווטסאפ.",
+        description: "לא הצלחנו להתחבר לשרת. נא לנסות בווטסאפ.",
       });
     } finally {
       setIsSending(false);

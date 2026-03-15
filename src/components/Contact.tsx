@@ -32,16 +32,16 @@ export default function Contact() {
     "ZANUSSI", "BOSCH", "SAMSUNG", "LG", "WHIRLPOOL", "ELECTROLUX", "SIEMENS", "BEKO", "MIELE", "HAIER", "CONSTRUCTA"
   ];
 
-  // Мягкие тени и скругленные углы
-  const commonClasses = "bg-white rounded-[2rem] shadow-xl border-2 border-primary/20 flex flex-col h-full transition-all hover:shadow-2xl";
+  // Мягкие тени и скругленные углы. Добавили min-h-fit для мобилок.
+  const commonClasses = "bg-white rounded-[2rem] shadow-xl border-2 border-primary/20 flex flex-col min-h-fit transition-all hover:shadow-2xl";
 
   return (
-    // Добавили min-h-screen и overflow-y-auto для идеальной прокрутки на телефоне
-    <section id="contact" className="w-full max-w-7xl mx-auto px-4 py-8 md:py-12 min-h-screen overflow-y-auto flex flex-col justify-center gap-6">
+    // overflow-auto позволяет скроллить, если контент не влезает
+    <section id="contact" className="w-full max-w-7xl mx-auto px-4 py-8 md:py-12 overflow-auto h-full flex flex-col gap-8">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch w-full" dir="rtl">
         
-        {/* Блок 1: Контакты (Справа на ПК, первый на телефоне) */}
-        <div className={`${commonClasses} p-6 lg:p-8 flex flex-col justify-center order-1`}>
+        {/* Блок 1: Контакты (Первый в списке) */}
+        <div className={`${commonClasses} p-6 lg:p-8 justify-center order-1`}>
           <div className="space-y-6">
             <div className="text-center mb-6">
               <h3 className="text-xl md:text-2xl font-black text-primary border-b-4 border-primary/20 pb-2 inline-block px-10">פרטי התקשרות</h3>
@@ -62,8 +62,8 @@ export default function Contact() {
           </div>
         </div>
 
-        {/* Блок 2: Фото (В центре на ПК, второй на телефоне) */}
-        <div className={`${commonClasses} relative min-h-[400px] md:min-h-0 overflow-hidden order-2`}>
+        {/* Блок 2: Фото (Второй в списке) */}
+        <div className={`${commonClasses} relative min-h-[350px] md:min-h-0 overflow-hidden order-2`}>
           <Image
             src="/images/photo1.png"
             alt="Professional technician repairing washing machine"
@@ -75,7 +75,7 @@ export default function Contact() {
           <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none"></div>
         </div>
 
-        {/* Блок 3: Форма (Слева на ПК, третья на телефоне) */}
+        {/* Блок 3: Форма (Третий в списке) */}
         <div className={`${commonClasses} order-3`}>
           <InquiryForm />
         </div>

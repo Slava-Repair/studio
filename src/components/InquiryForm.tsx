@@ -9,7 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
-import { MessageCircle } from "lucide-react";
+import { MessageCircle, Send } from "lucide-react";
 
 const formSchema = z.object({
   fullName: z.string().min(2, { message: "נא להזין שם" }),
@@ -31,23 +31,39 @@ export default function InquiryForm() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    const whatsappNumber = "972522395151";
-    const message = `הודעה חדשה מ-TechFix Express:
+  const formatMessage = (values: z.infer<typeof formSchema>) => {
+    return `הודעה חדשה מ-TechFix Express:
 👤 שם: ${values.fullName}
 📞 טלפון: ${values.phone}
 🛠️ מכשיר: ${values.applianceType}
 📋 דגם: ${values.model || 'לא צוין'}
 💬 תיאור: ${values.symptoms}`;
+  };
 
+  function onWhatsAppSubmit(values: z.infer<typeof formSchema>) {
+    const whatsappNumber = "972522395151";
+    const message = formatMessage(values);
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, "_blank");
-
     toast({
-      title: "פנייתך נשלחה!",
+      title: "פנייתך נשלחה ל-WhatsApp!",
       description: "נחזור אליך בהקדם.",
     });
     form.reset();
+  }
+
+  function onTelegramSubmit() {
+    form.handleSubmit((values) => {
+      const message = formatMessage(values);
+      // Telegram share URL is the best way to pre-fill content
+      const telegramUrl = `https://t.me/share/url?url=https://t.me/TechFix_Express&text=${encodeURIComponent(message)}`;
+      window.open(telegramUrl, "_blank");
+      toast({
+        title: "פנייתך נשלחה ל-Telegram!",
+        description: "נחזור אליך בהקדם.",
+      });
+      form.reset();
+    })();
   }
 
   return (
@@ -57,7 +73,7 @@ export default function InquiryForm() {
       </div>
 
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3 text-right">
+        <form onSubmit={form.handleSubmit(onWhatsAppSubmit)} className="space-y-3 text-right">
           <div className="grid grid-cols-2 gap-3">
             <FormField
               control={form.control}
@@ -154,10 +170,24 @@ export default function InquiryForm() {
             )}
           />
 
-          <Button type="submit" className="w-full bg-[#25D366] text-white hover:bg-[#128C7E] font-black h-14 text-sm rounded-xl shadow-[0_15px_30px_rgba(37,211,102,0.3)] mt-2 transition-all active:scale-95 flex items-center justify-center gap-2 border-none">
-             <MessageCircle className="h-5 w-5" />
-            <span>שלח ב-WhatsApp</span>
-          </Button>
+          <div className="grid grid-cols-1 gap-2 mt-2">
+            <Button 
+              type="submit" 
+              className="w-full bg-[#25D366] text-white hover:bg-[#128C7E] font-black h-11 text-xs rounded-xl shadow-[0_10px_20px_rgba(37,211,102,0.2)] transition-all active:scale-95 flex items-center justify-center gap-2 border-none"
+            >
+              <MessageCircle className="h-4 w-4" />
+              <span>שלח ב-WhatsApp</span>
+            </Button>
+
+            <Button 
+              type="button"
+              onClick={onTelegramSubmit}
+              className="w-full bg-[#0088cc] text-white hover:bg-[#0077b5] font-black h-11 text-xs rounded-xl shadow-[0_10px_20px_rgba(0,136,204,0.2)] transition-all active:scale-95 flex items-center justify-center gap-2 border-none"
+            >
+              <Send className="h-4 w-4" />
+              <span>שלח ב-Telegram</span>
+            </Button>
+          </div>
         </form>
       </Form>
     </div>

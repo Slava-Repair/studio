@@ -32,23 +32,15 @@ export default function Contact() {
     "BOSCH", "SAMSUNG", "LG", "WHIRLPOOL", "ELECTROLUX", "SIEMENS", "BEKO", "MIELE", "HAIER", "CONSTRUCTA", "ZANUSSI"
   ];
 
-  const commonClasses = "bg-white rounded-[2rem] shadow-[0_30px_60px_rgba(0,0,0,0.15)] border-2 border-primary/10 flex flex-col h-full transition-all hover:shadow-[0_40px_80px_rgba(0,0,0,0.2)]";
+  const commonClasses = "bg-white rounded-[2rem] shadow-[0_40px_80px_rgba(0,0,0,0.25)] border-2 border-primary/20 flex flex-col h-full transition-all hover:shadow-[0_50px_100px_rgba(0,0,0,0.3)]";
 
   return (
     <section id="contact" className="w-full max-w-7xl mx-auto px-4 py-2 md:py-4 h-full flex flex-col justify-center gap-6">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch w-full" dir="rtl">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch w-full" dir="rtl">
         
-        {/* Block 1: Photo (Order 1 in RTL = Far Right) */}
-        <div className={`${commonClasses} relative min-h-[300px] md:min-h-0 overflow-hidden order-1`}>
-          <Image
-            src="/images/photo1.png"
-            alt="Professional technician repairing appliance"
-            fill
-            className="object-cover"
-            sizes="(max-width: 1024px) 100vw, 33vw"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none"></div>
+        {/* Block 1: Inquiry Form (Right side) */}
+        <div className={`${commonClasses} order-1`}>
+          <InquiryForm />
         </div>
 
         {/* Block 2: Contact Info (Center) */}
@@ -59,11 +51,11 @@ export default function Contact() {
             </div>
             <div className="space-y-6">
               {contactDetails.map((item, idx) => (
-                <div key={idx} className="flex items-center justify-start gap-5 text-right flex-row-reverse">
+                <div key={idx} className="flex items-center justify-start gap-5 text-right">
                   <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center shrink-0 border-2 border-primary/10 shadow-md text-primary">
                     <item.icon className="h-6 w-6" />
                   </div>
-                  <div className="flex flex-col items-end">
+                  <div className="flex flex-col items-start">
                     <span className="text-[10px] font-black text-muted-foreground/30 uppercase tracking-[0.2em] leading-none mb-1">{item.label}</span>
                     <span className="text-sm lg:text-base font-extrabold text-foreground leading-tight">{item.value}</span>
                   </div>
@@ -73,9 +65,17 @@ export default function Contact() {
           </div>
         </div>
 
-        {/* Block 3: Inquiry Form (Order 3 in RTL = Far Left) */}
-        <div className={`${commonClasses} order-3`}>
-          <InquiryForm />
+        {/* Block 3: Photo (Left side) */}
+        <div className={`${commonClasses} relative min-h-[300px] md:min-h-0 overflow-hidden order-3`}>
+          <Image
+            src="/images/photo1.png"
+            alt="Professional technician repairing appliance"
+            fill
+            className="object-cover"
+            sizes="(max-width: 1024px) 100vw, 33vw"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none"></div>
         </div>
 
       </div>

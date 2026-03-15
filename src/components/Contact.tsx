@@ -29,7 +29,7 @@ export default function Contact() {
   ];
 
   const brands = [
-    "BOSCH", "SAMSUNG", "LG", "WHIRLPOOL", "ELECTROLUX", "SIEMENS", "BEKO", "MIELE", "HAIER", "CONSTRUCTA", "ZANUSSI"
+    "HAIER", "MIELE", "BEKO", "SIEMENS", "ELECTROLUX", "WHIRLPOOL", "LG", "SAMSUNG", "BOSCH", "ZANUSSI", "CONSTRUCTA"
   ];
 
   const commonClasses = "bg-white rounded-[2rem] shadow-[0_40px_80px_rgba(0,0,0,0.25)] border-2 border-primary/20 flex flex-col h-full transition-all hover:shadow-[0_50px_100px_rgba(0,0,0,0.3)]";

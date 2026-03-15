@@ -14,7 +14,7 @@ import { useState } from "react";
 
 const formSchema = z.object({
   fullName: z.string().min(2, { message: "נא להזין שם" }),
-  phone: z.string().min(9, { message: "נא להזין מספר טלפון תקין" }),
+  phone: z.string().min(9, { message: "נא להזין מספר טלфон תקין" }),
   applianceType: z.string({ required_error: "נא לבחור סוג מכשיר" }),
   model: z.string().optional(),
   symptoms: z.string().min(5, { message: "נא לתאר את הבעיה" }),
@@ -36,7 +36,7 @@ export default function InquiryForm() {
   const formatMessage = (values: z.infer<typeof formSchema>) => {
     return `הודעה חדשה מ-TechFix Express:
 👤 שם: ${values.fullName}
-📞 טלפון: ${values.phone}
+📞 טлפון: ${values.phone}
 🛠️ מכשיר: ${values.applianceType}
 📋 דגם: ${values.model || 'לא צוין'}
 💬 תיאור: ${values.symptoms}`;

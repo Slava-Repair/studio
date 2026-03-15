@@ -41,7 +41,7 @@ export default function Contact() {
         {/* Block 1: Photo (Right side in RTL) */}
         <div className={`${commonClasses} relative min-h-[300px] md:min-h-0 overflow-hidden order-1`}>
           <Image
-src="/photo1.png"
+            src="/photo1.png"
             alt="Professional technician repairing washing machine"
             fill
             className="object-cover"

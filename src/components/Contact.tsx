@@ -28,41 +28,18 @@ export default function Contact() {
     },
   ];
 
-  const commonClasses = "bg-white rounded-[2rem] shadow-[0_20px_50px_rgba(0,0,0,0.2)] border border-primary/20 flex flex-col h-full transition-all hover:shadow-[0_25px_60px_rgba(0,0,0,0.25)]";
+  const brands = [
+    "BOSCH", "SAMSUNG", "LG", "WHIRLPOOL", "ELECTROLUX", "SIEMENS", "BEKO", "MIELE", "HAIER", "SHARP"
+  ];
+
+  const commonClasses = "bg-white rounded-[2rem] shadow-[0_30px_60px_rgba(0,0,0,0.15)] border border-primary/10 flex flex-col h-full transition-all hover:shadow-[0_40px_80px_rgba(0,0,0,0.2)]";
 
   return (
-    <section id="contact" className="w-full max-w-7xl mx-auto px-4 py-4 h-full flex items-center">
+    <section id="contact" className="w-full max-w-7xl mx-auto px-4 py-2 md:py-4 h-full flex flex-col justify-center gap-6">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch w-full" dir="rtl">
         
-        {/* Block 1 (Visual Right): Inquiry Form */}
-        <div className={commonClasses}>
-          <InquiryForm />
-        </div>
-
-        {/* Block 2 (Visual Center): Contact Info */}
-        <div className={`${commonClasses} p-6 lg:p-8 flex flex-col justify-center`}>
-          <div className="space-y-6">
-            <div className="text-center mb-6">
-              <h3 className="text-xl font-black text-primary border-b-2 border-primary/10 pb-2 inline-block px-8">פרטי התקשרות</h3>
-            </div>
-            <div className="space-y-6">
-              {contactDetails.map((item, idx) => (
-                <div key={idx} className="flex items-center justify-start gap-4 text-right flex-row-reverse">
-                  <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shrink-0 border border-primary/20 shadow-sm text-primary">
-                    <item.icon className="h-5 w-5" />
-                  </div>
-                  <div className="flex flex-col items-end">
-                    <span className="text-[10px] font-bold text-muted-foreground/40 uppercase tracking-widest leading-none mb-1">{item.label}</span>
-                    <span className="text-sm lg:text-base font-bold text-foreground leading-tight">{item.value}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Block 3 (Visual Left): Photo */}
-        <div className={`${commonClasses} relative min-h-[400px] overflow-hidden`}>
+        {/* Block 1 (Visual Right): Photo */}
+        <div className={`${commonClasses} relative min-h-[300px] md:min-h-0 overflow-hidden order-3 md:order-1`}>
           <Image
             src="/images/photo1.png"
             alt="Professional technician repairing appliance"
@@ -71,9 +48,48 @@ export default function Contact() {
             sizes="(max-width: 1024px) 100vw, 33vw"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent pointer-events-none"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none"></div>
         </div>
 
+        {/* Block 2 (Visual Center): Contact Info */}
+        <div className={`${commonClasses} p-6 lg:p-8 flex flex-col justify-center order-2 md:order-2`}>
+          <div className="space-y-6">
+            <div className="text-center mb-6">
+              <h3 className="text-xl md:text-2xl font-black text-primary border-b-4 border-primary/20 pb-2 inline-block px-10">פרטי התקשרות</h3>
+            </div>
+            <div className="space-y-6">
+              {contactDetails.map((item, idx) => (
+                <div key={idx} className="flex items-center justify-start gap-5 text-right flex-row-reverse">
+                  <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center shrink-0 border-2 border-primary/10 shadow-md text-primary">
+                    <item.icon className="h-6 w-6" />
+                  </div>
+                  <div className="flex flex-col items-end">
+                    <span className="text-[10px] font-black text-muted-foreground/30 uppercase tracking-[0.2em] leading-none mb-1">{item.label}</span>
+                    <span className="text-sm lg:text-base font-extrabold text-foreground leading-tight">{item.value}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Block 3 (Visual Left): Inquiry Form */}
+        <div className={`${commonClasses} order-1 md:order-3`}>
+          <InquiryForm />
+        </div>
+
+      </div>
+
+      {/* Brands Section */}
+      <div className="w-full mt-2 pt-4 border-t border-primary/5">
+        <p className="text-center text-[9px] font-black text-muted-foreground/30 uppercase tracking-[0.3em] mb-4">מתמחים בתיקון כל המותגים המובילים</p>
+        <div className="flex flex-wrap justify-center items-center gap-x-8 gap-y-4 opacity-20 grayscale transition-all hover:opacity-40">
+          {brands.map((brand) => (
+            <span key={brand} className="text-xs md:text-sm font-black tracking-tighter text-foreground italic">
+              {brand}
+            </span>
+          ))}
+        </div>
       </div>
     </section>
   );

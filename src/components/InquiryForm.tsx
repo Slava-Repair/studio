@@ -55,6 +55,7 @@ export default function InquiryForm() {
   }
 
   async function onTelegramDirectSubmit() {
+    // Validate form before sending
     const isValid = await form.trigger();
     if (!isValid) return;
 
@@ -76,6 +77,8 @@ export default function InquiryForm() {
         }),
       });
 
+      const result = await response.json();
+
       if (response.ok) {
         toast({
           title: "תודה!",
@@ -83,9 +86,11 @@ export default function InquiryForm() {
         });
         form.reset();
       } else {
-        throw new Error("Failed to send message");
+        console.error("Telegram API Error Response:", result);
+        throw new Error(result.description || "Failed to send message");
       }
     } catch (error) {
+      console.error("Telegram Fetch Error:", error);
       toast({
         variant: "destructive",
         title: "שגיאה בשליחה",
@@ -99,7 +104,7 @@ export default function InquiryForm() {
   return (
     <div className="p-4 lg:p-6 h-full flex flex-col justify-center" dir="rtl">
       <div className="mb-4 text-center">
-        <h3 className="text-lg md:text-xl font-black text-primary border-b-2 border-primary/20 pb-1 inline-block px-8">פרטי הקריאה</h3>
+        <h3 className="text-xl md:text-2xl font-black text-primary border-b-4 border-primary/20 pb-2 inline-block px-10">פרטי הקריאה</h3>
       </div>
 
       <Form {...form}>

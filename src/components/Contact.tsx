@@ -17,56 +17,54 @@ export default function Contact() {
   ];
 
   return (
-    // Секция теперь сама подстраивается под высоту контента (h-auto)
-    <section id="contact" className="w-full max-w-7xl mx-auto px-4 py-10 md:py-20 h-auto flex flex-col gap-12">
+    <section id="contact" className="w-full max-w-7xl mx-auto px-4 py-10 md:py-20 flex flex-col gap-12">
       
-      {/* Сетка: на телефоне блоки в столбик, на компе - в ряд */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch w-full" dir="rtl">
+      {/* Простой flex. dir="rtl" сам поставит первый блок направо на ПК. */}
+      <div className="flex flex-col md:flex-row gap-8 w-full items-stretch" dir="rtl">
         
-        {/* Блок 1: Контакты */}
-        <div className="bg-white rounded-[2rem] shadow-xl border-2 border-primary/20 p-8 flex flex-col justify-center order-1">
+        {/* Блок 1: Контакты. Встанет сверху на телефоне, справа на ПК */}
+        <div className="w-full md:w-1/3 bg-white rounded-[2rem] shadow-xl border-2 border-primary/20 p-6 lg:p-8 flex flex-col justify-center">
           <div className="text-center mb-8">
-            <h3 className="text-xl md:text-2xl font-black text-primary border-b-4 border-primary/20 pb-2 inline-block px-10">פרטי התקשרות</h3>
+            <h3 className="text-xl md:text-2xl font-black text-primary border-b-4 border-primary/20 pb-2 inline-block px-8">פרטי התקשרות</h3>
           </div>
-          <div className="space-y-8">
+          <div className="space-y-6">
             {contactDetails.map((item, idx) => (
-              <div key={idx} className="flex items-center gap-5 text-right">
-                <div className="w-14 h-14 rounded-full bg-slate-50 flex items-center justify-center shrink-0 border-2 border-primary/10 shadow-sm text-primary">
-                  <item.icon className="h-7 w-7" />
+              <div key={idx} className="flex items-center gap-4 text-right">
+                <div className="w-12 h-12 rounded-full bg-slate-50 flex items-center justify-center shrink-0 border-2 border-primary/10 shadow-sm text-primary">
+                  <item.icon className="h-6 w-6" />
                 </div>
                 <div className="flex flex-col">
                   <span className="text-[10px] font-black text-primary/40 uppercase tracking-widest mb-1">{item.label}</span>
-                  <span className="text-base md:text-lg font-extrabold text-foreground leading-tight">{item.value}</span>
+                  <span className="text-sm md:text-base font-extrabold text-foreground leading-tight">{item.value}</span>
                 </div>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Блок 2: Фото - ТЕПЕРЬ С ФИКСИРОВАННОЙ ВЫСОТОЙ НА МОБИЛЕ */}
-        <div className="bg-white rounded-[2rem] shadow-xl border-2 border-primary/20 relative overflow-hidden h-[450px] md:h-full min-h-[450px] order-2">
+        {/* Блок 2: Фото. Встанет по центру везде. Убрали fill, теперь не режет голову. */}
+        <div className="w-full md:w-1/3 bg-white rounded-[2rem] shadow-xl border-2 border-primary/20 overflow-hidden flex items-center justify-center">
           <Image
             src="/images/photo1.png"
             alt="Professional technician"
-            fill
-            className="object-cover object-top" 
-            sizes="(max-width: 1024px) 100vw, 33vw"
+            width={800}
+            height={1000}
+            className="w-full h-auto object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none"></div>
         </div>
 
-        {/* Блок 3: Форма */}
-        <div className="bg-white rounded-[2rem] shadow-xl border-2 border-primary/20 flex flex-col order-3">
+        {/* Блок 3: Форма. Встанет снизу на телефоне, слева на ПК */}
+        <div className="w-full md:w-1/3 bg-white rounded-[2rem] shadow-xl border-2 border-primary/20 flex flex-col">
           <InquiryForm />
         </div>
 
       </div>
 
       {/* Бренды */}
-      <div className="w-full mt-10 pt-10 border-t border-primary/10">
-        <p className="text-center text-[11px] font-bold text-primary/50 uppercase tracking-[0.4em] mb-10">מתמחים בתיקון כל המותגים המובילים</p>
-        <div className="flex flex-wrap justify-center items-center gap-x-10 gap-y-8 pb-10">
+      <div className="w-full mt-4 pt-8 border-t border-primary/10">
+        <p className="text-center text-[10px] font-bold text-primary/50 uppercase tracking-[0.4em] mb-8">מתמחים בתיקון כל המותגים המובילים</p>
+        <div className="flex flex-wrap justify-center items-center gap-x-8 gap-y-6 pb-8">
           {brands.map((brand) => (
             <span key={brand} className="text-xs md:text-sm font-black tracking-tighter text-primary italic opacity-60">
               {brand}

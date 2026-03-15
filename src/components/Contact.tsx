@@ -29,17 +29,17 @@ export default function Contact() {
   ];
 
   const brands = [
-    "BOSCH", "SAMSUNG", "LG", "WHIRLPOOL", "ELECTROLUX", "SIEMENS", "BEKO", "MIELE", "HAIER", "SHARP"
+    "BOSCH", "SAMSUNG", "LG", "WHIRLPOOL", "ELECTROLUX", "SIEMENS", "BEKO", "MIELE", "HAIER", "CONSTRUCTA", "ZANUSSI"
   ];
 
-  const commonClasses = "bg-white rounded-[2rem] shadow-[0_30px_60px_rgba(0,0,0,0.15)] border border-primary/10 flex flex-col h-full transition-all hover:shadow-[0_40px_80px_rgba(0,0,0,0.2)]";
+  const commonClasses = "bg-white rounded-[2rem] shadow-[0_30px_60px_rgba(0,0,0,0.15)] border-2 border-primary/10 flex flex-col h-full transition-all hover:shadow-[0_40px_80px_rgba(0,0,0,0.2)]";
 
   return (
     <section id="contact" className="w-full max-w-7xl mx-auto px-4 py-2 md:py-4 h-full flex flex-col justify-center gap-6">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch w-full" dir="rtl">
         
-        {/* Block 1 (Visual Right): Photo */}
-        <div className={`${commonClasses} relative min-h-[300px] md:min-h-0 overflow-hidden order-3 md:order-1`}>
+        {/* Block 1: Photo (Order 1 in RTL = Far Right) */}
+        <div className={`${commonClasses} relative min-h-[300px] md:min-h-0 overflow-hidden order-1`}>
           <Image
             src="/images/photo1.png"
             alt="Professional technician repairing appliance"
@@ -51,8 +51,8 @@ export default function Contact() {
           <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none"></div>
         </div>
 
-        {/* Block 2 (Visual Center): Contact Info */}
-        <div className={`${commonClasses} p-6 lg:p-8 flex flex-col justify-center order-2 md:order-2`}>
+        {/* Block 2: Contact Info (Center) */}
+        <div className={`${commonClasses} p-6 lg:p-8 flex flex-col justify-center order-2`}>
           <div className="space-y-6">
             <div className="text-center mb-6">
               <h3 className="text-xl md:text-2xl font-black text-primary border-b-4 border-primary/20 pb-2 inline-block px-10">פרטי התקשרות</h3>
@@ -73,8 +73,8 @@ export default function Contact() {
           </div>
         </div>
 
-        {/* Block 3 (Visual Left): Inquiry Form */}
-        <div className={`${commonClasses} order-1 md:order-3`}>
+        {/* Block 3: Inquiry Form (Order 3 in RTL = Far Left) */}
+        <div className={`${commonClasses} order-3`}>
           <InquiryForm />
         </div>
 

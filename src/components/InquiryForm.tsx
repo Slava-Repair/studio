@@ -111,7 +111,7 @@ export default function InquiryForm() {
       </div>
 
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onWhatsAppSubmit)} className="space-y-2 text-right">
+        <form onSubmit={form.handleSubmit(onWhatsAppSubmit)} className="space-y-3 text-right">
           <div className="grid grid-cols-2 gap-2">
             <FormField
               control={form.control}
@@ -199,7 +199,7 @@ export default function InquiryForm() {
                 <FormControl>
                   <Textarea 
                     placeholder="תאור קצר של התקלה..." 
-                    className="bg-primary/[0.02] border-primary/20 min-h-[50px] rounded-lg focus-visible:ring-primary text-right text-[11px] resize-none placeholder:text-muted-foreground/50 shadow-sm" 
+                    className="bg-primary/[0.02] border-primary/20 min-h-[60px] rounded-lg focus-visible:ring-primary text-right text-[11px] resize-none placeholder:text-muted-foreground/50 shadow-sm" 
                     {...field} 
                   />
                 </FormControl>
@@ -208,27 +208,27 @@ export default function InquiryForm() {
             )}
           />
 
-          <div className="flex flex-col gap-1.5 mt-2">
-            <Button 
-              type="submit" 
-              className="w-full bg-[#25D366] text-white hover:bg-[#128C7E] font-black h-9 text-[11px] rounded-lg shadow-lg transition-all active:scale-95 flex items-center justify-center gap-2 border-none"
-            >
-              <MessageCircle className="h-3.5 w-3.5" />
-              <span>שלח ב-WhatsApp</span>
-            </Button>
-
+          <div className="flex flex-col gap-4 mt-4">
             <Button 
               type="button"
               onClick={onTelegramDirectSubmit}
               disabled={isSending}
-              className="w-full bg-[#0088cc] text-white hover:bg-[#0077b5] font-black h-9 text-[11px] rounded-lg shadow-lg transition-all active:scale-95 flex items-center justify-center gap-2 border-none"
+              className="w-full bg-[#0088cc] text-white hover:bg-[#0077b5] font-black h-12 text-sm rounded-lg shadow-lg transition-all active:scale-95 flex items-center justify-center gap-2 border-none"
             >
               {isSending ? (
-                <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                <Loader2 className="h-4 w-4 animate-spin" />
               ) : (
-                <Send className="h-3.5 w-3.5" />
+                <Send className="h-4 w-4" />
               )}
               <span>שלח ב-Telegram</span>
+            </Button>
+
+            <Button 
+              type="submit" 
+              className="w-full bg-[#25D366] text-white hover:bg-[#128C7E] font-black h-12 text-sm rounded-lg shadow-lg transition-all active:scale-95 flex items-center justify-center gap-2 border-none"
+            >
+              <MessageCircle className="h-4 w-4" />
+              <span>שלח ב-WhatsApp</span>
             </Button>
           </div>
         </form>

@@ -32,16 +32,16 @@ export default function Contact() {
     "ZANUSSI", "BOSCH", "SAMSUNG", "LG", "WHIRLPOOL", "ELECTROLUX", "SIEMENS", "BEKO", "MIELE", "HAIER", "CONSTRUCTA"
   ];
 
-  // Убрали h-full, чтобы блоки могли растягиваться вниз на телефоне
-  const commonClasses = "bg-white rounded-[2rem] shadow-xl border-2 border-primary/20 flex flex-col transition-all hover:shadow-2xl w-full";
+  // Простые и понятные стили для всех блоков. h-full только на ПК.
+  const commonClasses = "bg-white rounded-[2rem] shadow-xl border-2 border-primary/20 flex flex-col w-full min-h-0 h-auto md:h-full";
 
   return (
-    // Добавили h-auto для мобилок, чтобы секция не сжималась
-    <section id="contact" className="w-full max-w-7xl mx-auto px-4 py-10 h-auto min-h-screen flex flex-col gap-10">
+    // Убрали все min-h-screen и h-full, чтобы сайт мог плавно пролистываться на телефоне
+    <section id="contact" className="w-full max-w-7xl mx-auto px-4 py-12 md:py-16 flex flex-col justify-center gap-10">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10 items-stretch w-full" dir="rtl">
         
-        {/* Блок 1: Контакты */}
-        <div className={`${commonClasses} p-6 lg:p-8 justify-center order-1`}>
+        {/* Блок 1: Контакты (Top on mobile, Right column on desktop) */}
+        <div className={`${commonClasses} p-6 lg:p-8 flex flex-col justify-center`}>
           <div className="space-y-6">
             <div className="text-center mb-6">
               <h3 className="text-xl md:text-2xl font-black text-primary border-b-4 border-primary/20 pb-2 inline-block px-10">פרטי התקשרות</h3>
@@ -62,30 +62,30 @@ export default function Contact() {
           </div>
         </div>
 
-        {/* Блок 2: ФОТО В ЦЕНТРЕ (фиксированная высота на мобиле 450px) */}
-        <div className={`${commonClasses} relative h-[450px] md:h-auto overflow-hidden order-2`}>
+        {/* Блок 2: ФОТО В ЦЕНТРЕ (Middle on mobile with good height, center column on desktop) */}
+        <div className="bg-white rounded-[2rem] shadow-xl border-2 border-primary/20 relative overflow-hidden h-[500px] md:h-full w-full">
           <Image
             src="/images/photo1.png"
             alt="Professional technician repairing washing machine"
             fill
-            className="object-cover object-top"
+            className="object-cover object-top" // Это гарантирует, что голова не будет срезана!
             sizes="(max-width: 1024px) 100vw, 33vw"
             priority
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none"></div>
         </div>
 
-        {/* Блок 3: Форма заказа */}
-        <div className={`${commonClasses} order-3`}>
+        {/* Блок 3: Форма (Bottom on mobile, Left column on desktop) */}
+        <div className={commonClasses}>
           <InquiryForm />
         </div>
 
       </div>
 
-      {/* Бренды в самом низу */}
-      <div className="w-full mt-6 pt-8 border-t border-primary/5">
-        <p className="text-center text-[10px] font-black text-primary/40 uppercase tracking-[0.3em] mb-6">מתמחים בתיקון כל המותגים המובילים</p>
-        <div className="flex flex-wrap justify-center items-center gap-x-8 gap-y-6 pb-10">
+      {/* Секция брендов */}
+      <div className="w-full mt-8 pt-10 border-t border-primary/5">
+        <p className="text-center text-[10px] font-black text-primary/40 uppercase tracking-[0.3em] mb-8">מתמחים בתיקון כל המותגים המובילים</p>
+        <div className="flex flex-wrap justify-center items-center gap-x-8 gap-y-6 pb-12 transition-all">
           {brands.map((brand) => (
             <span key={brand} className="text-xs md:text-sm font-black tracking-tighter text-primary italic opacity-70">
               {brand}

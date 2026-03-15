@@ -16,20 +16,17 @@ export default function Contact() {
     "ZANUSSI", "BOSCH", "SAMSUNG", "LG", "WHIRLPOOL", "ELECTROLUX", "SIEMENS", "BEKO", "MIELE", "HAIER", "CONSTRUCTA"
   ];
 
-  // Основной стиль блоков: на мобиле высота свободная (h-auto), на компе — на всю высоту ряда (md:h-full)
-  const commonClasses = "bg-white rounded-[2rem] shadow-lg border-2 border-primary/20 flex flex-col w-full h-auto md:h-full transition-all hover:shadow-2xl overflow-hidden";
-
   return (
-    // Секция теперь h-auto, чтобы страница могла расти вниз на телефоне
-    <section id="contact" className="w-full max-w-7xl mx-auto px-4 py-12 h-auto flex flex-col gap-10">
+    // Секция теперь сама подстраивается под высоту контента (h-auto)
+    <section id="contact" className="w-full max-w-7xl mx-auto px-4 py-10 md:py-20 h-auto flex flex-col gap-12">
       
-      {/* Сетка: на мобиле 1 колонка, на компе 3 колонки */}
+      {/* Сетка: на телефоне блоки в столбик, на компе - в ряд */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch w-full" dir="rtl">
         
         {/* Блок 1: Контакты */}
-        <div className={`${commonClasses} p-6 lg:p-10 order-1`}>
+        <div className="bg-white rounded-[2rem] shadow-xl border-2 border-primary/20 p-8 flex flex-col justify-center order-1">
           <div className="text-center mb-8">
-            <h3 className="text-xl md:text-2xl font-black text-primary border-b-4 border-primary/20 pb-2 inline-block px-8">פרטי התקשרות</h3>
+            <h3 className="text-xl md:text-2xl font-black text-primary border-b-4 border-primary/20 pb-2 inline-block px-10">פרטי התקשרות</h3>
           </div>
           <div className="space-y-8">
             {contactDetails.map((item, idx) => (
@@ -46,32 +43,32 @@ export default function Contact() {
           </div>
         </div>
 
-        {/* Блок 2: Фото (Сделали высоту 500px на мобиле, чтобы всё влезло) */}
-        <div className="bg-white rounded-[2rem] shadow-lg border-2 border-primary/20 relative overflow-hidden h-[500px] md:h-full w-full order-2">
+        {/* Блок 2: Фото - ТЕПЕРЬ С ФИКСИРОВАННОЙ ВЫСОТОЙ НА МОБИЛЕ */}
+        <div className="bg-white rounded-[2rem] shadow-xl border-2 border-primary/20 relative overflow-hidden h-[450px] md:h-full min-h-[450px] order-2">
           <Image
             src="/images/photo1.png"
-            alt="Professional technician repairing washing machine"
+            alt="Professional technician"
             fill
-            className="object-cover object-top" // Прижимаем фото к верху, чтобы голова была видна
+            className="object-cover object-top" 
             sizes="(max-width: 1024px) 100vw, 33vw"
             priority
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none"></div>
         </div>
 
-        {/* Блок 3: Форма (Просто блок, который идет следом) */}
-        <div className={`${commonClasses} order-3`}>
+        {/* Блок 3: Форма */}
+        <div className="bg-white rounded-[2rem] shadow-xl border-2 border-primary/20 flex flex-col order-3">
           <InquiryForm />
         </div>
 
       </div>
 
-      {/* Бренды — теперь они точно будут в самом низу */}
+      {/* Бренды */}
       <div className="w-full mt-10 pt-10 border-t border-primary/10">
         <p className="text-center text-[11px] font-bold text-primary/50 uppercase tracking-[0.4em] mb-10">מתמחים בתיקון כל המותגים המובילים</p>
         <div className="flex flex-wrap justify-center items-center gap-x-10 gap-y-8 pb-10">
           {brands.map((brand) => (
-            <span key={brand} className="text-xs md:text-sm font-black tracking-tighter text-primary italic opacity-60 hover:opacity-100 transition-opacity">
+            <span key={brand} className="text-xs md:text-sm font-black tracking-tighter text-primary italic opacity-60">
               {brand}
             </span>
           ))}

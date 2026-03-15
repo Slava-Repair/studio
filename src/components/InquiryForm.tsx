@@ -4,11 +4,13 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { Button } from "@/components/ui/button";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
+import { MessageCircle, Send, Loader2 } from "lucide-react";
+import { useState } from "react";
 
 const formSchema = z.object({
   fullName: z.string().min(2, { message: "נא להזין שם" }),
@@ -20,6 +22,7 @@ const formSchema = z.object({
 
 export default function InquiryForm() {
   const { toast } = useToast();
+  const [isSending, setIsSending] = useState(false);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -30,114 +33,159 @@ export default function InquiryForm() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    const whatsappNumber = "972522395151";
-    const message = `שלום, שלחתי בקשה לתיקון מהאתר:
-*שם:* ${values.fullName}
-*טלפון:* ${values.phone}
-*מכשיר:* ${values.applianceType}
-*דגם:* ${values.model || 'לא צוין'}
-*תיאור התקלה:* ${values.symptoms}`;
+  const formatMessage = (values: z.infer<typeof formSchema>) => {
+    return `הודעה חדשה מ-TechFix Express:
+👤 שם: ${values.fullName}
+📞 טלפון: ${values.phone}
+🛠️ מכשיר: ${values.applianceType}
+📋 דגם: ${values.model || 'לא צוין'}
+💬 תיאור: ${values.symptoms}`;
+  };
 
+  function onWhatsAppSubmit(values: z.infer<typeof formSchema>) {
+    const whatsappNumber = "972522395151";
+    const message = formatMessage(values);
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, "_blank");
-
     toast({
-      title: "פנייתך נשלחה!",
-      description: "הודעת וואטסאפ נשלחה ונחזור אליך בהקדם.",
+      title: "נשלח ל-WhatsApp!",
+      description: "נחזור אליך בהקדם.",
     });
     form.reset();
   }
 
+  async function onTelegramDirectSubmit() {
+    const isValid = await form.trigger();
+    if (!isValid) return;
+
+    setIsSending(true);
+    const values = form.getValues();
+    const botToken = "8640195105:AAFYMoIjic3_Z0AZFql6r-Rn7K9m2gGcMpI";
+    const chatId = "8138652285";
+    const message = formatMessage(values);
+
+    try {
+      const response = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          chat_id: chatId,
+          text: message,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        toast({
+          title: "תודה!",
+          description: "ההודעה נשלחה בהצלחה.",
+        });
+        form.reset();
+      } else {
+        console.error("Telegram API Error Response:", result);
+        toast({
+          variant: "destructive",
+          title: "שגיאת שרת",
+          description: result.description || "לא הצלחנו לשלוח את ההודעה. נסה WhatsApp.",
+        });
+      }
+    } catch (error) {
+      console.error("Telegram Fetch Error:", error);
+      toast({
+        variant: "destructive",
+        title: "שגיאה בשליחה",
+        description: "לא הצלחנו להתחבר לשרת. נא לנסות בווטסאפ.",
+      });
+    } finally {
+      setIsSending(false);
+    }
+  }
+
   return (
-    <div className="bg-white p-5 md:p-6 rounded-2xl shadow-lg border border-primary/20" dir="rtl">
-      <div className="mb-4 text-right">
-        <h3 className="text-xl font-bold text-primary mb-1 text-center">שלחו לנו הודעה</h3>
-        <p className="text-sm text-muted-foreground text-center">מלאו את הפרטים ונחזור אליכם</p>
+    <div className="p-4 lg:p-6 h-full flex flex-col justify-center" dir="rtl">
+      <div className="mb-4 text-center">
+        <h3 className="text-xl md:text-2xl font-black text-primary border-b-4 border-primary/20 pb-2 inline-block px-10">פרטי הקריאה</h3>
       </div>
 
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3 text-right">
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <form onSubmit={form.handleSubmit(onWhatsAppSubmit)} className="space-y-3 text-right">
+          <div className="grid grid-cols-2 gap-2">
             <FormField
               control={form.control}
               name="fullName"
               render={({ field }) => (
-                <FormItem className="text-right">
-                  <FormLabel className="text-primary font-bold text-xs">שם</FormLabel>
+                <FormItem className="space-y-0.5">
                   <FormControl>
                     <Input 
-                      placeholder="מה שמך" 
-                      className="bg-muted/30 border border-primary h-9 rounded-lg focus-visible:ring-primary focus-visible:border-primary text-right" 
+                      placeholder="שם מלא" 
+                      className="bg-primary/[0.02] border-primary/20 h-9 rounded-lg focus-visible:ring-primary text-right text-[11px] placeholder:text-muted-foreground/50 shadow-sm" 
                       {...field} 
                     />
                   </FormControl>
-                  <FormMessage className="text-[10px]" />
+                  <FormMessage className="text-[9px]" />
                 </FormItem>
               )}
             />
-
             <FormField
               control={form.control}
               name="phone"
               render={({ field }) => (
-                <FormItem className="text-right">
-                  <FormLabel className="text-primary font-bold text-xs">טלפון</FormLabel>
+                <FormItem className="space-y-0.5">
                   <FormControl>
                     <Input 
-                      placeholder="050-0000000" 
-                      className="bg-muted/30 border border-primary h-9 rounded-lg focus-visible:ring-primary focus-visible:border-primary text-right" 
+                      placeholder="מספר טלפון" 
+                      type="tel"
+                      className="bg-primary/[0.02] border-primary/20 h-9 rounded-lg focus-visible:ring-primary text-right text-[11px] placeholder:text-muted-foreground/50 shadow-sm" 
                       {...field} 
                     />
                   </FormControl>
-                  <FormMessage className="text-[10px]" />
+                  <FormMessage className="text-[9px]" />
                 </FormItem>
               )}
             />
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div className="grid grid-cols-2 gap-2">
             <FormField
               control={form.control}
               name="applianceType"
               render={({ field }) => (
-                <FormItem className="text-right">
-                  <FormLabel className="text-primary font-bold text-xs">בחר מכשיר</FormLabel>
+                <FormItem className="space-y-0.5">
                   <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <FormControl>
-                      <SelectTrigger className="bg-muted/30 border border-primary h-9 rounded-lg focus:ring-primary text-right flex-row-reverse">
+                      <SelectTrigger className="bg-primary/[0.02] border-primary/20 h-9 rounded-lg focus:ring-primary text-right flex-row-reverse text-[11px] shadow-sm">
                         <SelectValue placeholder="סוג המכשיר" />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent dir="rtl">
-                      <SelectItem value="מקרר">מקרר</SelectItem>
                       <SelectItem value="מכונת כביסה">מכונת כביסה</SelectItem>
                       <SelectItem value="מכונת ייבוש">מכונת ייבוש</SelectItem>
-                      <SelectItem value="תנור">תנור</SelectItem>
                       <SelectItem value="מדיח כלים">מדיח כלים</SelectItem>
+                      <SelectItem value="תנור">תנור</SelectItem>
+                      <SelectItem value="מקרר">מקרר</SelectItem>
                       <SelectItem value="אחר">אחר</SelectItem>
                     </SelectContent>
                   </Select>
-                  <FormMessage className="text-[10px]" />
+                  <FormMessage className="text-[9px]" />
                 </FormItem>
               )}
             />
-
             <FormField
               control={form.control}
               name="model"
               render={({ field }) => (
-                <FormItem className="text-right">
-                  <FormLabel className="text-primary font-bold text-xs">דגם (אופציונלי)</FormLabel>
+                <FormItem className="space-y-0.5">
                   <FormControl>
                     <Input 
-                      placeholder="Samsung RT45" 
-                      className="bg-muted/30 border border-primary h-9 rounded-lg focus-visible:ring-primary focus-visible:border-primary text-right" 
+                      placeholder="דגם (אם ידוע)" 
+                      className="bg-primary/[0.02] border-primary/20 h-9 rounded-lg focus-visible:ring-primary text-right text-[11px] placeholder:text-muted-foreground/50 shadow-sm" 
                       {...field} 
                     />
                   </FormControl>
-                  <FormMessage className="text-[10px]" />
+                  <FormMessage className="text-[9px]" />
                 </FormItem>
               )}
             />
@@ -147,23 +195,42 @@ export default function InquiryForm() {
             control={form.control}
             name="symptoms"
             render={({ field }) => (
-              <FormItem className="text-right">
-                <FormLabel className="text-primary font-bold text-xs">תיאור התקלה</FormLabel>
+              <FormItem className="space-y-0.5">
                 <FormControl>
                   <Textarea 
-                    placeholder="תאר את הבעיה במילים פשוטות" 
-                    className="bg-muted/30 border border-primary min-h-[60px] rounded-lg focus-visible:ring-primary focus-visible:border-primary text-right text-sm" 
+                    placeholder="תאור קצר של התקלה..." 
+                    className="bg-primary/[0.02] border-primary/20 min-h-[60px] rounded-lg focus-visible:ring-primary text-right text-[11px] resize-none placeholder:text-muted-foreground/50 shadow-sm" 
                     {...field} 
                   />
                 </FormControl>
-                <FormMessage className="text-[10px]" />
+                <FormMessage className="text-[9px]" />
               </FormItem>
             )}
           />
 
-          <Button type="submit" className="w-full bg-primary text-white hover:bg-primary/90 font-bold h-11 text-lg rounded-lg transition-all shadow-md mt-2">
-            שלח בקשה
-          </Button>
+          <div className="flex flex-col gap-4 mt-4">
+            <Button 
+              type="button"
+              onClick={onTelegramDirectSubmit}
+              disabled={isSending}
+              className="w-full bg-[#0088cc] text-white hover:bg-[#0077b5] font-black h-12 text-sm rounded-lg shadow-lg transition-all active:scale-95 flex items-center justify-center gap-2 border-none"
+            >
+              {isSending ? (
+                <Loader2 className="h-4 w-4 animate-spin" />
+              ) : (
+                <Send className="h-4 w-4" />
+              )}
+              <span>שלח ב-Telegram</span>
+            </Button>
+
+            <Button 
+              type="submit" 
+              className="w-full bg-[#25D366] text-white hover:bg-[#128C7E] font-black h-12 text-sm rounded-lg shadow-lg transition-all active:scale-95 flex items-center justify-center gap-2 border-none"
+            >
+              <MessageCircle className="h-4 w-4" />
+              <span>שלח ב-WhatsApp</span>
+            </Button>
+          </div>
         </form>
       </Form>
     </div>

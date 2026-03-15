@@ -4,17 +4,24 @@ import { Wrench } from "lucide-react";
 
 export default function Navigation() {
   return (
-    <nav className="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-md border-b">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-14 items-center flex-row-reverse">
+    <nav className="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b shrink-0 h-14 md:h-16 flex items-center">
+      <div className="max-w-7xl mx-auto px-4 w-full">
+        <div className="flex justify-between items-center h-full" dir="rtl">
+          {/* Logo on the Right (Start in RTL) */}
           <div className="flex items-center gap-2">
-            <Wrench className="h-5 w-5 text-primary" />
-            <span className="font-headline font-bold text-lg text-primary tracking-tight">
+            <div className="bg-primary p-1.5 rounded-md shadow-sm">
+              <Wrench className="h-4 w-4 md:h-5 md:w-5 text-white" />
+            </div>
+            <span className="font-headline font-black text-xl md:text-2xl text-primary tracking-tighter leading-none">
               TechFix Express
             </span>
           </div>
-          <div className="text-primary font-bold hidden md:block text-sm">
-            נתניה והסביבה | 052-2395151
+
+          {/* Pill Badge on the Left (End in RTL) */}
+          <div className="flex items-center">
+            <div className="bg-white text-primary px-4 py-1.5 rounded-full text-[10px] md:text-xs font-black border border-primary/20 shadow-sm">
+               נתניה והסביבה | 052-2395151
+            </div>
           </div>
         </div>
       </div>

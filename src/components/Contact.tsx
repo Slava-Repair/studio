@@ -32,27 +32,27 @@ export default function Contact() {
     "ZANUSSI", "BOSCH", "SAMSUNG", "LG", "WHIRLPOOL", "ELECTROLUX", "SIEMENS", "BEKO", "MIELE", "HAIER", "CONSTRUCTA"
   ];
 
-  const commonClasses = "bg-white rounded-[2rem] shadow-[0_40px_80px_rgba(0,0,0,0.3)] border-2 border-primary/20 flex flex-col h-full transition-all hover:shadow-[0_50px_100px_rgba(0,0,0,0.35)]";
+  // Здесь мы сделали тени мягкими (shadow-xl и hover:shadow-2xl)
+  const commonClasses = "bg-white rounded-[2rem] shadow-xl border-2 border-primary/20 flex flex-col h-full transition-all hover:shadow-2xl";
 
   return (
     <section id="contact" className="w-full max-w-7xl mx-auto px-4 py-2 md:py-4 h-full flex flex-col justify-center gap-6">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch w-full" dir="rtl">
         
-        {/* Block 1: Photo (Right side in RTL) */}
+        {/* Block 1: Photo - Добавили object-top, чтобы не резало голову */}
         <div className={`${commonClasses} relative min-h-[300px] md:min-h-0 overflow-hidden order-1`}>
           <Image
             src="/images/photo1.png"
             alt="Professional technician repairing washing machine"
             fill
-            className="object-cover"
+            className="object-cover object-top"
             sizes="(max-width: 1024px) 100vw, 33vw"
             priority
-            data-ai-hint="washing machine repair"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none"></div>
         </div>
 
-        {/* Block 2: Contact Info (Center) */}
+        {/* Block 2: Contact Info */}
         <div className={`${commonClasses} p-6 lg:p-8 flex flex-col justify-center order-2`}>
           <div className="space-y-6">
             <div className="text-center mb-6">
@@ -74,7 +74,7 @@ export default function Contact() {
           </div>
         </div>
 
-        {/* Block 3: Inquiry Form (Left side in RTL) */}
+        {/* Block 3: Inquiry Form */}
         <div className={`${commonClasses} order-3`}>
           <InquiryForm />
         </div>

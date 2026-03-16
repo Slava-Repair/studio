@@ -15,24 +15,30 @@ export default function App() {
     <div className="min-h-screen bg-[#fcfdfe] font-sans flex flex-col overflow-x-hidden" dir="rtl">
       <Navigation />
       
-      <main className="flex-1 w-full max-w-7xl mx-auto px-4 md:px-8 pt-20 md:pt-24 flex flex-col items-center">
+      {/* Убрал лишние отступы сверху (pt-8) */}
+      <main className="flex-1 w-full max-w-7xl mx-auto px-4 md:px-8 pt-8 md:pt-12 flex flex-col items-center">
           
-          {/* Главный заголовок */}
-          <h1 className="text-xl md:text-4xl font-black text-primary text-center mb-16 md:mb-24 drop-shadow-sm whitespace-nowrap">
+          <h1 className="text-xl md:text-4xl font-black text-primary text-center drop-shadow-sm whitespace-nowrap">
             תיקון מוצרי חשמל ביתיים מהיר ויעיל
           </h1>
 
-          {/* Бегущая строка: теперь ниже и бежит справа налево */}
-          <div className="w-full max-w-4xl overflow-hidden mb-8 relative py-2 border-y border-gray-50">
-            <div className="flex animate-marquee whitespace-nowrap gap-10 text-primary font-bold text-sm md:text-base italic">
-              {/* Список брендов дважды для бесконечного цикла */}
-              {[...brands, ...brands].map((brand, i) => (
-                <span key={i}>{brand}</span>
-              ))}
+          {/* mt-12 md:mt-16 опускает этот блок ниже, ближе к контактам */}
+          <div className="w-full max-w-4xl flex flex-col items-center mt-12 md:mt-16 mb-4">
+            
+            <p className="text-[10px] md:text-xs text-blue-400 font-medium tracking-widest mb-3">
+              מתמחים בתיקון כל המותגים המובילים
+            </p>
+
+            {/* dir="ltr" обязательно для правильного движения английского текста справа налево */}
+            <div className="w-full overflow-hidden relative py-2 border-y border-gray-100" dir="ltr">
+              <div className="flex animate-marquee whitespace-nowrap gap-10 text-primary font-bold text-sm md:text-base italic">
+                {[...brands, ...brands].map((brand, i) => (
+                  <span key={i}>{brand}</span>
+                ))}
+              </div>
             </div>
           </div>
           
-          {/* Блок контактов */}
           <div className="w-full max-w-4xl">
             <Contact />
           </div>
@@ -44,11 +50,11 @@ export default function App() {
       
       <Toaster />
 
-      {/* Анимация: Справа налево (from 0 to -50%) */}
+      {/* Анимация: сдвиг влево (-50%) создает движение справа налево */}
       <style jsx global>{`
         @keyframes marquee {
           0% { transform: translateX(0); }
-          100% { transform: translateX(50%); }
+          100% { transform: translateX(-50%); }
         }
         .animate-marquee {
           display: flex;

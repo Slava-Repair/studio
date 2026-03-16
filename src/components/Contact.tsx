@@ -9,14 +9,14 @@ export default function Contact() {
     { 
       icon: Phone, 
       label: "טלפון", 
-      value: "052-2305151", 
-      href: "tel:+972522305151" // Ссылка для звонка
+      value: "052-2395151", 
+      href: "tel:+972522395151" // Исправлено: 052-239-5151
     },
     { 
       icon: Mail, 
       label: "אימייל", 
       value: "demslava@gmail.com", 
-      href: "mailto:demslava@gmail.com" // Ссылка для почты
+      href: "mailto:demslava@gmail.com" 
     },
     { icon: Clock, label: "שעות פעילות", value: "א' - ה': 08:00 - 17:00" },
     { icon: MapPin, label: "מיקום", value: "נתניה והסביבה" },
@@ -29,7 +29,6 @@ export default function Contact() {
   return (
     <section id="contact" className="w-full max-w-7xl mx-auto px-4 py-12 flex flex-col gap-8">
       
-      {/* На компе в ряд, на телефоне в столбик */}
       <div className="flex flex-col lg:flex-row gap-8 w-full items-stretch" dir="rtl">
         
         {/* Блок 1: Контакты */}
@@ -46,11 +45,10 @@ export default function Contact() {
                 <div className="flex flex-col">
                   <span className="text-[10px] font-black text-primary/40 uppercase tracking-widest mb-1">{item.label}</span>
                   
-                  {/* Если есть ссылка (телефон или мейл), оборачиваем в тег <a> */}
                   {item.href ? (
                     <a 
                       href={item.href} 
-                      className="text-sm md:text-base font-extrabold text-foreground leading-tight hover:text-primary transition-colors duration-200 decoration-primary/30 hover:underline underline-offset-4"
+                      className="text-sm md:text-base font-extrabold text-foreground leading-tight hover:text-primary transition-colors duration-200 hover:underline underline-offset-4"
                     >
                       {item.value}
                     </a>

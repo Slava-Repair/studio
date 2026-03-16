@@ -11,8 +11,8 @@ export default function App() {
       <Navigation />
       
       <main className="flex-1 w-full max-w-7xl mx-auto p-4 md:p-8 pt-24 md:pt-32 flex flex-col items-center">
-          {/* Заголовок: text-2xl для мобилок, text-4xl для ПК. mb-6 — умеренный отступ снизу */}
-          <h1 className="text-2xl md:text-4xl font-black text-primary text-center mb-6 drop-shadow-sm">
+          {/* text-xl для мобилок (чтобы в одну строку), text-4xl для ПК. mb-4 — еще ближе к форме */}
+          <h1 className="text-xl md:text-4xl font-black text-primary text-center mb-4 drop-shadow-sm whitespace-nowrap md:whitespace-normal">
             תיקון מוצרי חשמל ביתיים מהיר ויעיל
           </h1>
           

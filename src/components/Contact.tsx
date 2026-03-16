@@ -10,7 +10,7 @@ export default function Contact() {
       icon: Phone, 
       label: "טלפון", 
       value: "052-2395151", 
-      href: "tel:+972522395151" // Исправлено: 052-239-5151
+      href: "tel:+972522395151" 
     },
     { 
       icon: Mail, 
@@ -22,12 +22,8 @@ export default function Contact() {
     { icon: MapPin, label: "מיקום", value: "נתניה והסביבה" },
   ];
 
-  const brands = [
-    "ZANUSSI", "BOSCH", "SAMSUNG", "LG", "WHIRLPOOL", "ELECTROLUX", "SIEMENS", "BEKO", "MIELE", "HAIER", "CONSTRUCTA"
-  ];
-
   return (
-    <section id="contact" className="w-full max-w-7xl mx-auto px-4 py-12 flex flex-col gap-8">
+    <section id="contact" className="w-full max-w-7xl mx-auto px-4 py-8 flex flex-col gap-8">
       
       <div className="flex flex-col lg:flex-row gap-8 w-full items-stretch" dir="rtl">
         
@@ -80,17 +76,6 @@ export default function Contact() {
           <InquiryForm />
         </div>
 
-      </div>
-
-      <div className="w-full mt-4 pt-8 border-t border-primary/10">
-        <p className="text-center text-[10px] font-bold text-primary/50 uppercase tracking-[0.4em] mb-8">מתמחים בתיקון כל המותגים המובילים</p>
-        <div className="flex flex-wrap justify-center items-center gap-x-8 gap-y-6 pb-8">
-          {brands.map((brand) => (
-            <span key={brand} className="text-xs md:text-sm font-black tracking-tighter text-primary italic opacity-60">
-              {brand}
-            </span>
-          ))}
-        </div>
       </div>
     </section>
   );

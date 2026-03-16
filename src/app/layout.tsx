@@ -2,8 +2,8 @@ import type {Metadata} from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'TechFix Express | תיקון מוצרי חשמל ביתיים',
-  description: 'שירות תיקונים מקצועי, מהיר ואמין לכל מוצרי החשמל הביתיים: מקררים, מכונות כביסה, תנורים ומדיחים.',
+  title: 'סלבה — תיקון מוצרי חשמל ביתיים בנתניה והסביבה',
+  description: 'תיקון מקצועי ומהיר של מכונות כביסה, מדיחי כלים ומייבשים בנתניה והסביבה. שירות אמין עם אחריות על כל תיקון.',
 };
 
 export default function RootLayout({

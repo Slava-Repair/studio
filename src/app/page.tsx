@@ -15,23 +15,17 @@ export default function App() {
     <div className="min-h-screen bg-[#fcfdfe] font-sans flex flex-col overflow-x-hidden" dir="rtl">
       <Navigation />
       
-      {/* Уменьшил pt (верхний отступ), чтобы всё влезло без прокрутки на ПК */}
-      <main className="flex-1 w-full max-w-7xl mx-auto px-4 md:px-8 pt-20 md:pt-28 flex flex-col items-center">
+      <main className="flex-1 w-full max-w-7xl mx-auto px-4 md:px-8 pt-20 md:pt-24 flex flex-col items-center">
           
-          {/* Главный заголовок (компактный для мобильных) */}
-          <h1 className="text-xl md:text-4xl font-black text-primary text-center mb-1 drop-shadow-sm whitespace-nowrap">
+          {/* Главный заголовок */}
+          <h1 className="text-xl md:text-4xl font-black text-primary text-center mb-16 md:mb-24 drop-shadow-sm whitespace-nowrap">
             תיקון מוצרי חשמל ביתיים מהיר ויעיל
           </h1>
 
-          {/* Неподвижный подзаголовок */}
-          <p className="text-[10px] md:text-xs text-blue-400 font-medium tracking-widest mb-4">
-            מתמחים בתיקון כל המותגים המובילים
-          </p>
-
-          {/* Контейнер бегущей строки — ограничен шириной основных блоков */}
-          <div className="w-full max-w-4xl overflow-hidden mb-6 relative py-2">
-            <div className="flex animate-marquee whitespace-nowrap gap-10 text-primary font-bold text-sm md:text-base italic italic-font">
-              {/* Дублируем список для бесконечности */}
+          {/* Бегущая строка: теперь ниже и бежит справа налево */}
+          <div className="w-full max-w-4xl overflow-hidden mb-8 relative py-2 border-y border-gray-50">
+            <div className="flex animate-marquee whitespace-nowrap gap-10 text-primary font-bold text-sm md:text-base italic">
+              {/* Список брендов дважды для бесконечного цикла */}
               {[...brands, ...brands].map((brand, i) => (
                 <span key={i}>{brand}</span>
               ))}
@@ -44,27 +38,22 @@ export default function App() {
           </div>
       </main>
 
-      {/* Футер остается компактным */}
       <footer className="bg-primary text-white text-center py-4 flex-none text-[12px] font-medium tracking-tight">
         TechFix Express 2026 © | 052-2395151 | נתניה והסביבה
       </footer>
       
       <Toaster />
 
-      {/* Магия анимации */}
+      {/* Анимация: Справа налево (from 0 to -50%) */}
       <style jsx global>{`
         @keyframes marquee {
           0% { transform: translateX(0); }
-          100% { transform: translateX(100%); }
+          100% { transform: translateX(50%); }
         }
         .animate-marquee {
           display: flex;
           width: fit-content;
-          animation: marquee 25s linear infinite;
-        }
-        /* Добавим легкий курсив для брендов, как на твоем скрине */
-        .italic-font {
-          font-style: italic;
+          animation: marquee 20s linear infinite;
         }
       `}</style>
     </div>

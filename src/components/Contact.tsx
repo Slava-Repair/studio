@@ -13,37 +13,31 @@ export default function Contact() {
   ];
 
   return (
-    // Уменьшил py-8 на py-2, чтобы секция не занимала место
-    <section id="contact" className="w-full max-w-7xl mx-auto px-4 py-2 flex flex-col gap-4">
-      
-      <div className="flex flex-col lg:flex-row gap-6 w-full items-stretch" dir="rtl">
+    <section id="contact" className="w-full max-w-7xl mx-auto px-4 py-4 flex flex-col gap-8">
+      <div className="flex flex-col lg:flex-row gap-8 w-full items-stretch" dir="rtl">
         
-        {/* Блок 1: Контакты — уменьшил p-6 на p-4 */}
-        <div className="w-full lg:w-1/3 bg-white rounded-[1.5rem] shadow-xl border-2 border-primary/20 p-4 lg:p-6 flex flex-col justify-center">
-          <div className="text-center mb-4">
-            <h3 className="text-lg md:text-xl font-black text-primary border-b-4 border-primary/20 pb-1 inline-block px-6">פרטי התקשרות</h3>
+        {/* Блок 1: Контакты — вернул p-6 и нормальный шрифт */}
+        <div className="w-full lg:w-1/3 bg-white rounded-[2rem] shadow-xl border-2 border-primary/20 p-6 lg:p-8 flex flex-col justify-center">
+          <div className="text-center mb-8">
+            <h3 className="text-xl md:text-2xl font-black text-primary border-b-4 border-primary/20 pb-2 inline-block px-8">פרטי התקשרות</h3>
           </div>
-          <div className="space-y-4">
+          <div className="space-y-6">
             {contactDetails.map((item, idx) => (
-              <div key={idx} className="flex items-center gap-3 text-right">
-                <div className="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center shrink-0 border-2 border-primary/10 shadow-sm text-primary">
-                  <item.icon className="h-5 w-5" />
+              <div key={idx} className="flex items-center gap-4 text-right">
+                <div className="w-12 h-12 rounded-full bg-slate-50 flex items-center justify-center shrink-0 border-2 border-primary/10 shadow-sm text-primary">
+                  <item.icon className="h-6 w-6" />
                 </div>
                 <div className="flex flex-col">
-                  <span className="text-[9px] font-black text-primary/40 uppercase tracking-widest leading-none mb-1">{item.label}</span>
-                  {item.href ? (
-                    <a href={item.href} className="text-xs md:text-sm font-extrabold text-foreground hover:text-primary transition-colors">{item.value}</a>
-                  ) : (
-                    <span className="text-xs md:text-sm font-extrabold text-foreground">{item.value}</span>
-                  )}
+                  <span className="text-[10px] font-black text-primary/40 uppercase tracking-widest mb-1">{item.label}</span>
+                  <span className="text-sm md:text-base font-extrabold text-foreground leading-tight">{item.value}</span>
                 </div>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Блок 2: Фото — уменьшил min-h */}
-        <div className="w-full lg:w-1/3 bg-white rounded-[1.5rem] shadow-xl border-2 border-primary/20 relative overflow-hidden min-h-[350px]">
+        {/* Блок 2: Фото — вернул высоту 450px */}
+        <div className="w-full lg:w-1/3 bg-white rounded-[2rem] shadow-xl border-2 border-primary/20 relative overflow-hidden min-h-[450px]">
           <Image
             src="/images/photo1.png"
             alt="Professional technician"
@@ -54,8 +48,8 @@ export default function Contact() {
           />
         </div>
 
-        {/* Блок 3: Форма */}
-        <div className="w-full lg:w-1/3 bg-white rounded-[1.5rem] shadow-xl border-2 border-primary/20 overflow-hidden">
+        {/* Блок 3: Форма — вернул как было */}
+        <div className="w-full lg:w-1/3 bg-white rounded-[2rem] shadow-xl border-2 border-primary/20">
           <InquiryForm />
         </div>
 

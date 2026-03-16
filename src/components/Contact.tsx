@@ -6,8 +6,18 @@ import { Phone, Mail, Clock, MapPin } from "lucide-react";
 
 export default function Contact() {
   const contactDetails = [
-    { icon: Phone, label: "טלפון", value: "052-2395151" },
-    { icon: Mail, label: "אימייל", value: "demslava@gmail.com" },
+    { 
+      icon: Phone, 
+      label: "טלפון", 
+      value: "052-2305151", 
+      href: "tel:+972522305151" // Ссылка для звонка
+    },
+    { 
+      icon: Mail, 
+      label: "אימייל", 
+      value: "demslava@gmail.com", 
+      href: "mailto:demslava@gmail.com" // Ссылка для почты
+    },
     { icon: Clock, label: "שעות פעילות", value: "א' - ה': 08:00 - 17:00" },
     { icon: MapPin, label: "מיקום", value: "נתניה והסביבה" },
   ];
@@ -35,7 +45,20 @@ export default function Contact() {
                 </div>
                 <div className="flex flex-col">
                   <span className="text-[10px] font-black text-primary/40 uppercase tracking-widest mb-1">{item.label}</span>
-                  <span className="text-sm md:text-base font-extrabold text-foreground leading-tight">{item.value}</span>
+                  
+                  {/* Если есть ссылка (телефон или мейл), оборачиваем в тег <a> */}
+                  {item.href ? (
+                    <a 
+                      href={item.href} 
+                      className="text-sm md:text-base font-extrabold text-foreground leading-tight hover:text-primary transition-colors duration-200 decoration-primary/30 hover:underline underline-offset-4"
+                    >
+                      {item.value}
+                    </a>
+                  ) : (
+                    <span className="text-sm md:text-base font-extrabold text-foreground leading-tight">
+                      {item.value}
+                    </span>
+                  )}
                 </div>
               </div>
             ))}

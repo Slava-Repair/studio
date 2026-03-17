@@ -27,25 +27,26 @@ export default function Contact() {
       
       <div className="flex flex-col lg:flex-row gap-6 md:gap-8 w-full items-stretch" dir="rtl">
         
-        {/* Блок 1: Форма (Левый) — Сделал шире для удобства ввода */}
+        {/* Блок 1: Форма (Левый) — 40% ширины */}
         <div className="w-full lg:w-[40%] bg-white rounded-[2rem] shadow-xl border-2 border-primary/20 p-6">
           <InquiryForm />
         </div>
 
-        {/* Блок 2: Фото (Центральный) — Сдвиг на 415px вверх */}
+        {/* Блок 2: Фото (Центральный) — Сдвиг через transform */}
         <div className="w-full lg:w-[30%] bg-white rounded-[2rem] shadow-xl border-2 border-primary/20 relative overflow-hidden min-h-[350px] md:min-h-[450px]">
-          <Image
-            src="/images/photo1.png"
-            alt="Professional technician"
-            fill
-            className="object-cover"
-            style={{ objectPosition: 'center -415px' }}
-            sizes="(max-width: 1024px) 100vw, 33vw"
-            priority
-          />
+          <div className="absolute inset-0 w-full h-[140%] -translate-y-[110px]"> 
+            <Image
+              src="/images/photo1.png"
+              alt="Professional technician"
+              fill
+              className="object-cover object-top"
+              sizes="(max-width: 1024px) 100vw, 33vw"
+              priority
+            />
+          </div>
         </div>
 
-        {/* Блок 3: Контакты (Правый) — Ссылки активны */}
+        {/* Блок 3: Контакты (Правый) — 30% ширины */}
         <div className="w-full lg:w-[30%] bg-white rounded-[2rem] shadow-xl border-2 border-primary/20 p-6 lg:p-8 flex flex-col justify-center">
           <div className="text-center mb-6 md:mb-8">
             <h3 className="text-xl md:text-2xl font-black text-primary border-b-4 border-primary/20 pb-2 inline-block px-8">פרטי התקשרות</h3>

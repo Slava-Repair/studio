@@ -6,47 +6,33 @@ import { Phone, Mail, Clock, MapPin } from "lucide-react";
 
 export default function Contact() {
   const contactDetails = [
-    { 
-      icon: Phone, 
-      label: "טלפון", 
-      value: "052-2395151", 
-      href: "tel:+972522395151" 
-    },
-    { 
-      icon: Mail, 
-      label: "אימייל", 
-      value: "demslava@gmail.com", 
-      href: "mailto:demslava@gmail.com" 
-    },
+    { icon: Phone, label: "טלפון", value: "052-2395151", href: "tel:+972522395151" },
+    { icon: Mail, label: "אימייל", value: "demslava@gmail.com", href: "mailto:demslava@gmail.com" },
     { icon: Clock, label: "שעות פעילות", value: "א' - ה': 08:00 - 17:00" },
     { icon: MapPin, label: "מיקום", value: "נתניה והסביבה" },
   ];
 
   return (
     <section id="contact" className="w-full max-w-7xl mx-auto px-4 py-4 md:py-8 flex flex-col gap-6 md:gap-8">
-      
       <div className="flex flex-col lg:flex-row gap-6 md:gap-8 w-full items-stretch" dir="rtl">
         
-        {/* Блок 1: Форма (Левый) — 40% ширины на десктопе */}
-        <div className="w-full lg:w-[42%] bg-white rounded-[2rem] shadow-xl border-2 border-primary/20 p-6 flex flex-col">
+        {/* Блок 1: Форма — Широкий (42%) */}
+        <div className="w-full lg:w-[42%] bg-white rounded-[2rem] shadow-xl border-2 border-primary/20 p-6">
           <InquiryForm />
         </div>
 
-        {/* Блок 2: Фото (Центральный) — Сдвиг вверх через object-position */}
+        {/* Блок 2: Твое новое обрезанное фото (28%) */}
         <div className="w-full lg:w-[28%] bg-white rounded-[2rem] shadow-xl border-2 border-primary/20 relative overflow-hidden min-h-[350px] md:min-h-[450px]">
           <Image
-            src="/images/photo1.png"
+            src="/images/photo_new.png" 
             alt="Professional technician"
             fill
             className="object-cover"
-            // 50% — центр по горизонтали, 20% — прижать ближе к верху (чем меньше число, тем выше фото)
-            style={{ objectPosition: '50% 15%' }} 
-            sizes="(max-width: 1024px) 100vw, 30vw"
             priority
           />
         </div>
 
-        {/* Блок 3: Контакты (Правый) — 30% ширины */}
+        {/* Блок 3: Контакты (30%) */}
         <div className="w-full lg:w-[30%] bg-white rounded-[2rem] shadow-xl border-2 border-primary/20 p-6 lg:p-8 flex flex-col justify-center">
           <div className="text-center mb-6 md:mb-8">
             <h3 className="text-xl md:text-2xl font-black text-primary border-b-4 border-primary/20 pb-2 inline-block px-8">פרטי התקשרות</h3>
@@ -59,18 +45,12 @@ export default function Contact() {
                 </div>
                 <div className="flex flex-col">
                   <span className="text-[10px] font-black text-primary/40 uppercase tracking-widest mb-1">{item.label}</span>
-                  
                   {item.href ? (
-                    <a 
-                      href={item.href} 
-                      className="text-sm md:text-base font-extrabold text-foreground hover:text-primary transition-all duration-200 decoration-primary/30 hover:underline underline-offset-4"
-                    >
+                    <a href={item.href} className="text-sm md:text-base font-extrabold text-foreground hover:text-primary transition-all duration-200 hover:underline underline-offset-4">
                       {item.value}
                     </a>
                   ) : (
-                    <span className="text-sm md:text-base font-extrabold text-foreground leading-tight">
-                      {item.value}
-                    </span>
+                    <span className="text-sm md:text-base font-extrabold text-foreground leading-tight">{item.value}</span>
                   )}
                 </div>
               </div>

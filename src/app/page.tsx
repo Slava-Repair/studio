@@ -1,62 +1,83 @@
-'use client';
+"use client";
 
-import React from 'react';
-import Navigation from '@/components/Navigation';
-import Contact from '@/components/Contact';
-import { Toaster } from '@/components/ui/toaster';
+import Image from "next/image";
+import InquiryForm from "./InquiryForm";
+import { Phone, Mail, Clock, MapPin } from "lucide-react";
 
-export default function App() {
-  const brands = [
-    "ZANUSSI", "BOSCH", "SAMSUNG", "LG", "WHIRLPOOL", 
-    "ELECTROLUX", "SIEMENS", "BEKO", "MIELE", "HAIER", "CONSTRUCTA"
+export default function Contact() {
+  const contactDetails = [
+    { 
+      icon: Phone, 
+      label: "טלפון", 
+      value: "052-2395151", 
+      href: "tel:+972522395151" 
+    },
+    { 
+      icon: Mail, 
+      label: "אימייל", 
+      value: "demslava@gmail.com", 
+      href: "mailto:demslava@gmail.com" 
+    },
+    { icon: Clock, label: "שעות פעילות", value: "א' - ה': 08:00 - 17:00" },
+    { icon: MapPin, label: "מיקום", value: "נתניה והסביבה" },
   ];
 
   return (
-    <div className="min-h-screen bg-[#fcfdfe] font-sans flex flex-col overflow-x-hidden" dir="rtl">
-      <Navigation />
+    <section id="contact" className="w-full max-w-7xl mx-auto px-4 py-4 md:py-8 flex flex-col gap-6 md:gap-8">
       
-      <main className="flex-1 w-full max-w-7xl mx-auto px-4 md:px-8 pt-20 md:pt-24 flex flex-col items-center">
-          
-          <h1 className="text-xl md:text-3xl font-black text-primary text-center drop-shadow-sm mb-2">
-            תיקון מוצרי חשמל ביתיים מהיר ויעיל
-          </h1>
+      <div className="flex flex-col lg:flex-row gap-6 md:gap-8 w-full items-stretch" dir="rtl">
+        
+        {/* Блок 1: Форма (Левый) — Сделал шире для удобства ввода */}
+        <div className="w-full lg:w-[40%] bg-white rounded-[2rem] shadow-xl border-2 border-primary/20 p-6">
+          <InquiryForm />
+        </div>
 
-          <div className="w-full max-w-4xl flex flex-col items-center mt-2 md:mt-4 mb-4">
-            <p className="text-[10px] md:text-xs text-blue-400 font-medium tracking-widest mb-2">
-              מתמחים בתיקון כל המותגים המובילים
-            </p>
+        {/* Блок 2: Фото (Центральный) — Сдвиг на 415px вверх */}
+        <div className="w-full lg:w-[30%] bg-white rounded-[2rem] shadow-xl border-2 border-primary/20 relative overflow-hidden min-h-[350px] md:min-h-[450px]">
+          <Image
+            src="/images/photo1.png"
+            alt="Professional technician"
+            fill
+            className="object-cover"
+            style={{ objectPosition: 'center -415px' }}
+            sizes="(max-width: 1024px) 100vw, 33vw"
+            priority
+          />
+        </div>
 
-            <div className="w-full overflow-hidden relative py-2 border-y border-gray-100" dir="ltr">
-              <div className="flex animate-marquee whitespace-nowrap gap-10 text-primary font-bold text-sm md:text-base italic">
-                {[...brands, ...brands].map((brand, i) => (
-                  <span key={i}>{brand}</span>
-                ))}
+        {/* Блок 3: Контакты (Правый) — Ссылки активны */}
+        <div className="w-full lg:w-[30%] bg-white rounded-[2rem] shadow-xl border-2 border-primary/20 p-6 lg:p-8 flex flex-col justify-center">
+          <div className="text-center mb-6 md:mb-8">
+            <h3 className="text-xl md:text-2xl font-black text-primary border-b-4 border-primary/20 pb-2 inline-block px-8">פרטי התקשרות</h3>
+          </div>
+          <div className="space-y-4 md:space-y-6">
+            {contactDetails.map((item, idx) => (
+              <div key={idx} className="flex items-center gap-4 text-right">
+                <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-slate-50 flex items-center justify-center shrink-0 border-2 border-primary/10 shadow-sm text-primary">
+                  <item.icon className="h-5 w-5 md:h-6 md:w-6" />
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-[10px] font-black text-primary/40 uppercase tracking-widest mb-1">{item.label}</span>
+                  
+                  {item.href ? (
+                    <a 
+                      href={item.href} 
+                      className="text-sm md:text-base font-extrabold text-foreground leading-tight hover:text-primary transition-colors duration-200 hover:underline underline-offset-4"
+                    >
+                      {item.value}
+                    </a>
+                  ) : (
+                    <span className="text-sm md:text-base font-extrabold text-foreground leading-tight">
+                      {item.value}
+                    </span>
+                  )}
+                </div>
               </div>
-            </div>
+            ))}
           </div>
-          
-          <div className="w-full">
-            <Contact />
-          </div>
-      </main>
+        </div>
 
-      <footer className="bg-primary text-white text-center py-4 flex-none text-[12px] font-medium tracking-tight mt-auto">
-        TechFix Express 2026 © | 052-2395151 | נתניה והסביבה
-      </footer>
-      
-      <Toaster />
-
-      <style jsx global>{`
-        @keyframes marquee {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-        .animate-marquee {
-          display: flex;
-          width: fit-content;
-          animation: marquee 20s linear infinite;
-        }
-      `}</style>
-    </div>
+      </div>
+    </section>
   );
 }
